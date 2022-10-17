@@ -1,5 +1,7 @@
 # v-formly-v3
 
+v-formly 是 vue 3 的动态（JSON 驱动）表单库。
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
