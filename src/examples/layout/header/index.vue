@@ -19,7 +19,7 @@ const { getCollapsed } = useCollapsed();
 const getHeaderClass = computed(() => {
   return {
     "layout-header": true,
-    "layout-header--fixed": true,
+    "layout-header--fixed": false,
     "layout-header--light": true,
     "layout-header--collapsed": getCollapsed.value,
   };
@@ -31,7 +31,7 @@ const getHeaderClass = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition-property: all cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+  transition: all cubic-bezier(0.4, 0, 0.2, 1) 200ms;
   padding-right: 0;
   padding-left: var(--sidebar-width);
   height: var(--header-height);

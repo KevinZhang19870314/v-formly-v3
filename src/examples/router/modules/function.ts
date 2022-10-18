@@ -11,13 +11,6 @@ const route: RouteRecordRaw = {
   meta: { title: "Functional 功能性", icon: ControlOutlined },
   children: [
     {
-      path: "string",
-      name: "string",
-      component: AboutViewVue,
-      // component: StringView,
-      meta: { title: "String 文本框" },
-    },
-    {
       path: "custom-validator",
       name: "custom-validator",
       component: AboutViewVue,

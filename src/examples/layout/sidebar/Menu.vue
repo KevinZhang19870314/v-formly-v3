@@ -87,5 +87,8 @@ function getCurrentMenuRecursive(
 <style scoped lang="less">
 .menu-wrapper {
   padding: 16px 0;
+  :deep(.ant-menu-sub.ant-menu-inline) {
+    background: #fff;
+  }
 }
 </style>
