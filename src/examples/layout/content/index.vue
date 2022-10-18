@@ -1,34 +1,34 @@
 <template>
   <div class="layout-content">
     <router-view v-slot="{ Component, route }">
-      <transition name="fade-slide" mode="out-in" appear>
-        <!-- <keep-alive> -->
-        <component :is="Component" :key="route.fullPath" />
-        <!-- </keep-alive> -->
-      </transition>
+      <component
+        :is="Component"
+        :key="route.fullPath"
+        class="content-wrapper"
+      />
     </router-view>
   </div>
 </template>
 
 <style scoped lang="less">
 .layout-content {
+  position: relative;
   min-height: calc(100vh - var(--header-height));
-  padding: 24px;
-}
+  margin: 24px;
+  background: white;
+  .content-wrapper {
+    height: 100%;
+    padding: 32px;
+    max-width: 800px;
 
-/* fade-slide */
-.fade-slide-leave-active,
-.fade-slide-enter-active {
-  transition: all 0.3s;
-}
+    :deep(.btns) {
+      display: flex;
+      justify-content: flex-end;
 
-.fade-slide-enter-from {
-  opacity: 0;
-  transform: translateX(-30px);
-}
-
-.fade-slide-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
+      .ant-btn {
+        margin-right: 8px;
+      }
+    }
+  }
 }
 </style>
