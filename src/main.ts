@@ -6,6 +6,8 @@ import mitt from "mitt";
 import { setupStore } from "./examples/store";
 import { setupRouter } from "./examples/router";
 
+import VFormly from "./formly";
+
 // import "./assets/main.css";
 import "@/style/index.less";
 
@@ -14,4 +16,13 @@ app.config.globalProperties.emitter = mitt();
 setupAntd(app);
 setupStore(app);
 setupRouter(app);
+
+app.use(VFormly, {
+  ui: {
+    errors: {
+      required: "必填项",
+    },
+  },
+});
+
 app.mount("#app");

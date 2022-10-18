@@ -47,10 +47,14 @@ import { FormItemContext } from "./utils/context";
 import { Global } from "./utils/global";
 import { registerFormComponent } from "./utils/register.factory";
 import { ValidateFactory } from "./utils/validate.factory";
-import VObject from "./components/Object.vue";
 import { deepClone } from "./utils/utils";
 import { computed, provide, ref } from "vue";
 import { useSlots } from "./hooks/slots";
+
+import VObject from "./components/Object.vue";
+import VString from "./components/String.vue";
+
+const name = "v-formly";
 
 const props = withDefaults(
   defineProps<{
@@ -106,7 +110,7 @@ function onCreated() {
 
 function registerBuildInComponents() {
   registerFormComponent("v-object", VObject);
-  // registerFormComponent("v-string", VString);
+  registerFormComponent("v-string", VString);
   // registerFormComponent("v-boolean", VBoolean);
   // registerFormComponent("v-array", VArray);
   // registerFormComponent("v-autocomplete", VAutoComplete);
@@ -178,6 +182,7 @@ async function submitForm() {
 }
 
 return {
+  name,
   getContext,
   validate,
   reset,
