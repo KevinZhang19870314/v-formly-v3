@@ -3,7 +3,7 @@
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
   "compilerOptions": {
     "baseUrl": ".",
-    "isolatedModules": false,
+    "isolatedModules": true,
     "paths": {
       "@/*": ["./src/*"]
     }
