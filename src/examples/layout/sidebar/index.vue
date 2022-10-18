@@ -1,7 +1,7 @@
 <template>
   <a-layout-sider
     v-model:collapsed="getCollapsed"
-    class="layout-sidebar layout-sidebar--fixed"
+    class="layout-sidebar"
     :trigger="null"
     collapsible
     collapsed-width="56"
@@ -22,6 +22,7 @@ const { getCollapsed } = useCollapsed();
 
 <style scoped lang="less">
 .layout-sidebar {
+  margin-top: -56px;
   &--fixed {
     position: fixed;
     top: 0;

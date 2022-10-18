@@ -29,13 +29,6 @@ const getLayoutClass = computed(() => {
 
 <style scoped lang="less">
 .default-layout-main {
-  transition-property: all cubic-bezier(0.4, 0, 0.2, 1) 200ms;
-
-  padding-top: var(--header-height);
-  padding-left: var(--sidebar-width);
-
-  &--collapsed {
-    padding-left: var(--sidebar-collapsed-width);
-  }
+  transition: all cubic-bezier(0.4, 0, 0.2, 1) 200ms;
 }
 </style>
