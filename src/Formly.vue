@@ -72,7 +72,7 @@ const emit = defineEmits<{
 if (!props.meta || typeof props.meta.properties === "undefined")
   throw new Error(`Invalid Schema`);
 
-let objectMeta = {};
+let objectMeta: Meta = { type: MetaType.Object };
 let formData = {};
 let loading = ref(false);
 
