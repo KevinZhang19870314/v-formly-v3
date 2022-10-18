@@ -1,3 +1,4 @@
+import useEventBus from "@/hooks/event-bus";
 import type { Meta } from "@/types/meta";
 import Ajv from "ajv";
 import { FORM_ERROR_CHANGE } from "./consts";
@@ -62,6 +63,7 @@ class ValidateFactory {
   async _validation(context: any, valid: boolean, errs: any) {
     let errors = [];
     const ERROR_CHANGE = `${FORM_ERROR_CHANGE}-${this.state._formId}`;
+    const emitter = useEventBus();
     if (!valid) {
       const customErrors = this._getCustomError(context);
       const customAsyncErrors = await this._getCustomAsyncError(context);
@@ -74,19 +76,17 @@ class ValidateFactory {
       );
       errors = this._removeIgnoreErrors(errors);
       const error = this._getAjvError(context.id, errors);
-      // TODO: replace with mitt lib
-      //   Vue.bus.emit(ERROR_CHANGE, {
-      //     id: context.id,
-      //     error: error,
-      //   });
+      emitter.emit(ERROR_CHANGE, {
+        id: context.id,
+        error: error,
+      });
 
       return error ? false : true;
     } else {
-      // TODO: replace with mitt lib
-      //   Vue.bus.emit(ERROR_CHANGE, {
-      //     id: context.id,
-      //     error: undefined,
-      //   });
+      emitter.emit(ERROR_CHANGE, {
+        id: context.id,
+        error: undefined,
+      });
 
       return true;
     }

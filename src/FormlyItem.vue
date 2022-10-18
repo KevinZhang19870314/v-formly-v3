@@ -15,6 +15,7 @@
 
 <script setup lang="ts" name="v-formly-item">
 import { computed, inject, onMounted, ref } from "vue";
+import useEventBus from "./hooks/event-bus";
 import { useSlots } from "./hooks/slots";
 import { useVisibleIf } from "./hooks/visible-if";
 import type { Meta } from "./types/meta";
@@ -55,18 +56,18 @@ onMounted(() => {
   applyIgnoreErrors(visible.value, props.id);
 
   const { visibleIf } = useVisibleIf();
-  // TODO: 替换为mitt
-  // Vue.bus.on(`${FORM_VALUE_CHANGE}-${state._formId}`, (change: any) => {
-  //   visible.value = visibleIf(state.context, props.meta, visible.value, {
-  //     id: change.id,
-  //     value: change.value,
-  //   });
+  const emitter = useEventBus();
+  emitter.on(`${FORM_VALUE_CHANGE}-${state._formId}`, (change: any) => {
+    visible.value = visibleIf(state.context, props.meta, visible.value, {
+      id: change.id,
+      value: change.value,
+    });
 
-  //   const context = state.context.getContext(props.id);
-  //   if (context) {
-  //     applyIgnoreErrors(visible.value, context.id);
-  //   }
-  // });
+    const context = state.context.getContext(props.id);
+    if (context) {
+      applyIgnoreErrors(visible.value, context.id);
+    }
+  });
 });
 
 function applyIgnoreErrors(visible: boolean, id: string) {
