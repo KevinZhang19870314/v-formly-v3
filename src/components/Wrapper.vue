@@ -1,5 +1,5 @@
 <template>
-  <a-form-model-item
+  <a-form-item
     :labelCol="labelCol"
     :wrapperCol="wrapperCol"
     :required="ui.showRequired"
@@ -32,16 +32,14 @@
     <div v-if="error" class="ant-form-explain">
       {{ error }}
     </div>
-  </a-form-model-item>
+  </a-form-item>
 </template>
 
-<script setup lang="ts" name="v-wrapper">
+<script setup lang="ts">
 import useEventBus from "@/hooks/event-bus";
 import type { Meta } from "@/types/meta";
 import { FORM_ERROR_CHANGE } from "@/utils/consts";
 import { computed, inject, onBeforeUnmount } from "vue";
-
-const name = "v-wrapper";
 
 const props = defineProps<{
   id: string;
@@ -94,8 +92,14 @@ function formErrorChangeCallback(err: any) {
   }
 }
 
-return {
-  name,
+// return {
+//   name,
+// };
+</script>
+
+<script lang="ts">
+export default {
+  name: "v-wrapper",
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="v__formly">
-    <a-form-model
+    <a-form
       class="v"
       :layout="layout"
       :class="{
@@ -15,17 +15,14 @@
       </v-formly-item>
 
       <template v-if="button === 'default'">
-        <a-form-model-item
-          :wrapperCol="wrapperCol"
-          class="v__default-submit-button"
-        >
+        <a-form :wrapperCol="wrapperCol" class="v__default-submit-button">
           <a-space>
             <a-button type="danger" @click="clearForm"> 重置 </a-button>
             <a-button type="primary" @click="submitForm" :loading="loading">
               提交
             </a-button>
           </a-space>
-        </a-form-model-item>
+        </a-form>
       </template>
       <template v-else-if="button === 'custom'">
         <slot
@@ -36,11 +33,11 @@
         ></slot>
       </template>
       <template v-else></template>
-    </a-form-model>
+    </a-form>
   </div>
 </template>
 
-<script setup lang="ts" name="v-formly">
+<script setup lang="ts">
 import VFormlyItem from "./FormlyItem.vue";
 import { MetaType, type Meta } from "./types/meta";
 import { FormItemContext } from "./utils/context";
@@ -53,8 +50,6 @@ import { useSlots } from "./hooks/slots";
 
 import VObject from "./components/Object.vue";
 import VString from "./components/String.vue";
-
-const name = "v-formly";
 
 const props = withDefaults(
   defineProps<{
@@ -181,13 +176,19 @@ async function submitForm() {
   });
 }
 
-return {
-  name,
-  getContext,
-  validate,
-  reset,
-  clearForm,
-  submitForm,
+// return {
+//   name,
+//   getContext,
+//   validate,
+//   reset,
+//   clearForm,
+//   submitForm,
+// };
+</script>
+
+<script lang="ts">
+export default {
+  name: "v-formly",
 };
 </script>
 
