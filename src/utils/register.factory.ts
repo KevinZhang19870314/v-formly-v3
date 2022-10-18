@@ -1,4 +1,6 @@
-import useCurrentInstance from "@/hooks/current-instance";
+import VObject from "@/components/Object.vue";
+import VString from "@/components/String.vue";
+import type { App } from "vue";
 
 /**
  * 注册组件
@@ -6,9 +8,29 @@ import useCurrentInstance from "@/hooks/current-instance";
  * @param {String} id 注册组件的id
  * @param {*} component 需要注册的组件
  */
-function registerFormComponent(id: string, component: any) {
-  const { appContext } = useCurrentInstance();
-  appContext.app.component(id, component);
+function registerFormComponent(app: App, id: string, component: any) {
+  app.component(id, component);
 }
 
-export { registerFormComponent };
+function registerBuildInComponents(app: App) {
+  registerFormComponent(app, "v-object", VObject);
+  registerFormComponent(app, "v-string", VString);
+  // registerFormComponent("v-boolean", VBoolean);
+  // registerFormComponent("v-array", VArray);
+  // registerFormComponent("v-autocomplete", VAutoComplete);
+  // registerFormComponent("v-checkbox", VCheckbox);
+  // registerFormComponent("v-date", VDate);
+  // registerFormComponent("v-number", VNumber);
+  // registerFormComponent("v-integer", VNumber);
+  // registerFormComponent("v-time", VTime);
+  // registerFormComponent("v-text", VText);
+  // registerFormComponent("v-radio", VRadio);
+  // registerFormComponent("v-textarea", VTextarea);
+  // registerFormComponent("v-slider", VSlider);
+  // registerFormComponent("v-rate", VRate);
+  // registerFormComponent("v-tag", VTag);
+  // registerFormComponent("v-select", VSelect);
+  // registerFormComponent("v-cascader", VCascader);
+}
+
+export { registerFormComponent, registerBuildInComponents };

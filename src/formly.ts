@@ -2,7 +2,10 @@ import VFormly from "./Formly.vue";
 import VWrapper from "@/components/Wrapper.vue";
 // import { componentMixin } from "@/mixin/component.mixin.js";
 import { BaseMeta } from "@/meta/base.meta.js";
-import { registerFormComponent } from "@/utils/register.factory.js";
+import {
+  registerFormComponent,
+  registerBuildInComponents,
+} from "@/utils/register.factory.js";
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import type { App } from "vue";
 
@@ -12,6 +15,8 @@ const install = function (app: App, options: any) {
   components.forEach((component) => {
     app.component(component.name, component);
   });
+
+  registerBuildInComponents(app);
 
   // 传入自定义options
   app.config.globalProperties.$VFORMLY_OPTIONS = options;

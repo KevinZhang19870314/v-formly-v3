@@ -42,14 +42,10 @@ import VFormlyItem from "./FormlyItem.vue";
 import { MetaType, type Meta } from "./types/meta";
 import { FormItemContext } from "./utils/context";
 import { Global } from "./utils/global";
-import { registerFormComponent } from "./utils/register.factory";
 import { ValidateFactory } from "./utils/validate.factory";
 import { deepClone } from "./utils/utils";
 import { computed, provide, ref } from "vue";
 import { useSlots } from "./hooks/slots";
-
-import VObject from "./components/Object.vue";
-import VString from "./components/String.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -92,8 +88,6 @@ function onCreated() {
   objectMeta = Object.assign({}, objectMeta, props.meta);
   formData = Object.assign({}, formData, props.modelValue);
 
-  registerBuildInComponents();
-
   globalInstance.meta = objectMeta;
   globalInstance.formData = formData;
   initFormData(globalInstance.formData, props.meta.properties);
@@ -101,27 +95,6 @@ function onCreated() {
   globalInstance.context = new FormItemContext();
 
   globalInstance.validate = new ValidateFactory(globalInstance);
-}
-
-function registerBuildInComponents() {
-  registerFormComponent("v-object", VObject);
-  registerFormComponent("v-string", VString);
-  // registerFormComponent("v-boolean", VBoolean);
-  // registerFormComponent("v-array", VArray);
-  // registerFormComponent("v-autocomplete", VAutoComplete);
-  // registerFormComponent("v-checkbox", VCheckbox);
-  // registerFormComponent("v-date", VDate);
-  // registerFormComponent("v-number", VNumber);
-  // registerFormComponent("v-integer", VNumber);
-  // registerFormComponent("v-time", VTime);
-  // registerFormComponent("v-text", VText);
-  // registerFormComponent("v-radio", VRadio);
-  // registerFormComponent("v-textarea", VTextarea);
-  // registerFormComponent("v-slider", VSlider);
-  // registerFormComponent("v-rate", VRate);
-  // registerFormComponent("v-tag", VTag);
-  // registerFormComponent("v-select", VSelect);
-  // registerFormComponent("v-cascader", VCascader);
 }
 
 function initFormData(formData: any, properties: any) {
@@ -145,6 +118,7 @@ function initFormData(formData: any, properties: any) {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getContext(id: string) {
   return globalInstance.context.getContext(id);
 }
@@ -187,9 +161,7 @@ async function submitForm() {
 </script>
 
 <script lang="ts">
-export default {
-  name: "v-formly",
-};
+export default { name: "v-formly" };
 </script>
 
 <style scoped lang="less"></style>

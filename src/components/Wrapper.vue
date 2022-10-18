@@ -98,9 +98,7 @@ function formErrorChangeCallback(err: any) {
 </script>
 
 <script lang="ts">
-export default {
-  name: "v-wrapper",
-};
+export default { name: "v-wrapper" };
 </script>
 
 <style scoped></style>
