@@ -1,8 +1,9 @@
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import type { Meta } from "@/types/meta";
 import useEventBus from "@/hooks/event-bus";
+import type { AppContext } from "vue";
 
-class BaseMeta {
+abstract class BaseMeta {
   public id;
   public state;
   public meta;
@@ -12,7 +13,9 @@ class BaseMeta {
   public _value: any;
   public _initMetaValue;
 
-  constructor(state: any, id: any, meta: Meta) {
+  public appContext;
+
+  constructor(appContext: AppContext, state: any, id: any, meta: Meta) {
     if (this.constructor == BaseMeta) {
       throw new Error("Abstract classes can't be instantiated.");
     }
@@ -22,6 +25,7 @@ class BaseMeta {
     this.meta = meta;
     this.type = (this.meta.ui && this.meta.ui.component) || this.meta.type;
     this.ui = Object.assign({}, this.state.ui, this.meta.ui);
+    this.appContext = appContext;
 
     this.error = undefined;
     state.context.addContext(id, this);
@@ -31,13 +35,15 @@ class BaseMeta {
     this.initValue();
   }
 
-  initValue() {
-    if (this._initMetaValue) {
-      this.value = this._initMetaValue;
-    } else if (this.meta.default) {
-      this.value = this.meta.default;
-    }
-  }
+  abstract initValue(): void;
+
+  // initValue() {
+  //   if (this._initMetaValue) {
+  //     this.value = this._initMetaValue;
+  //   } else if (this.meta.default) {
+  //     this.value = this.meta.default;
+  //   }
+  // }
 
   setValue(val: any) {
     this._value = val || undefined;
@@ -52,7 +58,7 @@ class BaseMeta {
 
     this.setValue(val);
 
-    const emitter = useEventBus();
+    const emitter = useEventBus(this.appContext);
     emitter.emit(`${FORM_VALUE_CHANGE}-${this.state._formId}`, {
       id: this.id,
       value: this._value,

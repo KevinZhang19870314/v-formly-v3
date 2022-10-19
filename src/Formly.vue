@@ -44,7 +44,13 @@ import { FormItemContext } from "./utils/context";
 import { Global } from "./utils/global";
 import { ValidateFactory } from "./utils/validate.factory";
 import { deepClone } from "./utils/utils";
-import { computed, provide, ref } from "vue";
+import {
+  computed,
+  getCurrentInstance,
+  provide,
+  ref,
+  type ComponentInternalInstance,
+} from "vue";
 import { useSlots } from "./hooks/slots";
 
 const props = withDefaults(
@@ -94,7 +100,8 @@ function onCreated() {
 
   globalInstance.context = new FormItemContext();
 
-  globalInstance.validate = new ValidateFactory(globalInstance);
+  const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+  globalInstance.validate = new ValidateFactory(appContext, globalInstance);
 }
 
 function initFormData(formData: any, properties: any) {
@@ -150,14 +157,13 @@ async function submitForm() {
   });
 }
 
-// return {
-//   name,
-//   getContext,
-//   validate,
-//   reset,
-//   clearForm,
-//   submitForm,
-// };
+defineExpose({
+  getContext,
+  validate,
+  reset,
+  clearForm,
+  submitForm,
+});
 </script>
 
 <script lang="ts">

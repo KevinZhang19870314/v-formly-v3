@@ -31,7 +31,12 @@ import VFormlyItem from "@/FormlyItem.vue";
 import { useSlots } from "@/hooks/slots";
 import { ObjectMeta } from "@/meta/object.meta";
 import type { Meta } from "@/types/meta";
-import { computed, inject } from "vue";
+import {
+  computed,
+  getCurrentInstance,
+  inject,
+  type ComponentInternalInstance,
+} from "vue";
 
 const props = defineProps<{
   id: string;
@@ -63,7 +68,8 @@ function grid(item: any) {
   return Object.assign({}, state.ui.grid, ui.value.grid, grid);
 }
 
-const metaInstance = new ObjectMeta(state, props.id, props.meta);
+const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+const metaInstance = new ObjectMeta(appContext, state, props.id, props.meta);
 const childMetaPairs = metaInstance.childMetaPairs;
 </script>
 

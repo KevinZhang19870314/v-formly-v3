@@ -1,6 +1,7 @@
 import useEventBus from "@/hooks/event-bus";
 import type { Meta } from "@/types/meta";
 import Ajv from "ajv";
+import type { AppContext } from "vue";
 import { FORM_ERROR_CHANGE } from "./consts";
 
 class ValidateFactory {
@@ -8,10 +9,13 @@ class ValidateFactory {
   private _ajv;
   private _validate: any;
 
-  constructor(state: any) {
+  public appContext;
+
+  constructor(appContext: AppContext, state: any) {
     this.state = state;
     this._ajv = new Ajv(state.ajvOptions);
     this._validate = null;
+    this.appContext = appContext;
   }
 
   async runValidateForm() {
@@ -63,7 +67,7 @@ class ValidateFactory {
   async _validation(context: any, valid: boolean, errs: any) {
     let errors = [];
     const ERROR_CHANGE = `${FORM_ERROR_CHANGE}-${this.state._formId}`;
-    const emitter = useEventBus();
+    const emitter = useEventBus(this.appContext);
     if (!valid) {
       const customErrors = this._getCustomError(context);
       const customAsyncErrors = await this._getCustomAsyncError(context);

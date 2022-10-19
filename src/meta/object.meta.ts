@@ -1,12 +1,13 @@
 import type { Meta } from "@/types/meta";
+import type { AppContext } from "vue";
 import { BaseMeta } from "./base.meta";
 
 class ObjectMeta extends BaseMeta {
   public childMetaPairs;
   public id;
   public meta;
-  constructor(state: any, id: string, meta: Meta) {
-    super(state, id, meta);
+  constructor(appContext: AppContext, state: any, id: string, meta: Meta) {
+    super(appContext, state, id, meta);
     this.id = id;
     this.meta = meta;
 
@@ -14,6 +15,8 @@ class ObjectMeta extends BaseMeta {
 
     state.context.addContext(id, this);
   }
+
+  initValue() {}
 
   set value(val: any) {
     this.childMetaPairs.forEach(({ key, propertyName }) => {

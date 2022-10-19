@@ -31,13 +31,20 @@
 <script setup lang="ts" name="v-string">
 import { StringMeta } from "@/meta/string.meta";
 import type { Meta } from "@/types/meta";
-import { computed, inject, unref } from "vue";
+import {
+  computed,
+  getCurrentInstance,
+  inject,
+  unref,
+  type ComponentInternalInstance,
+} from "vue";
 import VWrapper from "./Wrapper.vue";
 
 const props = defineProps<{ id: string; meta: Meta }>();
 const state: any = inject("state");
 
-const context = new StringMeta(state, props.id, props.meta);
+const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const ui = computed(() => {
   return props.meta.ui || {};

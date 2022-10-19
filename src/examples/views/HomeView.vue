@@ -27,16 +27,16 @@ const meta = {
         change: (val: string) => console.log(val),
       },
     },
-    desc: {
-      title: "描述",
-      type: "string",
-      default: "Base on technical, but not limited on it!",
-      ui: {
-        change: (val: string) => {
-          console.log("val = ", val);
-        },
-      },
-    },
+    // desc: {
+    //   title: "描述",
+    //   type: "string",
+    //   default: "Base on technical, but not limited on it!",
+    //   ui: {
+    //     change: (val: string) => {
+    //       console.log("val = ", val);
+    //     },
+    //   },
+    // },
     // TODO
     // enable: {
     //   title: "启用",

@@ -14,7 +14,14 @@
 </template>
 
 <script setup lang="ts" name="v-formly-item">
-import { computed, inject, onMounted, ref } from "vue";
+import {
+  computed,
+  getCurrentInstance,
+  inject,
+  onMounted,
+  ref,
+  type ComponentInternalInstance,
+} from "vue";
 import useEventBus from "./hooks/event-bus";
 import { useSlots } from "./hooks/slots";
 import { useVisibleIf } from "./hooks/visible-if";
@@ -56,8 +63,10 @@ onMounted(() => {
   applyIgnoreErrors(visible.value, props.id);
 
   const { visibleIf } = useVisibleIf();
-  const emitter = useEventBus();
+  const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+  const emitter = useEventBus(appContext);
   emitter.on(`${FORM_VALUE_CHANGE}-${state._formId}`, (change: any) => {
+    console.log("change", change);
     visible.value = visibleIf(state.context, props.meta, visible.value, {
       id: change.id,
       value: change.value,

@@ -1,8 +1,6 @@
-import { getCurrentInstance } from "vue";
-import type { ComponentInternalInstance } from "vue";
+import type { AppContext } from "vue";
 
-export default function useEventBus() {
-  const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+export default function useEventBus(appContext: AppContext) {
   const emitter = appContext.config.globalProperties.emitter;
   return emitter;
 }

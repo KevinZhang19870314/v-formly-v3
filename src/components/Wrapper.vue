@@ -41,7 +41,13 @@ import useCurrentInstance from "@/hooks/current-instance";
 import useEventBus from "@/hooks/event-bus";
 import type { Meta } from "@/types/meta";
 import { FORM_ERROR_CHANGE } from "@/utils/consts";
-import { computed, inject, onBeforeUnmount } from "vue";
+import {
+  computed,
+  getCurrentInstance,
+  inject,
+  onBeforeUnmount,
+  type ComponentInternalInstance,
+} from "vue";
 
 const props = defineProps<{
   id: string;
@@ -82,7 +88,8 @@ const error = computed({
   },
 });
 
-const emitter = useEventBus();
+const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+const emitter = useEventBus(appContext);
 emitter.on(`${FORM_ERROR_CHANGE}-${state._formId}`, formErrorChangeCallback);
 
 onBeforeUnmount(() => {
