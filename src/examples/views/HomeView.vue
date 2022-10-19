@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, unref } from "vue";
 
 const form = ref(null);
 const meta = {
@@ -27,16 +27,11 @@ const meta = {
         change: (val: string) => console.log(val),
       },
     },
-    // desc: {
-    //   title: "描述",
-    //   type: "string",
-    //   default: "Base on technical, but not limited on it!",
-    //   ui: {
-    //     change: (val: string) => {
-    //       console.log("val = ", val);
-    //     },
-    //   },
-    // },
+    desc: {
+      title: "描述",
+      type: "string",
+      default: "Base on technical, but not limited on it!",
+    },
     // TODO
     // enable: {
     //   title: "启用",
@@ -56,7 +51,7 @@ function clear() {
 async function submit() {
   let valid = await (form.value as any).validate();
   if (valid) {
-    console.log(data);
+    console.log("data.value", unref(data));
   }
 }
 </script>

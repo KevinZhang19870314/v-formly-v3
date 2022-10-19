@@ -99,7 +99,7 @@ watch(
   (cur, pre) => {
     if (JSON.stringify(cur) === JSON.stringify(pre)) return;
 
-    console.log("cur", cur);
+    console.log("cur modelvaluechange", cur);
     reset(cur);
   },
   {
