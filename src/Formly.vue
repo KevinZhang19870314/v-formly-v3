@@ -78,7 +78,6 @@ if (!props.meta || typeof props.meta.properties === "undefined")
   throw new Error(`Invalid Schema`);
 
 let objectMeta: Meta = { type: MetaType.Object };
-let formData = {};
 let loading = ref(false);
 
 const globalInstance = new Global();
@@ -108,35 +107,44 @@ watch(
   }
 );
 
+watch(
+  () => globalInstance.formData,
+  (cur, pre) => {
+    emit("update:modelValue", cur);
+  },
+  {
+    deep: true,
+  }
+);
+
 function onCreated() {
   globalInstance.layout = props.layout;
   objectMeta = Object.assign({}, objectMeta, props.meta);
-  formData = Object.assign({}, formData, props.modelValue);
 
   globalInstance.meta = objectMeta;
-  globalInstance.formData = formData;
+  globalInstance.formData = Object.assign({}, props.modelValue);
   initFormData(globalInstance.formData, props.meta.properties);
 
   globalInstance.context = new FormItemContext();
   globalInstance.validate = new ValidateFactory(appContext, globalInstance);
 }
 
-function initFormData(formData: any, properties: any) {
+function initFormData(fData: any, properties: any) {
   Object.keys(properties).forEach((key) => {
     const meta = properties[key];
     if (meta.type === "null") return;
     switch (meta.type) {
       case MetaType.Object:
-        formData[key] = formData[key] || {};
-        initFormData(formData[key], meta.properties);
+        fData[key] = fData[key] || {};
+        initFormData(fData[key], meta.properties);
         break;
       case MetaType.Array:
-        formData[key] = formData[key] || [];
+        fData[key] = fData[key] || [];
         break;
       case MetaType.Boolean:
         break;
       default:
-        formData[key] = formData[key] || undefined;
+        fData[key] = fData[key] || undefined;
         break;
     }
   });
@@ -155,7 +163,7 @@ function reset(data: any) {
   const context = globalInstance.context.getContext("/");
   if (context) {
     context.value = data;
-    emit("update:modelValue", formData);
+    emit("update:modelValue", globalInstance.formData);
   }
 }
 
