@@ -19,7 +19,8 @@
           :mouseLeaveDelay="oh.mouseLeaveDelay"
           :overlayClassName="oh.overlayClassName"
         >
-          <a-icon :type="oh.icon" />
+          <!-- <a-icon :type="oh.icon" /> -->
+          <component v-if="oh.icon" :is="globalProperties.$antIcons[oh.icon]" />
         </a-tooltip>
       </span>
     </template>
@@ -36,6 +37,7 @@
 </template>
 
 <script setup lang="ts">
+import useCurrentInstance from "@/hooks/current-instance";
 import useEventBus from "@/hooks/event-bus";
 import type { Meta } from "@/types/meta";
 import { FORM_ERROR_CHANGE } from "@/utils/consts";
@@ -47,6 +49,7 @@ const props = defineProps<{
   meta: Meta;
 }>();
 
+const { globalProperties } = useCurrentInstance();
 const state: any = inject("state");
 const context = state.context.getContext(props.id);
 
