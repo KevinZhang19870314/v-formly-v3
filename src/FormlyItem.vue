@@ -67,7 +67,6 @@ function onCreated() {
   const { appContext } = getCurrentInstance() as ComponentInternalInstance;
   const emitter = useEventBus(appContext);
   emitter.on(`${FORM_VALUE_CHANGE}-${state._formId}`, (change: any) => {
-    console.log("change", change);
     visible.value = visibleIf(state.context, props.meta, visible.value, {
       id: change.id,
       value: change.value,

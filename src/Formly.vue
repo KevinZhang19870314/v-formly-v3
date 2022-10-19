@@ -58,12 +58,13 @@ import useEventBus from "./hooks/event-bus";
 
 const props = withDefaults(
   defineProps<{
-    modelValue?: Object;
+    modelValue?: any;
     layout?: string;
     button?: string;
     meta: Meta;
   }>(),
   {
+    modelValue: "test",
     layout: "horizontal",
   }
 );
@@ -77,7 +78,7 @@ if (!props.meta || typeof props.meta.properties === "undefined")
   throw new Error(`Invalid Schema`);
 
 let objectMeta: Meta = { type: MetaType.Object };
-let formData = ref({});
+let formData = {};
 let loading = ref(false);
 
 const globalInstance = new Global();
@@ -95,19 +96,25 @@ const wrapperCol = computed(() => {
 });
 
 watch(
-  () => "",
-  () => {
-    console.log("");
+  () => props.modelValue,
+  (cur, pre) => {
+    if (JSON.stringify(cur) === JSON.stringify(pre)) return;
+
+    console.log("cur", cur);
+    reset(cur);
+  },
+  {
+    deep: false,
   }
 );
 
 function onCreated() {
   globalInstance.layout = props.layout;
   objectMeta = Object.assign({}, objectMeta, props.meta);
-  formData.value = Object.assign({}, formData.value, props.modelValue);
+  formData = Object.assign({}, formData, props.modelValue);
 
   globalInstance.meta = objectMeta;
-  globalInstance.formData = formData.value;
+  globalInstance.formData = formData;
   initFormData(globalInstance.formData, props.meta.properties);
 
   globalInstance.context = new FormItemContext();
@@ -148,7 +155,7 @@ function reset(data: any) {
   const context = globalInstance.context.getContext("/");
   if (context) {
     context.value = data;
-    emit("update:modelValue", formData.value);
+    emit("update:modelValue", formData);
   }
 }
 

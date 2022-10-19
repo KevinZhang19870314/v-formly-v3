@@ -52,14 +52,10 @@ const ui = computed(() => {
 
 const value = computed({
   get() {
-    // return context.getModel();
     return context.value;
   },
   set(val) {
-    console.log("val", val);
     context.value = val;
-    // context.setModel(val);
-    console.log("val 1", val);
   },
 });
 

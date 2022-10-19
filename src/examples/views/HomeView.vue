@@ -47,10 +47,10 @@ const meta = {
   required: ["name"],
 };
 
-let data: any = { enable: false };
+let data: any = ref({ enable: false });
 
 function clear() {
-  data = null;
+  data.value = null;
 }
 
 async function submit() {
