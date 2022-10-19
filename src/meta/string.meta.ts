@@ -13,9 +13,9 @@ class StringMeta extends BaseMeta {
 
   initValue() {
     if (this._initMetaValue) {
-      this.value.value = this._initMetaValue;
+      this.value = this._initMetaValue;
     } else if (this.meta.default) {
-      this.value.value = this.meta.default;
+      this.value = this.meta.default;
     }
   }
 

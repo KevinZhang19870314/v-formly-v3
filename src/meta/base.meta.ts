@@ -37,39 +37,12 @@ abstract class BaseMeta {
 
   abstract initValue(): void;
 
-  // initValue() {
-  //   if (this._initMetaValue) {
-  //     this.value = this._initMetaValue;
-  //   } else if (this.meta.default) {
-  //     this.value = this.meta.default;
-  //   }
-  // }
-
   setValue(val: any) {
     this._value.value = val || undefined;
   }
 
-  getModel() {
-    return this._value.value;
-  }
-
-  setModel(val: any) {
-    if (this._value.value === val) return;
-
-    this.setValue(val);
-
-    const emitter = useEventBus(this.appContext);
-    emitter.emit(`${FORM_VALUE_CHANGE}-${this.state._formId}`, {
-      id: this.id,
-      value: this._value.value,
-    });
-
-    this.state.updateObjProp(this.state.formData, this.id, this._value.value);
-    this.state.validate.runValidationFormItem(this);
-  }
-
   get value() {
-    return this._value;
+    return this._value.value;
   }
 
   set value(val) {

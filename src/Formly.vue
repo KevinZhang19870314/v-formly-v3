@@ -50,6 +50,7 @@ import {
   onBeforeUnmount,
   provide,
   ref,
+  watch,
   type ComponentInternalInstance,
 } from "vue";
 import { useSlots } from "./hooks/slots";
@@ -76,7 +77,7 @@ if (!props.meta || typeof props.meta.properties === "undefined")
   throw new Error(`Invalid Schema`);
 
 let objectMeta: Meta = { type: MetaType.Object };
-let formData = {};
+let formData = ref({});
 let loading = ref(false);
 
 const globalInstance = new Global();
@@ -93,13 +94,20 @@ const wrapperCol = computed(() => {
     : { span: ui.spanControl, offset: ui.spanLabel };
 });
 
+watch(
+  () => "",
+  () => {
+    console.log("");
+  }
+);
+
 function onCreated() {
   globalInstance.layout = props.layout;
   objectMeta = Object.assign({}, objectMeta, props.meta);
-  formData = Object.assign({}, formData, props.modelValue);
+  formData.value = Object.assign({}, formData.value, props.modelValue);
 
   globalInstance.meta = objectMeta;
-  globalInstance.formData = formData;
+  globalInstance.formData = formData.value;
   initFormData(globalInstance.formData, props.meta.properties);
 
   globalInstance.context = new FormItemContext();
@@ -140,7 +148,7 @@ function reset(data: any) {
   const context = globalInstance.context.getContext("/");
   if (context) {
     context.value = data;
-    emit("update:modelValue", formData);
+    emit("update:modelValue", formData.value);
   }
 }
 

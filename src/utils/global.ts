@@ -1,5 +1,6 @@
 import { UUID } from "@/utils/utils";
 import useCurrentInstance from "@/hooks/current-instance";
+import { ref } from "vue";
 
 class Global {
   public _formId = UUID(4);
@@ -12,7 +13,7 @@ class Global {
     strict: false,
     loopEnum: 50,
   };
-  private _formData = {};
+  private _formData = ref({});
   private _meta = {};
   private _ui = {
     ingoreKeywords: ["type", "enum"],
@@ -57,11 +58,11 @@ class Global {
   }
 
   get formData() {
-    return this._formData;
+    return this._formData.value;
   }
 
   set formData(val) {
-    this._formData = val;
+    this._formData.value = val;
   }
 
   get meta() {
