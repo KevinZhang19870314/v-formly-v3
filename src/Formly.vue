@@ -47,11 +47,13 @@ import { deepClone } from "./utils/utils";
 import {
   computed,
   getCurrentInstance,
+  onBeforeUnmount,
   provide,
   ref,
   type ComponentInternalInstance,
 } from "vue";
 import { useSlots } from "./hooks/slots";
+import useEventBus from "./hooks/event-bus";
 
 const props = withDefaults(
   defineProps<{
@@ -80,6 +82,8 @@ let loading = ref(false);
 const globalInstance = new Global();
 provide("state", globalInstance);
 const { slotsName } = useSlots(props.meta);
+const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+const emitter = useEventBus(appContext);
 onCreated();
 
 const wrapperCol = computed(() => {
@@ -99,8 +103,6 @@ function onCreated() {
   initFormData(globalInstance.formData, props.meta.properties);
 
   globalInstance.context = new FormItemContext();
-
-  const { appContext } = getCurrentInstance() as ComponentInternalInstance;
   globalInstance.validate = new ValidateFactory(appContext, globalInstance);
 }
 
@@ -156,6 +158,10 @@ async function submitForm() {
     data: valid ? deepClone(globalInstance.formData) : undefined,
   });
 }
+
+onBeforeUnmount(() => {
+  emitter.all.clear();
+});
 
 defineExpose({
   getContext,

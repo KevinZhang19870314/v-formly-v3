@@ -18,7 +18,6 @@ import {
   computed,
   getCurrentInstance,
   inject,
-  onMounted,
   ref,
   type ComponentInternalInstance,
 } from "vue";
@@ -53,7 +52,9 @@ const layout = computed(() => {
   return state.layout;
 });
 
-onMounted(() => {
+onCreated();
+
+function onCreated() {
   if (!props.meta.type)
     throw new Error(
       "Form item type must be one of these: number, string, boolean, array, object"
@@ -77,7 +78,7 @@ onMounted(() => {
       applyIgnoreErrors(visible.value, context.id);
     }
   });
-});
+}
 
 function applyIgnoreErrors(visible: boolean, id: string) {
   if (visible) {

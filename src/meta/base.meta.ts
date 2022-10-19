@@ -1,7 +1,7 @@
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import type { Meta } from "@/types/meta";
 import useEventBus from "@/hooks/event-bus";
-import type { AppContext } from "vue";
+import { ref, type AppContext } from "vue";
 
 abstract class BaseMeta {
   public id;
@@ -9,9 +9,9 @@ abstract class BaseMeta {
   public meta;
   public type;
   public ui;
-  public error = undefined;
-  public _value: any;
-  public _initMetaValue;
+  public error = ref(undefined);
+  public _value = ref(undefined);
+  public _initMetaValue: any;
 
   public appContext;
 
@@ -27,9 +27,9 @@ abstract class BaseMeta {
     this.ui = Object.assign({}, this.state.ui, this.meta.ui);
     this.appContext = appContext;
 
-    this.error = undefined;
+    this.error.value = undefined;
     state.context.addContext(id, this);
-    this._value = undefined;
+    this._value.value = undefined;
 
     this._initMetaValue = this.getInitMetaValue();
     this.initValue();
@@ -46,7 +46,26 @@ abstract class BaseMeta {
   // }
 
   setValue(val: any) {
-    this._value = val || undefined;
+    this._value.value = val || undefined;
+  }
+
+  getModel() {
+    return this._value.value;
+  }
+
+  setModel(val: any) {
+    if (this._value.value === val) return;
+
+    this.setValue(val);
+
+    const emitter = useEventBus(this.appContext);
+    emitter.emit(`${FORM_VALUE_CHANGE}-${this.state._formId}`, {
+      id: this.id,
+      value: this._value.value,
+    });
+
+    this.state.updateObjProp(this.state.formData, this.id, this._value.value);
+    this.state.validate.runValidationFormItem(this);
   }
 
   get value() {
@@ -54,17 +73,17 @@ abstract class BaseMeta {
   }
 
   set value(val) {
-    if (this._value === val) return;
+    if (this._value.value === val) return;
 
     this.setValue(val);
 
     const emitter = useEventBus(this.appContext);
     emitter.emit(`${FORM_VALUE_CHANGE}-${this.state._formId}`, {
       id: this.id,
-      value: this._value,
+      value: this._value.value,
     });
 
-    this.state.updateObjProp(this.state.formData, this.id, this._value);
+    this.state.updateObjProp(this.state.formData, this.id, this._value.value);
     this.state.validate.runValidationFormItem(this);
   }
 

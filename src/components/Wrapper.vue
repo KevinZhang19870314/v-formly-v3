@@ -81,10 +81,10 @@ const wrapperCol = computed(() => {
 
 const error = computed({
   get() {
-    return context.error;
+    return context.error.value;
   },
   set(val) {
-    context.error = val;
+    context.error.value = val;
   },
 });
 

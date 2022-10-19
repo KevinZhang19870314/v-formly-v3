@@ -148,7 +148,9 @@ class ValidateFactory {
   _getId(error: any) {
     const hasMissingProperty = error.params && error.params.missingProperty;
     if (hasMissingProperty) {
-      return `${error.instancePath}/${error.params.missingProperty}`;
+      return `${error.instancePath ? error.instancePath : ""}/${
+        error.params.missingProperty
+      }`;
     }
 
     return `${error.instancePath}`;

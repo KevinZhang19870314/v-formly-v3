@@ -6,7 +6,7 @@
       :defaultValue="meta.defaultValue"
       :disabled="meta.readOnly"
       :maxLength="meta.maxLength"
-      v-model="value"
+      v-model:value="value"
       @change="change"
     >
       <!-- prefix & suffix -->
@@ -52,10 +52,13 @@ const ui = computed(() => {
 
 const value = computed({
   get() {
-    return context.value;
+    return context.getModel();
   },
   set(val) {
-    context.value = val || undefined;
+    console.log("val", val);
+    // context.value.value = val;
+    context.setModel(val);
+    console.log("val 1", val);
   },
 });
 
