@@ -2,11 +2,15 @@ import { getDirname, path } from "@vuepress/utils";
 import { defineUserConfig } from "vuepress";
 import { defaultTheme } from "@vuepress/theme-default";
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
-import { webpackBundler } from "@vuepress/bundler-webpack";
+import { viteBundler } from "@vuepress/bundler-vite";
+import { shikiPlugin } from "@vuepress/plugin-shiki";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { pwaPlugin } from "@vuepress/plugin-pwa";
 import { pwaPopupPlugin } from "@vuepress/plugin-pwa-popup";
-import { containerPlugin } from "@vuepress/plugin-container";
+import {
+  demoblockPlugin,
+  type ReplaceValue,
+} from "vuepress-plugin-demoblock-plus";
 
 const __dirname = getDirname(import.meta.url);
 const isProd = process.env.NODE_ENV === "production";
@@ -78,6 +82,7 @@ export default defineUserConfig({
   theme: defaultTheme({
     repo: "KevinZhang19870314/v-formly",
     docsDir: "docs",
+    colorModeSwitch: false,
     locales: {
       "/": {
         // navbar
@@ -131,8 +136,7 @@ export default defineUserConfig({
     themePlugins: {
       // only enable git plugin in production mode
       git: isProd,
-      // use shiki plugin in production mode instead
-      prismjs: !isProd,
+      prismjs: false,
     },
   }),
   plugins: [
@@ -153,6 +157,17 @@ export default defineUserConfig({
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, "./components"),
     }),
+    shikiPlugin({ theme: "dark-plus" }),
+    demoblockPlugin({
+      customClass: "demoblock-custom",
+      theme: "dark-plus",
+      scriptReplaces: [
+        {
+          searchValue: /import ({.*}) from "vue"/g,
+          replaceValue: ((s, s1) => `const ${s1} = Vue`) as ReplaceValue,
+        },
+      ],
+    }),
   ],
   // configure markdown
   markdown: {
@@ -160,6 +175,15 @@ export default defineUserConfig({
       lineNumbers: false,
     },
   },
+  bundler: viteBundler({
+    viteOptions: {
+      resolve: {
+        alias: {
+          "@": path.resolve(__dirname, "../../src/"),
+        },
+      },
+    },
+  }),
 });
 
 function getGuideSidebar(groupA, groupB) {

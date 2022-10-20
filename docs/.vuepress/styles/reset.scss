@@ -1,0 +1,32 @@
+// 覆盖 ant-design-vue 的样式（影响到vuepress的部分）
+body {
+  font-size: 1rem;
+  background-color: revert;
+}
+
+a {
+  color: var(--c-text-accent);
+  &:hover {
+    color: var(--c-text-accent);
+  }
+}
+
+p {
+  margin-top: revert;
+  margin-bottom: revert;
+}
+
+:root {
+  scroll-behavior: smooth;
+  // layout vars
+  --content-width: 840px;
+  --code-bg-color: #282c34;
+}
+
+.theme-default-content:not(.custom),
+.page-meta,
+.page-nav {
+  max-width: var(--content-width) !important;
+  padding-left: unset !important;
+  padding-right: unset !important
+}
