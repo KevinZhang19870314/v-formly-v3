@@ -19,7 +19,7 @@
   </v-wrapper>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="v-autocomplete">
 import { useBindings } from "@/hooks/bindings";
 import { StringMeta } from "@/meta/string.meta";
 import type { Meta } from "@/types/meta";

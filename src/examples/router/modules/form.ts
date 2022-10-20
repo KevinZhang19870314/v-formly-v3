@@ -3,6 +3,8 @@ import { FormOutlined } from "@ant-design/icons-vue";
 import BasicLayout from "@/examples/layout/index.vue";
 import AboutViewVue from "@/examples/views/AboutView.vue";
 import CheckboxView from "@/examples/views/CheckboxView.vue";
+import StringView from "@/examples/views/StringView.vue";
+import BooleanView from "@/examples/views/BooleanView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -14,15 +16,13 @@ const route: RouteRecordRaw = {
     {
       path: "string",
       name: "string",
-      component: AboutViewVue,
-      // component: StringView,
+      component: StringView,
       meta: { title: "String 文本框" },
     },
     {
       path: "boolean",
       name: "boolean",
-      component: AboutViewVue,
-      // component: BooleanView,
+      component: BooleanView,
       meta: { title: "Boolean 开关" },
     },
     {

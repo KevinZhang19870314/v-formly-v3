@@ -17,7 +17,7 @@
   </v-wrapper>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="v-boolean">
 import { useBindings } from "@/hooks/bindings";
 import { BooleanMeta } from "@/meta/boolean.meta";
 import type { Meta } from "@/types/meta";

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
+    <v-formly ref="form" v-model="formData" :meta="meta" :layout="'horizontal'">
     </v-formly>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
@@ -61,16 +61,16 @@ const meta = {
   required: ["fruits"],
 };
 
-let data: any = ref({});
+let formData: any = ref({});
 
 function clear() {
-  data.value = null;
+  formData.value = null;
 }
 
 async function submit() {
   let valid = await (form.value as any).validate();
   if (valid) {
-    console.log(toRaw(unref(data)));
+    console.log(toRaw(unref(formData)));
   }
 }
 </script>
