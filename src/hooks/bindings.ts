@@ -14,6 +14,7 @@ export function useBindings(props: string[], ui: any) {
       });
     },
     {
+      immediate: true,
       deep: true,
     }
   );

@@ -48,11 +48,11 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
+const { bindings } = useBindings(Object.keys(Input.props), context.ui);
+
 const ui = computed(() => {
   return context.ui.value || {};
 });
-
-const { bindings } = useBindings(Object.keys(Input.props), ui);
 
 const value = computed({
   get() {

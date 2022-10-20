@@ -19,8 +19,8 @@ const meta = {
       title: "姓名",
       type: "string",
       default: "kevin",
+      readOnly: false,
       ui: {
-        // bordered: true,
         showRequired: true,
         errors: {
           required: "请输入姓名",
@@ -33,23 +33,19 @@ const meta = {
       type: "string",
       default: "Base on technical, but not limited on it!",
     },
-    // TODO
-    // enable: {
-    //   title: "启用",
-    //   type: "boolean",
-    //   default: true,
-    // },
+    enable: {
+      title: "启用",
+      type: "boolean",
+      default: true,
+    },
   },
   required: ["name"],
 };
 
-let data: any = ref({ enable: false });
+let data: any = ref({});
 
 function clear() {
-  // data.value = null;
-  // test
-  const context = (form.value as any).getContext("/name");
-  context.ui.value.bordered = context.ui.value.bordered ? false : true;
+  data.value = null;
 }
 
 async function submit() {
