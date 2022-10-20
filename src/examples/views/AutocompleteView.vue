@@ -4,25 +4,45 @@
       <template v-slot:auto1-textarea>
         <a-textarea
           placeholder="input here"
-          class="custom"
           style="height: 50px"
           @keypress="auto1_handleKeyPress"
         />
       </template>
-      <template v-slot:datasource>
-        <a-select-option v-for="email in result" :key="email">
-          {{ email }}
-        </a-select-option>
+      <template v-slot:auto2-option="item">
+        <template v-if="item.options">
+          <span>
+            {{ item.value }}
+            <a
+              style="float: right"
+              href="https://www.google.com/search?q=antd"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              more
+            </a>
+          </span>
+        </template>
+        <template v-else-if="item.value === 'all'">
+          <a
+            href="https://www.google.com/search?q=ant-design-vue"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View all results
+          </a>
+        </template>
+        <template v-else>
+          <div style="display: flex; justify-content: space-between">
+            {{ item.value }}
+            <span>
+              <UserOutlined />
+              {{ item.count }}
+            </span>
+          </div>
+        </template>
       </template>
-      <template v-slot:datasource1>
-        <a-select-option v-for="email in result1" :key="email">
-          {{ email }}
-        </a-select-option>
-      </template>
-      <template v-slot:datasource2>
-        <a-select-option v-for="email in result2" :key="email">
-          {{ email + "_test" }}
-        </a-select-option>
+      <template v-slot:auto2-inputsearch>
+        <a-input-search placeholder="input here" size="large"></a-input-search>
       </template>
     </v-formly>
     <div class="btns">
@@ -34,6 +54,11 @@
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
+import type VFormly from "@/Formly.vue";
+import type { StringMeta } from "@/meta/string.meta";
+import { auto2_dataSource } from "../data/autocomplete2";
+
+//#region init
 interface MockVal {
   value: string;
 }
@@ -48,10 +73,12 @@ const auto1_handleKeyPress = (ev: KeyboardEvent) => {
   console.log("auto1_handleKeyPress", ev);
 };
 
-const form = ref(null);
+const form = ref<null | InstanceType<typeof VFormly>>(null);
 const auto_options = ref<MockVal[]>([]);
 
 const auto1_options = ref<{ value: string }[]>([]);
+//#endregion
+
 const meta = {
   type: "object",
   properties: {
@@ -60,7 +87,7 @@ const meta = {
       title: "基本使用",
       ui: {
         component: "autocomplete",
-        placeholder: "auto complete",
+        placeholder: "input here",
         options: auto_options.value,
         select: function (value: string) {
           console.log("onSelect", value);
@@ -74,7 +101,7 @@ const meta = {
                 mockVal(searchText, 2),
                 mockVal(searchText, 3),
               ];
-          const context = (form.value as any).getContext("/auto");
+          const context = form.value!.getContext<StringMeta>("/auto");
           console.log(toRaw(auto_options.value));
           context.ui.value.options = auto_options;
         },
@@ -86,7 +113,34 @@ const meta = {
       ui: {
         component: "autocomplete",
         slotNameOfDefault: "auto1-textarea",
-        options: auto1_options.value,
+        options: auto1_options,
+        // select: function (value: string) {
+        //   console.log("onSelect", value);
+        // },
+        search: function (searchText: string, value: string) {
+          debugger;
+          auto1_options.value = !value
+            ? []
+            : [
+                { value },
+                { value: value + value },
+                { value: value + value + value },
+              ];
+
+          console.log("auto1_options.value", auto1_options.value);
+          const context = form.value!.getContext<StringMeta>("/auto1");
+          context.ui.value.options = auto1_options;
+        },
+      },
+    },
+    auto2: {
+      type: "string",
+      title: "查询模式 - 确定类目",
+      ui: {
+        component: "autocomplete",
+        options: auto2_dataSource,
+        slotNameOfOption: "auto2-option",
+        slotNameOfDefault: "auto2-inputsearch",
         select: function (value: string) {
           console.log("onSelect", value);
         },
@@ -98,101 +152,26 @@ const meta = {
                 { value: value + value },
                 { value: value + value + value },
               ];
-          const context = (form.value as any).getContext("/auto1");
+          const context = form.value!.getContext<StringMeta>("/auto1");
           context.ui.value.options = auto1_options;
         },
       },
     },
-    // obj: {
-    //   type: "object",
-    //   properties: {
-    //     auto1: {
-    //       type: "string",
-    //       title: "自动完成1",
-    //       ui: {
-    //         component: "autocomplete",
-    //         placeholder: "auto complete 1",
-    //         slotNameOfDataSource: "datasource1", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
-    //         dataSource: [],
-    //         search: function (value: string) {
-    //           console.log(value);
-    //           handleSearch1(value);
-    //         },
-    //       },
-    //     },
-    //     obj1: {
-    //       type: "object",
-    //       properties: {
-    //         auto2: {
-    //           type: "string",
-    //           title: "自动完成2",
-    //           ui: {
-    //             component: "autocomplete",
-    //             placeholder: "auto complete 2",
-    //             slotNameOfDataSource: "datasource2", // slotName优先级高于dataSource，即有slot用slot，否则用dataSource数组
-    //             dataSource: [],
-    //             search: function (value: string) {
-    //               console.log(value);
-    //               handleSearch2(value);
-    //             },
-    //           },
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
   },
   required: [],
 };
 
 let formData: any = ref({});
-let result: any = ref([]);
-let result1: any = ref([]);
-let result2: any = ref([]);
 
 function clear() {
   formData.value = null;
 }
 
 async function submit() {
-  let valid = await (form.value as any).validate();
+  let valid = await form.value!.validate();
   if (valid) {
     console.log(toRaw(unref(formData)));
   }
-}
-
-function handleSearch(value: string) {
-  if (!value || value.indexOf("@") >= 0) {
-    result.value = [];
-  } else {
-    result.value = ["gmail.com", "163.com", "qq.com"].map(
-      (domain) => `${value}@${domain}`
-    );
-  }
-}
-
-function handleSearch1(value: string) {
-  let result: any;
-  if (!value || value.indexOf("@") >= 0) {
-    result = [];
-  } else {
-    result = ["gmail.com", "163.com", "qq.com"].map(
-      (domain) => `${value}@${domain}`
-    );
-  }
-  result1.value = result;
-}
-
-function handleSearch2(value: string) {
-  let result: any;
-  if (!value || value.indexOf("@") >= 0) {
-    result = [];
-  } else {
-    result = ["gmail.com", "163.com", "qq.com"].map(
-      (domain) => `${value}@${domain}`
-    );
-  }
-  result2.value = result;
 }
 </script>
 

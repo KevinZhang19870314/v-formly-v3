@@ -1,5 +1,5 @@
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
-import type { Meta } from "@/types/meta";
+import type { AnyObject, Meta } from "@/types/meta";
 import type { Global } from "@/utils/global";
 import useEventBus from "@/hooks/event-bus";
 import { ref, type AppContext } from "vue";
@@ -9,7 +9,7 @@ abstract class BaseMeta {
   public state: Global;
   public meta = ref<Meta>({});
   public type;
-  public ui: any = ref({});
+  public ui = ref<AnyObject>({});
   public error = ref(undefined);
   public _value = ref();
   public _initMetaValue: any;

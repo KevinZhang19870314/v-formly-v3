@@ -9,9 +9,9 @@
       @search="search"
       @select="select"
     >
-      <!-- <template v-if="ui.slotNameOfDataSource" v-slot:dataSource>
-        <slot :name="ui.slotNameOfDataSource"></slot>
-      </template> -->
+      <template v-if="ui.slotNameOfOption" v-slot:option="item">
+        <slot :name="ui.slotNameOfOption" v-bind="item"></slot>
+      </template>
       <template v-if="ui.slotNameOfDefault" v-slot:default>
         <slot :name="ui.slotNameOfDefault"></slot>
       </template>
