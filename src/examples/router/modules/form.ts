@@ -2,6 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 import { FormOutlined } from "@ant-design/icons-vue";
 import BasicLayout from "@/examples/layout/index.vue";
 import AboutViewVue from "@/examples/views/AboutView.vue";
+import CheckboxView from "@/examples/views/CheckboxView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -48,8 +49,7 @@ const route: RouteRecordRaw = {
     {
       path: "checkbox",
       name: "checkbox",
-      component: AboutViewVue,
-      // component: CheckboxView,
+      component: CheckboxView,
       meta: { title: "Checkbox 多选框" },
     },
     {

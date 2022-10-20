@@ -29,6 +29,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  unref,
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
@@ -56,19 +57,19 @@ const value = computed({
 
 function change(value: string) {
   if (ui.value.change) {
-    ui.value.change(value);
+    ui.value.change(unref(value));
   }
 }
 
 function search(value: string) {
   if (ui.value.search) {
-    ui.value.search(value);
+    ui.value.search(unref(value));
   }
 }
 
 function select(value: string, option: any) {
   if (ui.value.search) {
-    ui.value.search(value, option);
+    ui.value.search(unref(value), option);
   }
 }
 </script>
