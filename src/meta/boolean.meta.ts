@@ -12,7 +12,7 @@ class BooleanMeta extends BaseMeta {
     if (typeof this._initMetaValue !== "undefined") {
       this.value = this._initMetaValue;
     } else if (typeof this.meta.value.default === "boolean") {
-      this.value = this.meta.value.default as any;
+      this.value = this.meta.value.default;
     }
   }
 

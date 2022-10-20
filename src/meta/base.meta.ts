@@ -11,7 +11,7 @@ abstract class BaseMeta {
   public type;
   public ui: any = ref({});
   public error = ref(undefined);
-  public _value = ref(undefined);
+  public _value = ref();
   public _initMetaValue: any;
 
   public appContext;
