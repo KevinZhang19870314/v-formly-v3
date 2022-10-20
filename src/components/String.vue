@@ -1,8 +1,7 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <!-- TODO: 绑定到ui的时候过滤掉所有非AntDv的字段，所有的内置组件都要顾虑 -->
     <a-input
-      v-bind="ui"
+      v-bind="bindings"
       :defaultValue="meta.defaultValue"
       :disabled="meta.readOnly"
       :maxLength="meta.maxLength"
@@ -39,9 +38,8 @@ import {
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
-// import { Input } from "ant-design-vue";
-
-// console.log(Object.keys(Input.props));
+import { Input } from "ant-design-vue";
+import { useBindings } from "@/hooks/bindings";
 
 const props = defineProps<{ id: string; meta: Meta }>();
 const state: any = inject("state");
@@ -52,6 +50,8 @@ const context = new StringMeta(appContext, state, props.id, props.meta);
 const ui = computed(() => {
   return context.ui.value || {};
 });
+
+const { bindings } = useBindings(Object.keys(Input.props), ui);
 
 const value = computed({
   get() {

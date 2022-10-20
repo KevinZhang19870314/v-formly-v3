@@ -20,11 +20,12 @@ const meta = {
       type: "string",
       default: "kevin",
       ui: {
+        // bordered: true,
         showRequired: true,
         errors: {
           required: "请输入姓名",
         },
-        change: (val: string) => console.log(val),
+        change: (val: string) => console.log("val", val),
       },
     },
     desc: {
@@ -45,7 +46,10 @@ const meta = {
 let data: any = ref({ enable: false });
 
 function clear() {
-  data.value = null;
+  // data.value = null;
+  // test
+  const context = (form.value as any).getContext("/name");
+  context.ui.value.bordered = context.ui.value.bordered ? false : true;
 }
 
 async function submit() {
