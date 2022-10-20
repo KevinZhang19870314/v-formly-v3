@@ -19,54 +19,52 @@ v-formly 内置封装了所有的在 Ant Design of Vue 中的`Data Entry`下面�
   </div>
 </template>
 
-<script>
-export default {
-  name: "BaseForm",
-  data: function () {
-    return {
-      meta: {
-        type: "object",
-        properties: {
-          name: {
-            title: "姓名",
-            type: "string",
-            default: "kevin",
-            ui: {
-              showRequired: true,
-            },
-          },
-          desc: {
-            title: "描述",
-            type: "string",
-            default: "Base on technical, but not limited on it!",
-            ui: {
-              change: (val) => {
-                console.log("val = ", val);
-              },
-            },
-          },
-          enable: {
-            title: "启用",
-            type: "boolean",
-          },
+<script setup lang="ts">
+import { ref, toRaw, unref } from "vue";
+
+const form = ref(null);
+const meta = {
+  type: "object",
+  properties: {
+    name: {
+      title: "姓名",
+      type: "string",
+      default: "kevin",
+      readOnly: false,
+      ui: {
+        showRequired: true,
+        errors: {
+          required: "请输入姓名",
         },
-        required: ["name"],
+        change: (val: string) => console.log("val", val),
       },
-      data: { enable: true },
-    };
-  },
-  methods: {
-    clear() {
-      this.data = null;
     },
-    async submit() {
-      let valid = await this.$refs.form.validate();
-      if (valid) {
-        console.log(this.data);
-      }
+    desc: {
+      title: "描述",
+      type: "string",
+      default: "Base on technical, but not limited on it!",
+    },
+    enable: {
+      title: "启用",
+      type: "boolean",
+      default: true,
     },
   },
+  required: ["name"],
 };
+
+let data: any = ref({});
+
+function clear() {
+  data.value = null;
+}
+
+async function submit() {
+  let valid = await (form.value as any).validate();
+  if (valid) {
+    console.log(toRaw(unref(data)));
+  }
+}
 </script>
 ```
 
