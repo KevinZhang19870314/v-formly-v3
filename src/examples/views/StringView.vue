@@ -50,8 +50,10 @@ import {
   EyeOutlined,
   EyeInvisibleOutlined,
 } from "@ant-design/icons-vue";
+import type VFormly from "@/Formly.vue";
+import type { StringMeta } from "@/meta/string.meta";
 
-const form = ref(null);
+const form = ref<null | InstanceType<typeof VFormly>>(null);
 const meta = {
   type: "object",
   properties: {
@@ -183,8 +185,8 @@ async function submit() {
 
 function string6SuffixClick() {
   visibilityToggle.value = !visibilityToggle.value;
-  const context = (form.value as any).getContext("/string6");
-  context.ui.type = visibilityToggle.value ? "text" : "password";
+  const context = form.value!.getContext<StringMeta>("/string6");
+  context.ui.value.type = visibilityToggle.value ? "text" : "password";
 }
 </script>
 

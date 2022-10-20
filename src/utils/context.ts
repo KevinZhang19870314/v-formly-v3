@@ -3,7 +3,7 @@ class FormItemContext {
 
   constructor() {}
 
-  addContext(id: string, instance: any) {
+  addContext<T>(id: string, instance: T) {
     this._map.set(id, instance);
   }
 
@@ -11,7 +11,7 @@ class FormItemContext {
     this._map.delete(id);
   }
 
-  getContext(id: string) {
+  getContext<T>(id: string): T {
     return this._map.get(id);
   }
 

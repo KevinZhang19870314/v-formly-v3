@@ -55,6 +55,7 @@ import {
 } from "vue";
 import { useSlots } from "./hooks/slots";
 import useEventBus from "./hooks/event-bus";
+import type { ObjectMeta } from "./meta/object.meta";
 
 const props = withDefaults(
   defineProps<{
@@ -149,8 +150,8 @@ function initFormData(fData: any, properties: any) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function getContext(id: string) {
-  return globalInstance.context!.getContext(id);
+function getContext<T>(id: string) {
+  return globalInstance.context!.getContext<T>(id);
 }
 
 async function validate() {
@@ -158,7 +159,7 @@ async function validate() {
 }
 
 function reset(data: any) {
-  const context = globalInstance.context!.getContext("/");
+  const context = globalInstance.context!.getContext<ObjectMeta>("/");
   if (context) {
     context.value = data;
     emit("update:modelValue", globalInstance.formData);

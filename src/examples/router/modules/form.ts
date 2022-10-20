@@ -5,6 +5,7 @@ import AboutViewVue from "@/examples/views/AboutView.vue";
 import CheckboxView from "@/examples/views/CheckboxView.vue";
 import StringView from "@/examples/views/StringView.vue";
 import BooleanView from "@/examples/views/BooleanView.vue";
+import AutoCompleteView from "@/examples/views/AutocompleteView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -42,8 +43,7 @@ const route: RouteRecordRaw = {
     {
       path: "autoComplete",
       name: "autoComplete",
-      component: AboutViewVue,
-      // component: AutoCompleteView,
+      component: AutoCompleteView,
       meta: { title: "AutoComplete 自动完成" },
     },
     {

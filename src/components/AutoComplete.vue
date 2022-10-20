@@ -9,9 +9,9 @@
       @search="search"
       @select="select"
     >
-      <template v-if="ui.slotNameOfDataSource" v-slot:dataSource>
+      <!-- <template v-if="ui.slotNameOfDataSource" v-slot:dataSource>
         <slot :name="ui.slotNameOfDataSource"></slot>
-      </template>
+      </template> -->
       <template v-if="ui.slotNameOfDefault" v-slot:default>
         <slot :name="ui.slotNameOfDefault"></slot>
       </template>
@@ -24,7 +24,7 @@ import { useBindings } from "@/hooks/bindings";
 import { StringMeta } from "@/meta/string.meta";
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/utils/global";
-import { Input } from "ant-design-vue";
+import { AutoComplete } from "ant-design-vue";
 import {
   computed,
   getCurrentInstance,
@@ -40,7 +40,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(Input.props), context.ui);
+const { bindings } = useBindings(Object.keys(AutoComplete.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};
@@ -61,9 +61,9 @@ function change(value: string) {
   }
 }
 
-function search(value: string) {
+function search(searchText: string) {
   if (ui.value.search) {
-    ui.value.search(unref(value));
+    ui.value.search(searchText, value.value);
   }
 }
 
