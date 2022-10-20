@@ -3,7 +3,7 @@
     :labelCol="labelCol"
     :wrapperCol="wrapperCol"
     :required="ui.showRequired"
-    :class="{ 'has-error': error }"
+    :class="{ 'ant-form-item-has-error': error }"
   >
     <template #label>
       <span class="v__label-text">{{ meta.title }}</span>
@@ -30,7 +30,7 @@
       class="ant-form-extra"
       v-html="meta.description"
     ></div>
-    <div v-if="error" class="ant-form-explain">
+    <div v-if="error" class="ant-form-item-explain-error">
       {{ error }}
     </div>
   </a-form-item>
