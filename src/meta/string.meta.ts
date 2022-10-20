@@ -6,16 +6,16 @@ class StringMeta extends BaseMeta {
   constructor(appContext: AppContext, state: any, id: string, meta: Meta) {
     super(appContext, state, id, meta);
 
-    if (this.meta) {
-      this.open = (this.meta.ui && this.meta.ui.open) || false;
+    if (this.meta.value) {
+      this.open = this.meta.value.ui?.open || false;
     }
   }
 
   initValue() {
     if (this._initMetaValue) {
       this.value = this._initMetaValue;
-    } else if (this.meta.default) {
-      this.value = this.meta.default;
+    } else if (this.meta.value.default) {
+      this.value = this.meta.value.default;
     }
   }
 

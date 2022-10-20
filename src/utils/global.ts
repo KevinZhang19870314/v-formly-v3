@@ -1,12 +1,13 @@
 import { UUID } from "@/utils/utils";
 import useCurrentInstance from "@/hooks/current-instance";
 import { ref } from "vue";
+import type { FormItemContext } from "./context";
 
 class Global {
   public _formId = UUID(4);
   public _ignoreErrorIds = [];
 
-  private _context: any;
+  private _context: FormItemContext | undefined;
   private _layout = "horizontal";
   private _ajvOptions = {
     allErrors: true,

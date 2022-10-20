@@ -39,6 +39,9 @@ import {
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
+// import { Input } from "ant-design-vue";
+
+// console.log(Object.keys(Input.props));
 
 const props = defineProps<{ id: string; meta: Meta }>();
 const state: any = inject("state");
@@ -47,7 +50,7 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const ui = computed(() => {
-  return props.meta.ui || {};
+  return context.ui.value || {};
 });
 
 const value = computed({

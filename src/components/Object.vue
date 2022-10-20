@@ -45,9 +45,11 @@ const props = defineProps<{
 
 const { slotsName } = useSlots(props.meta);
 const state: any = inject("state");
+const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+const context = new ObjectMeta(appContext, state, props.id, props.meta);
 
 const ui = computed(() => {
-  return props.meta.ui || {};
+  return context.ui.value || {};
 });
 
 const gutter = computed(() => {
@@ -68,9 +70,7 @@ function grid(item: any) {
   return Object.assign({}, state.ui.grid, ui.value.grid, grid);
 }
 
-const { appContext } = getCurrentInstance() as ComponentInternalInstance;
-const metaInstance = new ObjectMeta(appContext, state, props.id, props.meta);
-const childMetaPairs = metaInstance.childMetaPairs;
+const childMetaPairs = context.childMetaPairs;
 </script>
 
 <style scoped></style>

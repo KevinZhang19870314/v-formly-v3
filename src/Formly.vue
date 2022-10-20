@@ -64,7 +64,6 @@ const props = withDefaults(
     meta: Meta;
   }>(),
   {
-    modelValue: "test",
     layout: "horizontal",
   }
 );
@@ -99,7 +98,6 @@ watch(
   (cur, pre) => {
     if (JSON.stringify(cur) === JSON.stringify(pre)) return;
 
-    console.log("cur modelvaluechange", cur);
     reset(cur);
   },
   {
@@ -152,7 +150,7 @@ function initFormData(fData: any, properties: any) {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getContext(id: string) {
-  return globalInstance.context.getContext(id);
+  return globalInstance.context!.getContext(id);
 }
 
 async function validate() {
@@ -160,7 +158,7 @@ async function validate() {
 }
 
 function reset(data: any) {
-  const context = globalInstance.context.getContext("/");
+  const context = globalInstance.context!.getContext("/");
   if (context) {
     context.value = data;
     emit("update:modelValue", globalInstance.formData);

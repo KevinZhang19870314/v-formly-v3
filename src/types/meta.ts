@@ -1,5 +1,5 @@
 export interface Meta {
-  type: MetaType;
+  type?: MetaType;
   properties?: AnyObject;
   items?: AnyObject;
   ui?: AnyObject;

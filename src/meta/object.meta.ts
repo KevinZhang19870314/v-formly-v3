@@ -4,12 +4,8 @@ import { BaseMeta } from "./base.meta";
 
 class ObjectMeta extends BaseMeta {
   public childMetaPairs;
-  public id;
-  public meta;
   constructor(appContext: AppContext, state: any, id: string, meta: Meta) {
     super(appContext, state, id, meta);
-    this.id = id;
-    this.meta = meta;
 
     this.childMetaPairs = this.buildChildMetaPairs(id, meta);
 
@@ -20,7 +16,7 @@ class ObjectMeta extends BaseMeta {
 
   set value(val: any) {
     this.childMetaPairs.forEach(({ key, propertyName }) => {
-      const ctx = this.state.context.getContext(key);
+      const ctx = this.state.context!.getContext(key);
       ctx.value = (val || {})[propertyName];
     });
   }

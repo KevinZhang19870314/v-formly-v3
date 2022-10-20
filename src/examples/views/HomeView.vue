@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from "vue";
+import { ref, toRaw, unref } from "vue";
 
 const form = ref(null);
 const meta = {
@@ -51,7 +51,7 @@ function clear() {
 async function submit() {
   let valid = await (form.value as any).validate();
   if (valid) {
-    console.log("data.value", unref(data));
+    console.log(toRaw(unref(data)));
   }
 }
 </script>

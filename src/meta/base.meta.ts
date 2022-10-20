@@ -1,34 +1,35 @@
 import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
 import type { Meta } from "@/types/meta";
+import type { Global } from "@/utils/global";
 import useEventBus from "@/hooks/event-bus";
 import { ref, type AppContext } from "vue";
 
 abstract class BaseMeta {
   public id;
-  public state;
-  public meta;
+  public state: Global;
+  public meta = ref<Meta>({});
   public type;
-  public ui;
+  public ui: any = ref({});
   public error = ref(undefined);
   public _value = ref(undefined);
   public _initMetaValue: any;
 
   public appContext;
 
-  constructor(appContext: AppContext, state: any, id: any, meta: Meta) {
+  constructor(appContext: AppContext, state: Global, id: string, meta: Meta) {
     if (this.constructor == BaseMeta) {
       throw new Error("Abstract classes can't be instantiated.");
     }
 
     this.id = id;
     this.state = state;
-    this.meta = meta;
-    this.type = (this.meta.ui && this.meta.ui.component) || this.meta.type;
-    this.ui = Object.assign({}, this.state.ui, this.meta.ui);
+    this.meta.value = meta;
+    this.type = (meta.ui && meta.ui.component) || meta.type;
+    this.ui.value = Object.assign({}, state.ui, meta.ui);
     this.appContext = appContext;
 
     this.error.value = undefined;
-    state.context.addContext(id, this);
+    state.context!.addContext(id, this);
     this._value.value = undefined;
 
     this._initMetaValue = this.getInitMetaValue();
