@@ -41,6 +41,7 @@ import useCurrentInstance from "@/hooks/current-instance";
 import useEventBus from "@/hooks/event-bus";
 import type { Meta } from "@/types/meta";
 import { FORM_ERROR_CHANGE } from "@/utils/consts";
+import type { Global } from "@/utils/global";
 import {
   computed,
   getCurrentInstance,
@@ -56,8 +57,8 @@ const props = defineProps<{
 }>();
 
 const { globalProperties } = useCurrentInstance();
-const state: any = inject("state");
-const context = state.context.getContext(props.id);
+const state = inject("state") as Global;
+const context = state.context!.getContext(props.id);
 
 const ui = computed(() => {
   return Object.assign({}, state.ui, props.meta.ui);
@@ -101,10 +102,6 @@ function formErrorChangeCallback(err: any) {
     error.value = err.error ? err.error.message : undefined;
   }
 }
-
-// return {
-//   name,
-// };
 </script>
 
 <script lang="ts">

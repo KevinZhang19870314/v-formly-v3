@@ -40,9 +40,10 @@ import {
 import VWrapper from "./Wrapper.vue";
 import { Input } from "ant-design-vue";
 import { useBindings } from "@/hooks/bindings";
+import type { Global } from "@/utils/global";
 
 const props = defineProps<{ id: string; meta: Meta }>();
-const state: any = inject("state");
+const state = inject("state") as Global;
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);

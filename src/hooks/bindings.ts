@@ -7,7 +7,6 @@ export function useBindings(props: string[], ui: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     (cur, pre) => {
       const uiKeys = Object.keys(cur);
-      console.log(uiKeys);
       uiKeys.forEach((key) => {
         if (props.indexOf(key) > -1) {
           bindings.value[key] = ui.value[key];

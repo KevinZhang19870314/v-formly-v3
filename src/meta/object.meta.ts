@@ -1,15 +1,16 @@
 import type { Meta } from "@/types/meta";
+import type { Global } from "@/utils/global";
 import type { AppContext } from "vue";
 import { BaseMeta } from "./base.meta";
 
 class ObjectMeta extends BaseMeta {
   public childMetaPairs;
-  constructor(appContext: AppContext, state: any, id: string, meta: Meta) {
+  constructor(appContext: AppContext, state: Global, id: string, meta: Meta) {
     super(appContext, state, id, meta);
 
     this.childMetaPairs = this.buildChildMetaPairs(id, meta);
 
-    state.context.addContext(id, this);
+    state.context!.addContext(id, this);
   }
 
   initValue() {}

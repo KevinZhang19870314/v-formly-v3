@@ -31,6 +31,7 @@ import VFormlyItem from "@/FormlyItem.vue";
 import { useSlots } from "@/hooks/slots";
 import { ObjectMeta } from "@/meta/object.meta";
 import type { Meta } from "@/types/meta";
+import type { Global } from "@/utils/global";
 import {
   computed,
   getCurrentInstance,
@@ -44,7 +45,7 @@ const props = defineProps<{
 }>();
 
 const { slotsName } = useSlots(props.meta);
-const state: any = inject("state");
+const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new ObjectMeta(appContext, state, props.id, props.meta);
 
