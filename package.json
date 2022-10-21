@@ -1,13 +1,23 @@
 {
   "name": "v-formly-v3",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "main": "./lib/v-formly-v3.umd.js",
+  "module": "./lib/v-formly-v3.es.js",
+  "exports": {
+    ".": {
+      "import": "./lib/v-formly-v3.es.js",
+      "require": "./lib/v-formly-v3.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
+    "cli": "vite --help",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "build:lib": "vite --config vite.config.lib.ts build",
     "docs:dev": "vuepress dev docs --debug --clean-temp --clean-cache",
     "docs:build": "vuepress build docs"
   },
@@ -17,7 +27,8 @@
     "mitt": "^3.0.0",
     "pinia": "^2.0.23",
     "vue": "^3.2.38",
-    "vue-router": "^4.1.5"
+    "vue-router": "^4.1.5",
+    "ajv": "^8.11.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

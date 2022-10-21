@@ -1,12 +1,11 @@
 import VFormly from "./Formly.vue";
 import VWrapper from "@/components/Wrapper.vue";
-// import { componentMixin } from "@/mixin/component.mixin.js";
-import { BaseMeta } from "@/meta/base.meta.js";
+import { BaseMeta } from "@/meta/base.meta";
 import {
   registerFormComponent,
   registerBuildInComponents,
-} from "@/utils/register.factory.js";
-import { FORM_VALUE_CHANGE } from "@/utils/consts.js";
+} from "@/utils/register.factory";
+import { FORM_VALUE_CHANGE } from "@/utils/consts";
 import type { App } from "vue";
 
 const components = [VFormly, VWrapper];
@@ -23,13 +22,7 @@ const install = function (app: App, options: any) {
   return app;
 };
 
-export {
-  install,
-  BaseMeta,
-  //   componentMixin,
-  registerFormComponent,
-  FORM_VALUE_CHANGE,
-};
+export { install, BaseMeta, registerFormComponent, FORM_VALUE_CHANGE };
 
 export default {
   install,
