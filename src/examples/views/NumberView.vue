@@ -1,6 +1,11 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="formData" :meta="meta" :layout="'horizontal'">
+    <v-formly-v3
+      ref="form"
+      v-model="formData"
+      :meta="meta"
+      :layout="'horizontal'"
+    >
       <template #addon-before>
         <a-select v-model:value="addonBeforeValue" style="width: 60px">
           <a-select-option value="add">+</a-select-option>
@@ -15,7 +20,7 @@
           <a-select-option value="CNY">¥</a-select-option>
         </a-select>
       </template>
-    </v-formly>
+    </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
@@ -33,10 +38,13 @@ const meta = {
   properties: {
     price: {
       type: "number",
-      title: "价格",
+      title: "价格(10<x<100)",
       minimum: 10,
       maximum: 100,
       multipleOf: 2,
+      ui: {
+        showRequired: true,
+      },
     },
     grade: {
       type: "integer",
@@ -57,7 +65,7 @@ const meta = {
       type: "number",
       title: "薪资涨幅",
       default: 30,
-      ui: { unit: "%", prefix: "$" },
+      ui: { unit: "%", prefix: "涨" },
     },
     hideStep: {
       type: "number",
@@ -75,7 +83,7 @@ const meta = {
       },
     },
   },
-  required: [],
+  required: ["price"],
 };
 let formData: any = ref({});
 let addonBeforeValue = ref("add");

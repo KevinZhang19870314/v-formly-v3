@@ -11,7 +11,7 @@ meta = {
 };
 ```
 
-v-formly 中通过解析`meta`并实例化存储`meta`结构的类为`context`，即表单组件的上下文，其中存储着表单组件的诸如`id`、`value`、`type`等等信息，以及组件的处理逻辑和校验等。这样，我们就可以认为 **类`meta`实例化后就是`context`**。我们目前定义的的`meta`有以下几个，分别对应[AJV 中的 JSON 基本数据类型](https://ajv.js.org/json-schema.html#json-data-type)：
+v-formly-v3 中通过解析`meta`并实例化存储`meta`结构的类为`context`，即表单组件的上下文，其中存储着表单组件的诸如`id`、`value`、`type`等等信息，以及组件的处理逻辑和校验等。这样，我们就可以认为 **类`meta`实例化后就是`context`**。我们目前定义的的`meta`有以下几个，分别对应[AJV 中的 JSON 基本数据类型](https://ajv.js.org/json-schema.html#json-data-type)：
 
 ```
 |-- base.meta.js <!-- 此类为基类，其他`meta`类都继承于它 -->
@@ -30,7 +30,7 @@ v-formly 中通过解析`meta`并实例化存储`meta`结构的类为`context`�
 
 ## JSON Schema
 
-JSON Schema 有完整的[文档说明](https://json-schema.org/)，以下为 v-formly 中使用的一些属性说明。
+JSON Schema 有完整的[文档说明](https://json-schema.org/)，以下为 v-formly-v3 中使用的一些属性说明。
 
 ### 常规类
 
@@ -106,7 +106,7 @@ JSON Schema 有完整的[文档说明](https://json-schema.org/)，以下为 v-f
 
 | 参数  | 说明                                                     | 类型  | 默认值 |
 | ----- | -------------------------------------------------------- | ----- | ------ |
-| `:ui` | 指定 UI 配置信息，优先级高于 `v-formly` 组件 `ui` 属性值 | `any` | -      |
+| `:ui` | 指定 UI 配置信息，优先级高于 `v-formly-v3` 组件 `ui` 属性值 | `any` | -      |
 
 ## UI
 

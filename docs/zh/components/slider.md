@@ -9,11 +9,11 @@
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" layout="horizontal">
       <template v-slot:testSlot>
         <a-icon slot="character" type="heart" />
       </template>
-    </v-formly>
+    </v-formly-v3>
     <div class="btns">
       <a-button type="primary" @click="printData"> 提交 </a-button>
     </div>

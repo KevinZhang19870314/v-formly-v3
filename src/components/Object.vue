@@ -13,7 +13,7 @@
       :xxl="grid(item).xxl"
       :style="{ display: layout === 'inline' ? 'inline-block' : 'block' }"
     >
-      <v-formly-item
+      <v-formly-v3-item
         :id="item.key"
         :meta="item.meta"
         :show="visible(item.meta)"
@@ -21,13 +21,13 @@
         <template v-for="slotName in slotsName" v-slot:[slotName]="slotProps">
           <slot :name="slotName" v-bind="{ ...slotProps }"></slot>
         </template>
-      </v-formly-item>
+      </v-formly-v3-item>
     </a-col>
   </a-row>
 </template>
 
 <script setup lang="ts" name="v-object">
-import VFormlyItem from "@/FormlyItem.vue";
+import VFormlyV3Item from "@/FormlyItem.vue";
 import { useSlots } from "@/hooks/slots";
 import { ObjectMeta } from "@/meta/object.meta";
 import type { Meta } from "@/types/meta";

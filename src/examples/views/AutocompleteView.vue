@@ -1,6 +1,11 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="formData" :meta="meta" :layout="'horizontal'">
+    <v-formly-v3
+      ref="form"
+      v-model="formData"
+      :meta="meta"
+      :layout="'horizontal'"
+    >
       <template v-slot:auto1-textarea>
         <a-textarea
           placeholder="input here"
@@ -44,7 +49,7 @@
       <template v-slot:auto2-inputsearch>
         <a-input-search placeholder="input here" size="large"></a-input-search>
       </template>
-    </v-formly>
+    </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
@@ -54,7 +59,7 @@
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormlyV3 from "@/Formly.vue";
 import type { StringMeta } from "@/meta/string.meta";
 import { auto2_dataSource } from "../data/autocomplete2";
 
@@ -73,7 +78,7 @@ const auto1_handleKeyPress = (ev: KeyboardEvent) => {
   console.log("auto1_handleKeyPress", ev);
 };
 
-const form = ref<null | InstanceType<typeof VFormly>>(null);
+const form = ref<null | InstanceType<typeof VFormlyV3>>(null);
 const auto_options = ref<MockVal[]>([]);
 
 const auto1_options = ref<{ value: string }[]>([]);

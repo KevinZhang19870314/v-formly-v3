@@ -1,6 +1,6 @@
 # 布局
 
-v-formly 表单支持三种布局，水平`horizontal`,垂直`vertical`,行内`inline`。
+v-formly-v3 表单支持三种布局，水平`horizontal`,垂直`vertical`,行内`inline`。
 
 ## 代码演示
 
@@ -17,8 +17,8 @@ v-formly 表单支持三种布局，水平`horizontal`,垂直`vertical`,行内`i
       <a-radio-button value="vertical"> 垂直 </a-radio-button>
       <a-radio-button value="inline"> 行内 </a-radio-button>
     </a-radio-group>
-    <v-formly ref="form" v-model="data" :meta="meta" :layout="mode">
-    </v-formly>
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" :layout="mode">
+    </v-formly-v3>
   </div>
 </template>
 <script>

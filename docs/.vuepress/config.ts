@@ -17,16 +17,16 @@ const isProd = process.env.NODE_ENV === "production";
 
 export default defineUserConfig({
   lang: "zh-CN",
-  base: "/v-formly/",
+  base: "/v-formly-v3/",
   locales: {
     "/": {
       lang: "en-US",
-      title: "v-formly",
-      description: "v-formly is a dynamic (JSON powered) form library for vue.",
+      title: "v-formly-v3",
+      description: "v-formly-v3 is a dynamic (JSON powered) form library for vue.",
     },
     "/zh/": {
       lang: "zh-CN",
-      title: "v-formly",
+      title: "v-formly-v3",
       description: "v-formly是vue的动态（JSON驱动）表单库。",
     },
   },
@@ -50,8 +50,8 @@ export default defineUserConfig({
       },
     ],
     // ["link", { rel: "manifest", href: "/manifest.webmanifest" }],
-    ["meta", { name: "application-name", content: "v-formly" }],
-    ["meta", { name: "apple-mobile-web-app-title", content: "v-formly" }],
+    ["meta", { name: "application-name", content: "v-formly-v3" }],
+    ["meta", { name: "apple-mobile-web-app-title", content: "v-formly-v3" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     [
       "meta",
@@ -80,7 +80,7 @@ export default defineUserConfig({
     ["meta", { name: "theme-color", content: "#3eaf7c" }],
   ],
   theme: defaultTheme({
-    repo: "KevinZhang19870314/v-formly",
+    repo: "KevinZhang19870314/v-formly-v3",
     docsDir: "docs",
     colorModeSwitch: false,
     locales: {

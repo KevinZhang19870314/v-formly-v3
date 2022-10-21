@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="formData" :meta="meta">
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta">
       <!-- string2_x -->
       <template v-slot:string2_2_prefix>
         <user-outlined />
@@ -34,7 +34,7 @@
           <eye-outlined v-if="visibilityToggle" />
         </div>
       </template>
-    </v-formly>
+    </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>

@@ -8,11 +8,11 @@
         v__horizontal: layout === 'horizontal',
       }"
     >
-      <v-formly-item id="/" :meta="objectMeta">
+      <v-formly-v3-item id="/" :meta="objectMeta">
         <template v-for="slotName in slotsName" v-slot:[slotName]="slotProps">
           <slot :name="slotName" v-bind="{ ...slotProps }"></slot>
         </template>
-      </v-formly-item>
+      </v-formly-v3-item>
 
       <template v-if="button === 'default'">
         <a-form :wrapperCol="wrapperCol" class="v__default-submit-button">
@@ -37,8 +37,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import VFormlyItem from "./FormlyItem.vue";
+<script setup lang="ts" name="v-formly-v3">
+import VFormlyV3Item from "./FormlyItem.vue";
 import { MetaType, type Meta } from "./types/meta";
 import { FormItemContext } from "./utils/context";
 import { Global } from "./utils/global";
@@ -195,7 +195,7 @@ defineExpose({
 </script>
 
 <script lang="ts">
-export default { name: "v-formly" };
+export default { name: "v-formly-v3" };
 </script>
 
 <style scoped lang="less"></style>

@@ -9,7 +9,7 @@
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" layout="horizontal">
       <template v-slot:select6>
         <a-spin slot="notFoundContent" size="small" />
       </template>
@@ -34,7 +34,7 @@
           <a-select-option value="Kevin"> kevin </a-select-option>
         </a-select-opt-group>
       </template>
-    </v-formly>
+    </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>

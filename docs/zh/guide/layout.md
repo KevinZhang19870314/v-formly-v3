@@ -2,7 +2,7 @@
 
 ## 基本布局
 
-v-formly 表单支持三种布局，水平`horizontal`，垂直`vertical`，行内`inline`，默认水平布局。
+v-formly-v3 表单支持三种布局，水平`horizontal`，垂直`vertical`，行内`inline`，默认水平布局。
 
 ### 代码演示
 
@@ -19,8 +19,8 @@ v-formly 表单支持三种布局，水平`horizontal`，垂直`vertical`，行�
       <a-radio-button value="vertical"> 垂直 </a-radio-button>
       <a-radio-button value="inline"> 行内 </a-radio-button>
     </a-radio-group>
-    <v-formly ref="form" v-model="data" :meta="meta" :layout="mode">
-    </v-formly>
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" :layout="mode">
+    </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
@@ -90,7 +90,7 @@ export default {
 利用 AntDv 的 grid 布局功能，v-formly 可以支持复杂的布局结构。
 
 ::: tip
-自定义复杂布局搭配 v-formly 的垂直布局使用更美观！
+自定义复杂布局搭配 v-formly-v3 的垂直布局使用更美观！
 :::
 
 ### 代码演示
@@ -100,8 +100,8 @@ export default {
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta" :layout="'vertical'">
-    </v-formly>
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" :layout="'vertical'">
+    </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>

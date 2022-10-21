@@ -62,7 +62,7 @@ abstract class BaseMeta {
   }
 
   /**
-   * v-formly 中通过v-model传入的组件初始值
+   * v-formly-v3 中通过v-model传入的组件初始值
    * @returns 组件初始值
    */
   getInitMetaValue() {

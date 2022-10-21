@@ -9,8 +9,8 @@
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
-    </v-formly>
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" layout="horizontal">
+    </v-formly-v3>
     <div class="btns">
       <a-button type="primary" @click="changeEnum"> 修改标签 </a-button>
       <a-button type="primary" @click="printData"> 提交 </a-button>

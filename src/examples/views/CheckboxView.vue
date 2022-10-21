@@ -1,7 +1,12 @@
 <template>
   <div>
-    <v-formly ref="form" v-model="formData" :meta="meta" :layout="'horizontal'">
-    </v-formly>
+    <v-formly-v3
+      ref="form"
+      v-model="formData"
+      :meta="meta"
+      :layout="'horizontal'"
+    >
+    </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>

@@ -9,7 +9,7 @@
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta" layout="horizontal">
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" layout="horizontal">
       <template v-slot:displayRender="{ labels, selectedOptions }">
         <span
           v-for="(label, index) in labels"
@@ -30,7 +30,7 @@
       <template v-slot:slotNameOfCascaderSuffixIcon>
         <a-icon type="smile" />
       </template>
-    </v-formly>
+    </v-formly-v3>
     <div class="btns">
       <a-button type="primary" @click="printData"> 提交 </a-button>
     </div>

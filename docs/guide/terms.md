@@ -2,7 +2,7 @@
 
 ## meta
 
-`meta`在 v-formly 中代表的是标准的 JSON Schema 和嵌套的`ui`结合的结构。例如如下结构：
+`meta`在 v-formly-v3 中代表的是标准的 JSON Schema 和嵌套的`ui`结合的结构。例如如下结构：
 
 ```json
 {

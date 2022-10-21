@@ -9,7 +9,7 @@
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta" :layout="'vertical'">
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" :layout="'vertical'">
       <template v-slot:suffixIcon3>
         <a-icon type="smile" />
       </template>
@@ -18,7 +18,7 @@
           {{ "Close" }}
         </a-button>
       </template>
-    </v-formly>
+    </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>

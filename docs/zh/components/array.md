@@ -9,8 +9,8 @@
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
-    </v-formly>
+    <v-formly-v3 ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
+    </v-formly-v3>
     <div class="btns">
       <a-button type="primary" @click="add"> 添加</a-button>
       <a-button type="primary" @click="setName"> 设置名称 </a-button>
@@ -158,7 +158,7 @@ export default {
 ```vue
 <template>
   <div>
-    <v-formly v-model="data" :meta="meta" :layout="'horizontal'" />
+    <v-formly-v3 v-model="data" :meta="meta" :layout="'horizontal'" />
   </div>
 </template>
 

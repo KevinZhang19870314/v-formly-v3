@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="v-formly-item">
+<script setup lang="ts" name="v-formly-v3-item">
 import {
   computed,
   getCurrentInstance,

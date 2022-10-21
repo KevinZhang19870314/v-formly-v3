@@ -1,6 +1,6 @@
 # 自定义组件
 
-v-formly 内置了很多组件，一般业务场景基本可以满足，除了内置组件外，v-formly 还提供了自定义组件的能力。
+v-formly-v3 内置了很多组件，一般业务场景基本可以满足，除了内置组件外，v-formly 还提供了自定义组件的能力。
 
 ## 自定义组件需要遵循一定的规则，总的来说有四步：
 
@@ -31,7 +31,7 @@ data() { return { context: new StringMeta(this.state, this.id, this.meta), }; },
 
 ### 4. 绑定`context.value`到`.vue`文件模板中
 
-v-formly 中的每个组件都对应一个 context，其中包含了组件的数据存储及校验逻辑等，我们需要把`context.value`绑定到组件的模板中去，这样组件才能响应数据的变化。
+v-formly-v3 中的每个组件都对应一个 context，其中包含了组件的数据存储及校验逻辑等，我们需要把`context.value`绑定到组件的模板中去，这样组件才能响应数据的变化。
 
 ## 自定义 Password 密码框组件
 
@@ -162,7 +162,7 @@ registerFormComponent("v-chkinput", VChkInput);
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta"> </v-formly>
+    <v-formly-v3 ref="form" v-model="data" :meta="meta"> </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
@@ -228,14 +228,14 @@ export default {
 
 ### 深入
 
-我们还在[@/examples/components/chk-input](https://github.com/KevinZhang19870314/v-formly/tree/main/src/examples/components/chk-input)文件夹下定义了一个复杂一点的选择输入框的自定义组件：当你选择“Others”的时候，会多出一个输入框让你输入自定义内容。有兴趣的可以自己查看。
+我们还在[@/examples/components/chk-input](https://github.com/KevinZhang19870314/v-formly-v3/tree/main/src/examples/components/chk-input)文件夹下定义了一个复杂一点的选择输入框的自定义组件：当你选择“Others”的时候，会多出一个输入框让你输入自定义内容。有兴趣的可以自己查看。
 
 ::: demo
 
 ```vue
 <template>
   <div>
-    <v-formly ref="form" v-model="data" :meta="meta"> </v-formly>
+    <v-formly-v3 ref="form" v-model="data" :meta="meta"> </v-formly-v3>
     <div class="btns">
       <a-button type="danger" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>

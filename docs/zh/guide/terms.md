@@ -2,7 +2,7 @@
 
 ## meta
 
-`meta`在 v-formly 中代表的是标准的 JSON Schema 和嵌套的`ui`结合的结构。例如如下结构：
+`meta`在 v-formly-v3 中代表的是标准的 JSON Schema 和嵌套的`ui`结合的结构。例如如下结构：
 
 ```json {9-11,19-21}
 {
@@ -38,13 +38,13 @@
 }
 ```
 
-这是一个标准的`meta`格式的数据结构，除了高亮的`ui`部分，它其实是一个标准的 JSON Schema 结构，我们把它传入 v-formly 中即可渲染出表单如下。
+这是一个标准的`meta`格式的数据结构，除了高亮的`ui`部分，它其实是一个标准的 JSON Schema 结构，我们把它传入 v-formly-v3 中即可渲染出表单如下。
 
 ::: demo
 
 ```vue
 <template>
-  <v-formly :meta="meta"> </v-formly>
+  <v-formly-v3 :meta="meta"> </v-formly-v3>
 </template>
 
 <script>
@@ -95,7 +95,7 @@ export default {
 
 ## 类 meta （js class）
 
-当我们把`meta`传入 v-formly 中，接收它的是我们的**类 meta**，**类 meta**是一个 JavaScript 的 class 类，它负责保存及处理表单中每个类型的表单项的处理逻辑及数据。
+当我们把`meta`传入 v-formly-v3 中，接收它的是我们的**类 meta**，**类 meta**是一个 JavaScript 的 class 类，它负责保存及处理表单中每个类型的表单项的处理逻辑及数据。
 
 ## context
 
