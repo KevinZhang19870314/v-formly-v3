@@ -13,27 +13,16 @@ export default defineConfig({
       fileName: (format: any) => `v-formly-v3.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        "vue",
-        "ant-design-vue",
-        "pinia",
-        "ajv",
-        "@ant-design/icons-vue",
-        "vue-router",
-        "mitt",
-      ],
+      external: ["vue", "ant-design-vue", "ajv", "mitt"],
       output: {
         exports: "named",
         // Provide global variables to use in the UMD build
         // Add external deps here
         globals: {
           vue: "Vue",
-          "ant-design-vue": "ant-design-vue",
-          pinia: "pinia",
-          "@ant-design/icons-vue": "@ant-design/icons-vue",
-          "vue-router": "vue-router",
+          "ant-design-vue": "antDesignVue",
+          ajv: "Ajv",
           mitt: "mitt",
-          ajv: "ajv",
         },
       },
     },
