@@ -19,7 +19,6 @@
           :mouseLeaveDelay="oh.mouseLeaveDelay"
           :overlayClassName="oh.overlayClassName"
         >
-          <!-- <a-icon :type="oh.icon" /> -->
           <component v-if="oh.icon" :is="globalProperties.$antIcons[oh.icon]" />
         </a-tooltip>
       </span>
@@ -58,7 +57,7 @@ const props = defineProps<{
 
 const { globalProperties } = useCurrentInstance();
 const state = inject("state") as Global;
-const context = state.context!.getContext(props.id);
+const context: any = state.context!.getContext(props.id);
 
 const ui = computed(() => {
   return Object.assign({}, state.ui, props.meta.ui);

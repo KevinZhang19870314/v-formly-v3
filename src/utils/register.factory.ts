@@ -5,6 +5,7 @@ import VAutoComplete from "@/components/AutoComplete.vue";
 import VCheckbox from "@/components/Checkbox.vue";
 import VDate from "@/components/Date.vue";
 import VTime from "@/components/Time.vue";
+import VNumber from "@/components/Number.vue";
 
 import type { App } from "vue";
 
@@ -26,8 +27,8 @@ function registerBuildInComponents(app: App) {
   registerFormComponent(app, "v-autocomplete", VAutoComplete);
   registerFormComponent(app, "v-checkbox", VCheckbox);
   registerFormComponent(app, "v-date", VDate);
-  // registerFormComponent("v-number", VNumber);
-  // registerFormComponent("v-integer", VNumber);
+  registerFormComponent(app, "v-number", VNumber);
+  registerFormComponent(app, "v-integer", VNumber);
   registerFormComponent(app, "v-time", VTime);
   // registerFormComponent("v-text", VText);
   // registerFormComponent("v-radio", VRadio);

@@ -10,6 +10,7 @@ export enum MetaType {
   Object = "object",
   Array = "array",
   Boolean = "boolean",
+  Integer = "integer",
 }
 
 export type AnyObject = { [key: string]: any };
