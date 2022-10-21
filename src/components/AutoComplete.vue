@@ -2,7 +2,6 @@
   <v-wrapper :id="id" :meta="meta">
     <a-auto-complete
       v-bind="bindings"
-      :defaultValue="meta.default"
       :disabled="meta.readOnly"
       v-model:value="value"
       @change="change"
@@ -63,13 +62,13 @@ function change(value: string) {
 
 function search(searchText: string) {
   if (ui.value.search) {
-    ui.value.search(searchText, value.value);
+    ui.value.search(searchText, unref(value));
   }
 }
 
 function select(value: string, option: any) {
-  if (ui.value.search) {
-    ui.value.search(unref(value), option);
+  if (ui.value.select) {
+    ui.value.select(unref(value), option);
   }
 }
 </script>

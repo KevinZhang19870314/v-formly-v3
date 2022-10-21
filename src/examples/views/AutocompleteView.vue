@@ -114,11 +114,10 @@ const meta = {
         component: "autocomplete",
         slotNameOfDefault: "auto1-textarea",
         options: auto1_options,
-        // select: function (value: string) {
-        //   console.log("onSelect", value);
-        // },
+        select: function (value: string) {
+          console.log("onSelect", value);
+        },
         search: function (searchText: string, value: string) {
-          debugger;
           auto1_options.value = !value
             ? []
             : [
