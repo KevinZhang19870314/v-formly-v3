@@ -7,6 +7,7 @@ import StringView from "@/examples/views/StringView.vue";
 import BooleanView from "@/examples/views/BooleanView.vue";
 import AutoCompleteView from "@/examples/views/AutocompleteView.vue";
 import DateView from "@/examples/views/DateView.vue";
+import TimeView from "@/examples/views/TimeView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -69,8 +70,7 @@ const route: RouteRecordRaw = {
     {
       path: "time",
       name: "time",
-      component: AboutViewVue,
-      // component: TimeView,
+      component: TimeView,
       meta: { title: "Time 时间" },
     },
     {

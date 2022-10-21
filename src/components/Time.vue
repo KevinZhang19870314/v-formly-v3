@@ -1,36 +1,50 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-range-picker
-      class="v__date"
+    <a-time-range-picker
       v-if="ui.type === 'range'"
+      class="v__time"
       v-model:value="value"
+      v-model:open="ui.open"
       v-bind="rangeBindings"
       :disabled="meta.readOnly"
       @calendarChange="calendarChange"
       @ok="ok"
       @change="change"
     >
+      <template v-if="ui.slotNameOfRenderExtraFooter" v-slot:renderExtraFooter>
+        <slot :name="ui.slotNameOfRenderExtraFooter"></slot>
+      </template>
       <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
         <slot :name="ui.slotNameOfSuffixIcon"></slot>
       </template>
-    </a-range-picker>
-    <a-date-picker
-      class="v__date"
-      v-if="ui.type !== 'range'"
+      <template v-if="ui.slotNameOfClearIcon" v-slot:clearIcon>
+        <slot :name="ui.slotNameOfClearIcon"></slot>
+      </template>
+    </a-time-range-picker>
+    <a-time-picker
+      v-else
+      class="v__time"
       v-model:value="value"
+      v-model:open="ui.open"
       v-bind="dateBindings"
       :disabled="meta.readOnly"
       @ok="ok"
       @change="change"
     >
+      <template v-if="ui.slotNameOfRenderExtraFooter" v-slot:renderExtraFooter>
+        <slot :name="ui.slotNameOfRenderExtraFooter"></slot>
+      </template>
       <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
         <slot :name="ui.slotNameOfSuffixIcon"></slot>
       </template>
-    </a-date-picker>
+      <template v-if="ui.slotNameOfClearIcon" v-slot:clearIcon>
+        <slot :name="ui.slotNameOfClearIcon"></slot>
+      </template>
+    </a-time-picker>
   </v-wrapper>
 </template>
 
-<script setup lang="ts" name="v-date">
+<script setup lang="ts" name="v-time">
 import { StringMeta } from "@/meta/string.meta";
 import type { Meta } from "@/types/meta";
 import {
@@ -41,7 +55,7 @@ import {
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
-import { DatePicker, RangePicker } from "ant-design-vue";
+import { TimePicker, TimeRangePicker } from "ant-design-vue";
 import { useBindings } from "@/hooks/bindings";
 import type { Global } from "@/utils/global";
 
@@ -54,10 +68,13 @@ const context = new StringMeta(appContext, state, props.id, props.meta);
 let rangeBindings = {};
 let dateBindings = {};
 if (context.ui.value.type === "range") {
-  const { bindings } = useBindings(Object.keys(RangePicker.props), context.ui);
+  const { bindings } = useBindings(
+    Object.keys(TimeRangePicker.props),
+    context.ui
+  );
   rangeBindings = bindings;
 } else {
-  const { bindings } = useBindings(Object.keys(DatePicker.props), context.ui);
+  const { bindings } = useBindings(Object.keys(TimePicker.props), context.ui);
   dateBindings = bindings;
 }
 
@@ -74,9 +91,9 @@ const value = computed({
   },
 });
 
-function change() {
+function change(time: any, timeString: string) {
   if (ui.value.change) {
-    ui.value.change(unref(value));
+    ui.value.change(time, timeString);
   }
 }
 

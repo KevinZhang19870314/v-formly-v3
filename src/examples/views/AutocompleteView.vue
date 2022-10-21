@@ -125,10 +125,6 @@ const meta = {
                 { value: value + value },
                 { value: value + value + value },
               ];
-
-          console.log("auto1_options.value", auto1_options.value);
-          const context = form.value!.getContext<StringMeta>("/auto1");
-          context.ui.value.options = auto1_options;
         },
       },
     },
