@@ -6,6 +6,7 @@ import CheckboxView from "@/examples/views/CheckboxView.vue";
 import StringView from "@/examples/views/StringView.vue";
 import BooleanView from "@/examples/views/BooleanView.vue";
 import AutoCompleteView from "@/examples/views/AutocompleteView.vue";
+import DateView from "@/examples/views/DateView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -55,8 +56,7 @@ const route: RouteRecordRaw = {
     {
       path: "date",
       name: "date",
-      component: AboutViewVue,
-      // component: DateView,
+      component: DateView,
       meta: { title: "Date 日期" },
     },
     {

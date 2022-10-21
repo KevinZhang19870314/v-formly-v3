@@ -22,7 +22,7 @@ import { useBindings } from "@/hooks/bindings";
 import { BooleanMeta } from "@/meta/boolean.meta";
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/utils/global";
-import { Input } from "ant-design-vue";
+import { Switch } from "ant-design-vue";
 import {
   computed,
   getCurrentInstance,
@@ -38,7 +38,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new BooleanMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(Input.props), context.ui);
+const { bindings } = useBindings(Object.keys(Switch.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};

@@ -44,12 +44,6 @@
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import {
-  UserOutlined,
-  InfoCircleOutlined,
-  EyeOutlined,
-  EyeInvisibleOutlined,
-} from "@ant-design/icons-vue";
 import type VFormly from "@/Formly.vue";
 import type { StringMeta } from "@/meta/string.meta";
 

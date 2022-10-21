@@ -48,7 +48,7 @@ import {
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
-import { Input } from "ant-design-vue";
+import { CheckboxGroup } from "ant-design-vue";
 import { useBindings } from "@/hooks/bindings";
 import type { Global } from "@/utils/global";
 
@@ -58,7 +58,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(Input.props), context.ui);
+const { bindings } = useBindings(Object.keys(CheckboxGroup.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};
