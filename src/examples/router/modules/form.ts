@@ -9,6 +9,9 @@ import AutoCompleteView from "@/examples/views/AutocompleteView.vue";
 import DateView from "@/examples/views/DateView.vue";
 import TimeView from "@/examples/views/TimeView.vue";
 import NumberView from "@/examples/views/NumberView.vue";
+import TextView from "@/examples/views/TextView.vue";
+import TextareaView from "@/examples/views/TextareaView.vue";
+import RateView from "@/examples/views/RateView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -76,8 +79,7 @@ const route: RouteRecordRaw = {
     {
       path: "text",
       name: "text",
-      component: AboutViewVue,
-      // component: TextView,
+      component: TextView,
       meta: { title: "Text 文本" },
     },
     {
@@ -90,8 +92,7 @@ const route: RouteRecordRaw = {
     {
       path: "textarea",
       name: "textarea",
-      component: AboutViewVue,
-      // component: TextareaView,
+      component: TextareaView,
       meta: { title: "Textarea 多行文本框" },
     },
     {
@@ -104,8 +105,7 @@ const route: RouteRecordRaw = {
     {
       path: "rate",
       name: "rate",
-      component: AboutViewVue,
-      // component: RateView,
+      component: RateView,
       meta: { title: "Rate 评分" },
     },
     {
