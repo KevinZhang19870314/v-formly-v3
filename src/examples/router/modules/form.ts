@@ -14,6 +14,7 @@ import TextareaView from "@/examples/views/TextareaView.vue";
 import RateView from "@/examples/views/RateView.vue";
 import ObjectView from "@/examples/views/ObjectView.vue";
 import RadioView from "@/examples/views/RadioView.vue";
+import SelectView from "@/examples/views/SelectView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -111,8 +112,7 @@ const route: RouteRecordRaw = {
     {
       path: "select",
       name: "select",
-      component: AboutViewVue,
-      // component: SelectView,
+      component: SelectView,
       meta: { title: "Select 选择器" },
     },
     {

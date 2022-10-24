@@ -171,7 +171,7 @@ function clear() {
 }
 
 async function submit() {
-  let valid = await (form.value as any).validate();
+  let valid = await form.value!.validate();
   if (valid) {
     console.log(toRaw(unref(formData)));
   }
