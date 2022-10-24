@@ -13,6 +13,7 @@ import TextView from "@/examples/views/TextView.vue";
 import TextareaView from "@/examples/views/TextareaView.vue";
 import RateView from "@/examples/views/RateView.vue";
 import ObjectView from "@/examples/views/ObjectView.vue";
+import RadioView from "@/examples/views/RadioView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -85,8 +86,7 @@ const route: RouteRecordRaw = {
     {
       path: "radio",
       name: "radio",
-      component: AboutViewVue,
-      // component: RadioView,
+      component: RadioView,
       meta: { title: "Radio 单选框" },
     },
     {

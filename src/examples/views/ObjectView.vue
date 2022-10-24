@@ -36,7 +36,10 @@ const meta = {
   },
   required: ["string1"],
 };
-let formData: any = ref({ obj1: "Kevin" });
+let formData: any = ref({
+  obj1: "Kevin",
+  nestedObj2: { nestedObj2_1: "test nested 1" },
+});
 
 function clear() {
   formData.value = null;

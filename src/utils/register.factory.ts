@@ -13,6 +13,7 @@ import VSlider from "@/components/Slider.vue";
 import VRate from "@/components/Rate.vue";
 import VTag from "@/components/Tag.vue";
 import VCascader from "@/components/Cascader.vue";
+import VRadio from "@/components/Radio.vue";
 
 import type { App } from "vue";
 
@@ -38,8 +39,7 @@ function registerBuildInComponents(app: App) {
   registerFormComponent(app, "v-integer", VNumber);
   registerFormComponent(app, "v-time", VTime);
   registerFormComponent(app, "v-text", VText);
-  // registerFormComponent("v-time", VTime);
-  // registerFormComponent("v-radio", VRadio);
+  registerFormComponent(app, "v-radio", VRadio);
   registerFormComponent(app, "v-textarea", VTextarea);
   registerFormComponent(app, "v-slider", VSlider);
   registerFormComponent(app, "v-rate", VRate);
