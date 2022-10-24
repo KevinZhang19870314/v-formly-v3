@@ -12,6 +12,7 @@ import NumberView from "@/examples/views/NumberView.vue";
 import TextView from "@/examples/views/TextView.vue";
 import TextareaView from "@/examples/views/TextareaView.vue";
 import RateView from "@/examples/views/RateView.vue";
+import ObjectView from "@/examples/views/ObjectView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -35,8 +36,7 @@ const route: RouteRecordRaw = {
     {
       path: "object",
       name: "object",
-      component: AboutViewVue,
-      // component: ObjectView,
+      component: ObjectView,
       meta: { title: "Object 对象" },
     },
     {
