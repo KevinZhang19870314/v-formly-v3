@@ -15,6 +15,9 @@ import RateView from "@/examples/views/RateView.vue";
 import ObjectView from "@/examples/views/ObjectView.vue";
 import RadioView from "@/examples/views/RadioView.vue";
 import SelectView from "@/examples/views/SelectView.vue";
+import SliderView from "@/examples/views/SliderView.vue";
+import TagView from "@/examples/views/TagView.vue";
+import CascaderView from "@/examples/views/CascaderView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
@@ -99,8 +102,7 @@ const route: RouteRecordRaw = {
     {
       path: "slider",
       name: "slider",
-      component: AboutViewVue,
-      // component: SliderView,
+      component: SliderView,
       meta: { title: "Slider 滑动输入条" },
     },
     {
@@ -118,15 +120,13 @@ const route: RouteRecordRaw = {
     {
       path: "tag",
       name: "tag",
-      component: AboutViewVue,
-      // component: TagView,
+      component: TagView,
       meta: { title: "Tag 标签" },
     },
     {
       path: "cascader",
       name: "cascader",
-      component: AboutViewVue,
-      // component: CascaderView,
+      component: CascaderView,
       meta: { title: "Cascader 级联选择" },
     },
   ],

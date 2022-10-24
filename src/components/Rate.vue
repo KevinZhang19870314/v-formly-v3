@@ -43,9 +43,9 @@ const value = computed({
 });
 
 function change(value: number) {
-  if (unref(ui).change) unref(ui).change(value);
+  unref(ui).change?.(value);
 }
 function hoverChange(value: number) {
-  if (unref(ui).hoverChange) unref(ui).hoverChange(value);
+  unref(ui).hoverChange?.(value);
 }
 </script>

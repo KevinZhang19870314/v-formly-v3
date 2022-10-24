@@ -8,11 +8,10 @@
       :maxlength="meta.maxLength"
       v-model:value="value"
       @change="change"
-      @focus="focus($event)"
-      @blur="blur($event)"
-      @pressEnter="pressEnter($event)"
-    >
-    </a-textarea>
+      @focus="focus"
+      @blur="blur"
+      @pressEnter="pressEnter"
+    />
   </v-wrapper>
 </template>
 
@@ -38,11 +37,9 @@ const state: Global = inject("state")!;
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
-
 const { bindings } = useBindings(Object.keys(Textarea.props), context.ui);
 
 const ui = computed(() => context.ui.value || {});
-
 const value = computed({
   get() {
     return context.value;
@@ -61,15 +58,15 @@ onMounted(() => {
 });
 
 function change() {
-  if (unref(ui).change) unref(ui).change(unref(value));
+  unref(ui).change?.(unref(value));
 }
 function focus(e: FocusEvent) {
-  if (unref(ui).focus) unref(ui).focus(e);
+  unref(ui).focus?.(e);
 }
 function blur(e: FocusEvent) {
-  if (unref(ui).blur) unref(ui).blur(e);
+  unref(ui).blur?.(e);
 }
 function pressEnter(e: KeyboardEvent) {
-  if (unref(ui).pressEnter) unref(ui).pressEnter(e);
+  unref(ui).pressEnter?.(e);
 }
 </script>
