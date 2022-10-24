@@ -8,7 +8,7 @@ class Global {
   public _ignoreErrorIds = [];
 
   private _context: FormItemContext | undefined;
-  private _layout = "horizontal";
+  private _layout = ref("horizontal");
   private _ajvOptions = {
     allErrors: true,
     strict: false,

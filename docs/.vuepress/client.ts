@@ -1,10 +1,10 @@
 import { defineClientConfig } from '@vuepress/client'
 import mitt from "mitt";
 import * as antIcons from "@ant-design/icons-vue";
-import { setupAntd } from "../../src/examples/ant-design-vue";
-import VFormly from "../../src/formly";
+import { setupAntd } from "@/examples/ant-design-vue";
+import VFormly from "@/formly";
 
-import "../../src/style/index.less";
+import "@/style/index.less";
 import './styles/reset.scss'
 
 export default defineClientConfig({

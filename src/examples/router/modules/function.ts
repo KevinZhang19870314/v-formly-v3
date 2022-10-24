@@ -2,6 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 import { ControlOutlined } from "@ant-design/icons-vue";
 import BasicLayout from "@/examples/layout/index.vue";
 import AboutViewVue from "@/examples/views/AboutView.vue";
+import LayoutView from "@/examples/views/LayoutView.vue";
 
 const route: RouteRecordRaw = {
   path: "/function",
@@ -27,8 +28,7 @@ const route: RouteRecordRaw = {
     {
       path: "layout",
       name: "layout",
-      component: AboutViewVue,
-      // component: LayoutView,
+      component: LayoutView,
       meta: { title: "表单布局" },
     },
     {

@@ -50,6 +50,7 @@ import {
   onBeforeUnmount,
   provide,
   ref,
+  toRef,
   watch,
   type ComponentInternalInstance,
 } from "vue";
@@ -117,7 +118,7 @@ watch(
 );
 
 function onCreated() {
-  globalInstance.layout = props.layout;
+  globalInstance.layout = toRef(props, "layout");
   objectMeta = Object.assign({}, objectMeta, props.meta);
 
   globalInstance.meta = objectMeta;

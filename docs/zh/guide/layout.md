@@ -12,7 +12,7 @@ v-formly-v3 表单支持三种布局，水平`horizontal`，垂直`vertical`，�
 <template>
   <div>
     <a-radio-group
-      v-model="mode"
+      v-model:value="mode"
       style="margin-bottom: 32px; margin-left: 64px"
     >
       <a-radio-button value="horizontal"> 水平 </a-radio-button>

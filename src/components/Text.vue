@@ -44,12 +44,12 @@ const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const ui = computed(() => context.ui.value || {});
 const labelCol = computed(() => {
-  return state.layout === "vertical" || state.layout === "inline"
+  return state.layout.value === "vertical" || state.layout.value === "inline"
     ? undefined
     : { span: ui.value.spanLabel };
 });
 const wrapperCol = computed(() => {
-  return state.layout === "vertical" || state.layout === "inline"
+  return state.layout.value === "vertical" || state.layout.value === "inline"
     ? undefined
     : { span: ui.value.spanControl, offset: ui.value.offsetControl || 0 };
 });

@@ -58,7 +58,7 @@ const gutter = computed(() => {
 });
 
 const layout = computed(() => {
-  return state.layout;
+  return state.layout.value;
 });
 
 function visible(meta: Meta) {
