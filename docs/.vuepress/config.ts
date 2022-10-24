@@ -27,7 +27,7 @@ export default defineUserConfig({
     "/zh/": {
       lang: "zh-CN",
       title: "v-formly-v3",
-      description: "v-formly是vue的动态（JSON驱动）表单库。",
+      description: "v-formly-v3是vue的动态（JSON驱动）表单库。",
     },
   },
   head: [

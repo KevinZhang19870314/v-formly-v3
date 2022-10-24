@@ -1,8 +1,8 @@
 # 介绍
 
-v-formly-v3 是 vue 的动态（JSON 驱动）表单库。它通过[JSON Schema](https://json-schema.org/)和[Ajv Validator](https://ajv.js.org/)结合生成复杂的动态表单及校验，快速、简洁、高效。通过使用 v-formly-v3 及对应的组件库即可快速构造一个 Form 表单，目前支持 Vue 2.x & [Ant Design of Vue v1](https://1x.antdv.com/docs/vue/introduce-cn/)，Vue 2.x 和 Vue 3.x 的其他 UI 库（AntDv v3，ElementUI 等）支持正在开发中。
+v-formly-v3 是 vue 的动态（JSON 驱动）表单库。它通过[JSON Schema](https://json-schema.org/)和[Ajv Validator](https://ajv.js.org/)结合生成复杂的动态表单及校验，快速、简洁、高效。通过使用 v-formly-v3 及对应的组件库即可快速构造一个 Form 表单，目前支持 Vue 3.x & [Ant Design of Vue v3](https://www.antdv.com/components/overview-cn)，Vue 2.x 和 Vue 3.x 的其他 UI 库（DevUI，ElementUI 等）支持正在开发中。
 
-v-formly-v3 内置封装了所有的在 Ant Design of Vue 中的`Data Entry`下面的组件，同时 v-formly-v3 也支持[自定义封装组件](TODO)，从而可以让你轻松构建复杂的动态表单。
+v-formly-v3 内置封装了所有的在 Ant Design of Vue 中的`Data Entry`下面的组件，同时 v-formly-v3 也支持[自定义封装组件](/zh/components/custom-components.md)，从而可以让你轻松构建复杂的动态表单。
 
 ## 一个简单示例
 
@@ -109,7 +109,7 @@ npm i v-formly-v3 --save
 <br />
 
 ```js
-// 别忘了引入Ant Design of Vue 1.7.8，v-formly当前只支持这个版本。
+// 别忘了引入Ant Design of Vue 3.x。
 
 import VFormly from "v-formly-v3";
 
@@ -126,4 +126,4 @@ Vue.use(VFormly);
 
 2. [基于 Angular 的动态表单库@delon/form](https://ng-alain.com/form/getting-started/zh)；
 
-3. [Ant Design of Vue 1.7.8](https://1x.antdv.com/docs/vue/introduce-cn/)；
+3. [Ant Design of Vue 3.x](https://www.antdv.com/components/overview-cn)；

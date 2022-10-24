@@ -153,7 +153,7 @@ registerFormComponent("v-chkinput", VChkInput);
 
 ### 代码演示
 
-以上就是我们自定义的密码框组件，其实我们在[String 文本框](/zh/components/string.html)中通过内置的`v-string`组件也实现了 Password，但是比较一下代码就知道，`v-string`中是通过传入`slot`然后增加了一些逻辑来实现了它。
+以上就是我们自定义的密码框组件，其实我们在[String 文本框](/zh/components/string.md)中通过内置的`v-string`组件也实现了 Password，但是比较一下代码就知道，`v-string`中是通过传入`slot`然后增加了一些逻辑来实现了它。
 
 我们在来看下下面的使用代码，没有任何多余的逻辑处理，只是在`ui`中增加了一行`component: "password"`就可以了，剩余的逻辑都在自定义组件里面帮我们实现了，所以对终端用户来说创建表单非常简单！
 

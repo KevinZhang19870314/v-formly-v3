@@ -1,6 +1,6 @@
 # 组件介绍
 
-v-formly-v3 内置了一些基础组件，包括常用的输入框、选择框、单选、多选、下拉框、上传等组件，覆盖了大多数业务所需要的组件需求，如果这些内置组件不足以满足你的业务，你也可以[自定义组件](/zh/components/custom-components.html)。
+v-formly-v3 内置了一些基础组件，包括常用的输入框、选择框、单选、多选、下拉框、上传等组件，覆盖了大多数业务所需要的组件需求，如果这些内置组件不足以满足你的业务，你也可以[自定义组件](/zh/components/custom-components.md)。
 
 ## 内置组件属性
 
@@ -10,35 +10,35 @@ v-formly-v3 中的内置组件为了保证与原生 AntDv 组件的功能保持�
 
 ::: details 内置组件与 AntDv 组件一一对应关系 =>
 
-[AutoComplete 自动完成](/zh/components/autocomplete.html) -> [AutoComplete 自动完成](https://1x.antdv.com/components/auto-complete-cn/)
+[AutoComplete 自动完成](/zh/components/autocomplete.md) -> [AutoComplete 自动完成](https://www.antdv.com/components/auto-complete-cn/)
 
-[Cascader 级联选择](/zh/components/cascader.html) -> [Cascader 级联选择](https://1x.antdv.com/components/cascader-cn/)
+[Cascader 级联选择](/zh/components/cascader.md) -> [Cascader 级联选择](https://www.antdv.com/components/cascader-cn/)
 
-[Checkbox 多选框](/zh/components/checkbox.html) -> [Checkbox 多选框](https://1x.antdv.com/components/checkbox-cn/)
+[Checkbox 多选框](/zh/components/checkbox.md) -> [Checkbox 多选框](https://www.antdv.com/components/checkbox-cn/)
 
-[Date 日期选择框](/zh/components/date.html) -> [DatePicker 日期选择框](https://1x.antdv.com/components/date-picker-cn/)
+[Date 日期选择框](/zh/components/date.md) -> [DatePicker 日期选择框](https://www.antdv.com/components/date-picker-cn/)
 
-[String 文本框](/zh/components/string.html) -> [Input 输入框](https://1x.antdv.com/components/input-cn/)
+[String 文本框](/zh/components/string.md) -> [Input 输入框](https://www.antdv.com/components/input-cn/)
 
-[Number 数字输入框](/zh/components/number.html) -> [InputNumber 数字输入框](https://1x.antdv.com/components/input-number-cn/)
+[Number 数字输入框](/zh/components/number.md) -> [InputNumber 数字输入框](https://www.antdv.com/components/input-number-cn/)
 
-[Radio 单选框](/zh/components/radio.html) -> [Radio 单选框](https://1x.antdv.com/components/radio-cn/)
+[Radio 单选框](/zh/components/radio.md) -> [Radio 单选框](https://www.antdv.com/components/radio-cn/)
 
-[Select 选择器](/zh/components/select.html) -> [Select 选择器](https://1x.antdv.com/components/select-cn/)
+[Select 选择器](/zh/components/select.md) -> [Select 选择器](https://www.antdv.com/components/select-cn/)
 
-[Slider 滑动输入条](/zh/components/slider.html) -> [Slider 滑动输入条](https://1x.antdv.com/components/slider-cn/)
+[Slider 滑动输入条](/zh/components/slider.md) -> [Slider 滑动输入条](https://www.antdv.com/components/slider-cn/)
 
-[Boolean 开关](/zh/components/boolean.html) -> [Switch 开关](https://1x.antdv.com/components/switch-cn/)
+[Boolean 开关](/zh/components/boolean.md) -> [Switch 开关](https://www.antdv.com/components/switch-cn/)
 
-[Time 时间选择器](/zh/components/time.html) -> [TimePicker 时间选择框](https://1x.antdv.com/components/time-picker-cn/)
+[Time 时间选择器](/zh/components/time.md) -> [TimePicker 时间选择框](https://www.antdv.com/components/time-picker-cn/)
 
-[Object 对象](/zh/components/object.html)
+[Object 对象](/zh/components/object.md)
 
-[Tag 标签](/zh/components/tag.html) -> [Tag 标签](https://1x.antdv.com/components/tag-cn/)
+[Tag 标签](/zh/components/tag.md) -> [Tag 标签](https://www.antdv.com/components/tag-cn/)
 
-[Text 文本](/zh/components/text.html)
+[Text 文本](/zh/components/text.md)
 
-[Textarea 多行文本框](/zh/components/textarea.html) -> [Input 输入框](https://1x.antdv.com/components/input-cn/#components-input-demo-textarea)
+[Textarea 多行文本框](/zh/components/textarea.md) -> [Input 输入框](https://www.antdv.com/components/input-cn/#components-input-demo-textarea)
 
 :::
 

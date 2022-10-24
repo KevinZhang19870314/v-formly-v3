@@ -38,6 +38,7 @@
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
 import type VFormly from "@/Formly.vue";
+import type { StringMeta } from "@/meta/string.meta";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const provinceData = [
@@ -146,9 +147,9 @@ const meta = {
         },
         change: (val: any) => {
           // 1. 通过获取context赋值
-          const context: any = form.value!.getContext("/select4_2");
+          const context = form.value!.getContext<StringMeta>("/select4_2");
           context.value = null;
-          context.ui.value.options = cityData[val];
+          unref(context.ui).options = cityData[val];
           // 2. 或者通过下面的方式直接赋值
           //   select4_2Options.value = cityData[val];
         },
