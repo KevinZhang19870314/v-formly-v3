@@ -24,11 +24,10 @@
       </span>
     </template>
     <slot></slot>
-    <div
-      v-if="meta.description"
-      class="ant-form-extra"
-      v-html="meta.description"
-    ></div>
+    <!-- description -->
+    <template v-if="meta.description" #extra>
+      <div v-html="meta.description"></div>
+    </template>
     <div v-if="error" class="ant-form-item-explain-error">
       {{ error }}
     </div>
