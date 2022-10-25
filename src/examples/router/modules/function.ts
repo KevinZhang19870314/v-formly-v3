@@ -3,6 +3,7 @@ import { ControlOutlined } from "@ant-design/icons-vue";
 import BasicLayout from "@/examples/layout/index.vue";
 import AboutViewVue from "@/examples/views/AboutView.vue";
 import LayoutView from "@/examples/views/LayoutView.vue";
+import CustomValidatorView from "@/examples/views/CustomValidatorView.vue";
 
 const route: RouteRecordRaw = {
   path: "/function",
@@ -14,8 +15,7 @@ const route: RouteRecordRaw = {
     {
       path: "custom-validator",
       name: "custom-validator",
-      component: AboutViewVue,
-      // component: CustomValidatorView,
+      component: CustomValidatorView,
       meta: { title: "自定义校验" },
     },
     {

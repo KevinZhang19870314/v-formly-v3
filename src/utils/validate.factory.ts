@@ -97,14 +97,14 @@ class ValidateFactory {
   }
 
   _getCustomError(context: any) {
-    const validator = context.meta.ui && context.meta.ui.validator;
+    const validator = context.ui?.value?.validator;
     if (!validator) return [];
 
     return validator(context.value);
   }
 
   async _getCustomAsyncError(context: any) {
-    const validatorAsync = context.meta.ui && context.meta.ui.validatorAsync;
+    const validatorAsync = context.ui?.value?.validatorAsync;
     if (!validatorAsync) return [];
 
     return await validatorAsync(context.value);
@@ -113,7 +113,7 @@ class ValidateFactory {
   _replaceWithDefaultErrors(context: any, errors: any) {
     if (!errors || errors.length === 0) return;
 
-    const localErrors = (context.meta.ui && context.meta.ui.errors) || {};
+    const localErrors = context.ui?.value?.errors || {};
     const globalErrors = Object.assign({}, this.state.ui.errors, localErrors);
     const keywords = Object.keys(globalErrors);
     if (keywords && keywords.length > 0) {
