@@ -9,9 +9,14 @@
 ```vue
 <template>
   <div>
-    <v-formly-v3 ref="form" v-model="data" :meta="meta" :layout="'horizontal'">
+    <v-formly-v3
+      ref="form"
+      v-model="formData"
+      :meta="meta"
+      :layout="'horizontal'"
+    >
       <template v-slot:custom_suffix>
-        <a-icon slot="suffixIcon" type="smile" />
+        <smile-outlined />
       </template>
     </v-formly-v3>
     <div class="btns">
@@ -20,79 +25,70 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  data: function () {
-    return {
-      meta: {
-        type: "object",
-        properties: {
-          name: {
-            title: "姓名",
-            type: "string",
-            default: "kevin",
-            ui: {
-              showRequired: true,
-            },
-          },
-          month: {
-            type: "string",
-            title: "月份",
-            default: "May",
-            ui: {
-              component: "date",
-              type: "month",
-              valueFormat: "MMMM",
-              slotNameOfSuffixIcon: "custom_suffix",
-            },
-          },
-          week: {
-            type: "string",
-            title: "周",
-            ui: {
-              component: "date",
-              type: "week",
-            },
-          },
-          range: {
-            type: "string",
-            title: "日期范围",
-            ui: {
-              component: "date",
-              type: "range",
-              slotNameOfSuffixIcon: "custom_suffix",
-            },
-          },
-          date: {
-            type: "string",
-            title: "日期",
-            ui: {
-              component: "date",
-              type: "date",
-              valueFormat: "X",
-            },
-          },
-        },
-        required: ["name"],
+
+<script setup lang="ts">
+import { ref, toRaw, unref } from "vue";
+
+const form = ref<null | InstanceType<typeof VFormly>>(null);
+const meta = {
+  type: "object",
+  properties: {
+    month: {
+      type: "string",
+      title: "月份",
+      default: "May",
+      ui: {
+        component: "date",
+        picker: "month",
+        valueFormat: "MMMM",
+        slotNameOfSuffixIcon: "custom_suffix",
       },
-      data: { name: "kevin zhang" },
-    };
-  },
-  methods: {
-    clear() {
-      this.data = null;
-      // this.$refs.form.reset(null);
     },
-    async submit() {
-      let valid = await this.$refs.form.validate();
-      if (valid) {
-        console.log(this.data);
-      }
+    week: {
+      type: "string",
+      title: "周",
+      ui: {
+        component: "date",
+        picker: "week",
+      },
+    },
+    range: {
+      type: "string",
+      title: "日期范围",
+      ui: {
+        component: "date",
+        type: "range",
+        picker: "date",
+        slotNameOfSuffixIcon: "custom_suffix",
+      },
+    },
+    date: {
+      type: "string",
+      title: "日期",
+      ui: {
+        component: "date",
+        picker: "date",
+        valueFormat: "X",
+      },
     },
   },
+  required: [],
 };
+let formData: any = ref({});
+
+function clear() {
+  formData.value = null;
+}
+
+async function submit() {
+  let valid = await form.value!.validate();
+  if (valid) {
+    console.log(toRaw(unref(formData)));
+  }
+}
 </script>
-<style lang="less" scoped></style>
+
+<style scoped></style>
 ```
 
 :::
