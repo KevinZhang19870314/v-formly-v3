@@ -7,7 +7,8 @@ import mitt from "mitt";
 import { setupStore } from "./examples/store";
 import { setupRouter } from "./examples/router";
 
-import VFormly from "./formly";
+import VFormly, { registerFormComponent } from "./formly";
+import VPassword from "@/examples/components/password/Password.vue";
 
 // import "./assets/main.css";
 import "@/style/index.less";
@@ -30,5 +31,7 @@ app.use(VFormly, {
     },
   },
 });
+
+registerFormComponent(app, "v-password", VPassword);
 
 app.mount("#app");

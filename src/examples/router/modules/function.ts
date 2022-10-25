@@ -5,6 +5,7 @@ import AboutViewVue from "@/examples/views/AboutView.vue";
 import LayoutView from "@/examples/views/LayoutView.vue";
 import CustomValidatorView from "@/examples/views/CustomValidatorView.vue";
 import VisibleIfView from "@/examples/views/VisibleIfView.vue";
+import PasswordView from "@/examples/views/PasswordView.vue";
 
 const route: RouteRecordRaw = {
   path: "/function",
@@ -35,8 +36,7 @@ const route: RouteRecordRaw = {
     {
       path: "password",
       name: "password",
-      component: AboutViewVue,
-      // component: PasswordView,
+      component: PasswordView,
       meta: { title: "自定义密码框组件" },
     },
     {
