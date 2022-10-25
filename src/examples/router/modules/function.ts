@@ -4,6 +4,7 @@ import BasicLayout from "@/examples/layout/index.vue";
 import AboutViewVue from "@/examples/views/AboutView.vue";
 import LayoutView from "@/examples/views/LayoutView.vue";
 import CustomValidatorView from "@/examples/views/CustomValidatorView.vue";
+import VisibleIfView from "@/examples/views/VisibleIfView.vue";
 
 const route: RouteRecordRaw = {
   path: "/function",
@@ -48,8 +49,7 @@ const route: RouteRecordRaw = {
     {
       path: "visible-if",
       name: "visible-if",
-      component: AboutViewVue,
-      // component: VisibleIfView,
+      component: VisibleIfView,
       meta: { title: "visibleIf动态设置表单项是否可见" },
     },
   ],
