@@ -54,11 +54,11 @@ v-formly-v3 中的内置组件封装的是 AntDv 的表单组件，这样就带�
     <v-formly-v3 ref="form" v-model="formData" :meta="meta">
       <!-- string1 -->
       <template v-slot:string1_prefix>
-        <a-icon type="user" />
+        <user-outlined />
       </template>
       <template v-slot:string1_1_suffix>
         <a-tooltip title="Extra information">
-          <a-icon type="info-circle" style="color: rgba(0, 0, 0, 0.45)" />
+          <info-circle-outlined />
         </a-tooltip>
       </template>
     </v-formly-v3>
