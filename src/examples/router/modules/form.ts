@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from "vue-router";
 import { FormOutlined } from "@ant-design/icons-vue";
 import BasicLayout from "@/examples/layout/index.vue";
-import AboutViewVue from "@/examples/views/AboutView.vue";
+import ArrayView from "@/examples/views/ArrayView.vue";
 import CheckboxView from "@/examples/views/CheckboxView.vue";
 import StringView from "@/examples/views/StringView.vue";
 import BooleanView from "@/examples/views/BooleanView.vue";
@@ -47,8 +47,7 @@ const route: RouteRecordRaw = {
     {
       path: "array",
       name: "array",
-      component: AboutViewVue,
-      // component: ArrayView,
+      component: ArrayView,
       meta: { title: "Array 数组" },
     },
     {

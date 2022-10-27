@@ -2,7 +2,7 @@
  * len 长度
  * radix 基数（进制数）
  */
-export function UUID(len = 8, radix = 10) {
+export function UUID(len: number = 8, radix: number = 10): string {
   const chars =
     "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
   const _radix = radix || chars.length;
