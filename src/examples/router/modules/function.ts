@@ -6,6 +6,7 @@ import LayoutView from "@/examples/views/LayoutView.vue";
 import CustomValidatorView from "@/examples/views/CustomValidatorView.vue";
 import VisibleIfView from "@/examples/views/VisibleIfView.vue";
 import PasswordView from "@/examples/views/PasswordView.vue";
+import SubmitButtonView from "@/examples/views/SubmitButtonView.vue";
 
 const route: RouteRecordRaw = {
   path: "/function",
@@ -23,8 +24,7 @@ const route: RouteRecordRaw = {
     {
       path: "custom-submit-button",
       name: "custom-submit-button",
-      component: AboutViewVue,
-      // component: SubmitButtonView,
+      component: SubmitButtonView,
       meta: { title: "自定义提交按钮" },
     },
     {

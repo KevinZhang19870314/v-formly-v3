@@ -13,16 +13,16 @@
           <slot :name="slotName" v-bind="{ ...slotProps }"></slot>
         </template>
       </v-formly-v3-item>
-
+      <!-- submit button -->
       <template v-if="button === 'default'">
-        <a-form :wrapperCol="wrapperCol" class="v__default-submit-button">
+        <a-form-item :wrapperCol="wrapperCol" class="v__default-submit-button">
           <a-space>
             <a-button type="danger" @click="clearForm"> 重置 </a-button>
             <a-button type="primary" @click="submitForm" :loading="loading">
               提交
             </a-button>
           </a-space>
-        </a-form>
+        </a-form-item>
       </template>
       <template v-else-if="button === 'custom'">
         <slot
@@ -43,13 +43,13 @@ import { MetaType, type Meta } from "./types/meta";
 import { FormItemContext } from "./utils/context";
 import { Global } from "./utils/global";
 import { ValidateFactory } from "./utils/validate.factory";
-import { deepClone } from "./utils/utils";
 import {
   computed,
   getCurrentInstance,
   onBeforeUnmount,
   provide,
   ref,
+  toRaw,
   toRef,
   watch,
   type ComponentInternalInstance,
@@ -168,7 +168,7 @@ function reset(data: any) {
 }
 
 function clearForm() {
-  emit("form-reset", deepClone(globalInstance.formData));
+  emit("form-reset", toRaw(globalInstance.formData));
   reset({});
 }
 
@@ -178,7 +178,7 @@ async function submitForm() {
   loading.value = false;
   emit("form-submit", {
     valid,
-    data: valid ? deepClone(globalInstance.formData) : undefined,
+    data: valid ? toRaw(globalInstance.formData) : undefined,
   });
 }
 
