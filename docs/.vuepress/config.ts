@@ -3,14 +3,10 @@ import { defineUserConfig } from "vuepress";
 import { defaultTheme } from "@vuepress/theme-default";
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
 import { viteBundler } from "@vuepress/bundler-vite";
-import { shikiPlugin } from "@vuepress/plugin-shiki";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { pwaPlugin } from "@vuepress/plugin-pwa";
 import { pwaPopupPlugin } from "@vuepress/plugin-pwa-popup";
-import {
-  demoblockPlugin,
-  type ReplaceValue,
-} from "vuepress-plugin-demoblock-plus";
+import { demoCodePlugin } from "./plugins";
 
 const __dirname = getDirname(import.meta.url);
 const isProd = process.env.NODE_ENV === "production";
@@ -22,7 +18,8 @@ export default defineUserConfig({
     "/": {
       lang: "en-US",
       title: "v-formly-v3",
-      description: "v-formly-v3 is a dynamic (JSON powered) form library for vue.",
+      description:
+        "v-formly-v3 is a dynamic (JSON powered) form library for vue.",
     },
     "/zh/": {
       lang: "zh-CN",
@@ -136,10 +133,12 @@ export default defineUserConfig({
     themePlugins: {
       // only enable git plugin in production mode
       git: isProd,
-      prismjs: false,
     },
   }),
   plugins: [
+    demoCodePlugin({
+      examplesPath: path.resolve(__dirname, "../../src/examples/views"),
+    }),
     searchPlugin(),
     pwaPlugin(),
     pwaPopupPlugin({
@@ -156,17 +155,6 @@ export default defineUserConfig({
     }),
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, "./components"),
-    }),
-    shikiPlugin({ theme: "dark-plus" }),
-    demoblockPlugin({
-      customClass: "demoblock-custom",
-      theme: "dark-plus",
-      scriptReplaces: [
-        {
-          searchValue: /import ({.*}) from "vue"/g,
-          replaceValue: ((s, s1) => `const ${s1} = Vue`) as ReplaceValue,
-        },
-      ],
     }),
   ],
   // configure markdown
