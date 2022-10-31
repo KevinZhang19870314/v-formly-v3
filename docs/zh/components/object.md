@@ -4,81 +4,8 @@
 
 ## 代码演示
 
-::: demo
-
-```vue
-<template>
-  <div>
-    <v-formly-v3 ref="form" v-model="formData" :meta="meta"> </v-formly-v3>
-    <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "StringView",
-  data: function () {
-    return {
-      meta: {
-        type: "object",
-        properties: {
-          name: {
-            title: "名称",
-            type: "string",
-            ui: {
-              showRequired: true,
-              placeholder: "Basic usage",
-              errors: {
-                required: "请输入",
-              },
-              change: (val) => console.log(val),
-            },
-          },
-          obj: {
-            title: "前缀和后缀",
-            type: "object",
-            properties: {
-              obj1: {
-                title: "子对象字段1",
-                type: "string",
-                ui: {
-                  showRequired: true,
-                },
-              },
-              obj2: {
-                title: "子对象字段2",
-                type: "number",
-              },
-            },
-            required: ["obj1"],
-          },
-        },
-        required: ["name"],
-      },
-      formData: {},
-    };
-  },
-  methods: {
-    clear() {
-      this.formData = null;
-      // Below line do the same thing
-      // this.$refs.form.reset(null);
-    },
-    async submit() {
-      let valid = await this.$refs.form.validate();
-      if (valid) {
-        console.log(this.formData);
-      }
-    },
-  },
-};
-</script>
-<style lang="less" scoped></style>
-```
-
+::: block
+ObjectView
 :::
 
 ## API
