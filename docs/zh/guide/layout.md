@@ -19,68 +19,50 @@ v-formly-v3 表单支持三种布局，水平`horizontal`，垂直`vertical`，�
       <a-radio-button value="vertical"> 垂直 </a-radio-button>
       <a-radio-button value="inline"> 行内 </a-radio-button>
     </a-radio-group>
-    <v-formly-v3 ref="form" v-model="data" :meta="meta" :layout="mode">
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta" :layout="mode">
     </v-formly-v3>
-    <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
-    </div>
   </div>
 </template>
-<script>
-export default {
-  name: "LayoutView",
-  data: () => {
-    return {
-      mode: "horizontal",
-      meta: {
-        type: "object",
-        properties: {
-          name: {
-            title: "姓名",
-            type: "string",
-            default: "kevin",
-            ui: {
-              showRequired: true,
-              errors: {
-                required: "请输入姓名",
-              },
-            },
-          },
-          desc: {
-            title: "描述",
-            type: "string",
-            default: "Base on technical, but not limited on it!",
-            ui: {
-              change: (val) => {
-                console.log("val = ", val);
-              },
-            },
-          },
-          enable: {
-            title: "启用",
-            type: "boolean",
-          },
+
+<script setup lang="ts">
+import { ref } from "vue";
+
+let mode = ref("horizontal");
+const meta = {
+  type: "object",
+  properties: {
+    name: {
+      title: "姓名",
+      type: "string",
+      default: "kevin",
+      ui: {
+        showRequired: true,
+        errors: {
+          required: "请输入姓名",
         },
-        required: ["name"],
       },
-      data: { enable: true },
-    };
-  },
-  methods: {
-    clear() {
-      this.data = null;
     },
-    async submit() {
-      let valid = await this.$refs.form.validate();
-      if (valid) {
-        console.log(this.data);
-      }
+    desc: {
+      title: "描述",
+      type: "string",
+      default: "Base on technical, but not limited on it!",
+      ui: {
+        change: (val: any) => {
+          console.log("val = ", val);
+        },
+      },
+    },
+    enable: {
+      title: "启用",
+      type: "boolean",
     },
   },
+  required: ["name"],
 };
+let formData = ref({ enable: true });
 </script>
-<style lang=""></style>
+
+<style lang="less" scoped></style>
 ```
 
 :::
