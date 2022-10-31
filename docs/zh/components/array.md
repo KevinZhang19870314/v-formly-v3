@@ -39,66 +39,6 @@ ArrayView
 
 数组的布局分为数组本身以及数组元素布局，arraySpan 决定每个数组元素占栅格数值。
 
-::: demo
-
-```vue
-<template>
-  <div>
-    <v-formly-v3 v-model="data" :meta="meta" :layout="'horizontal'" />
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      meta: {
-        type: "object",
-        properties: {
-          product: {
-            type: "array",
-            title: "产品清单",
-            items: {
-              type: "object",
-              properties: {
-                name: {
-                  type: "string",
-                  title: "名称",
-                },
-                desc: { type: "string", title: "简介" },
-              },
-            },
-            ui: { grid: { arraySpan: 20 } },
-          },
-        },
-      },
-      data: {},
-    };
-  },
-  methods: {
-    add() {
-      const ctx = this.$refs.form.getContext("/product");
-      ctx.add();
-    },
-    clear() {
-      const ctx = this.$refs.form.getContext("/product");
-      ctx.value = [];
-    },
-    setName() {
-      const ctx = this.$refs.form.getContext("/product/0/name");
-      if (ctx) {
-        ctx.value = "kevin zhang";
-      }
-    },
-    async printData() {
-      const valid = await this.$refs.form.validate();
-      if (valid) {
-        this.$message.info(JSON.stringify(this.data));
-      }
-    },
-  },
-};
-</script>
-```
-
+::: block
+ArrayLayoutView
 :::
