@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # Select 选择器
 
 下拉选择器。

@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # Tag 标签
 
 进行标记和分类的小标签，注： 只支持 checkable 标签模式。

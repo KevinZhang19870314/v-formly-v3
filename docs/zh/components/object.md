@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # Object 对象
 
 创建对象，`type="object"`。

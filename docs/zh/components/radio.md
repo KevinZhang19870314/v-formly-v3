@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # Radio 单选框
 
 单选框。

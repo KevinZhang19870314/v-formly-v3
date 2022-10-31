@@ -191,8 +191,6 @@ function getComponentsSidebar(groupA, groupB) {
   return [
     {
       text: groupA,
-      collapsable: false,
-      sidebarDepth: 0,
       children: [
         "README.md",
         "array.md",
@@ -216,8 +214,6 @@ function getComponentsSidebar(groupA, groupB) {
     },
     {
       text: groupB,
-      collapsable: false,
-      sidebarDepth: 2,
       children: ["custom-components.md"],
     },
   ];

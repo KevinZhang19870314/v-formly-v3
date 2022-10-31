@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # Array 数组
 
 创建对象数组。

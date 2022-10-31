@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # AutoComplete 自动完成
 
 输入框自动完成功能。

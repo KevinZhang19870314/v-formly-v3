@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # Textarea 多行文本框
 
 一般用于多行字符串。
