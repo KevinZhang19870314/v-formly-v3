@@ -1,12 +1,12 @@
 import type { RouteRecordRaw } from "vue-router";
 import { ControlOutlined } from "@ant-design/icons-vue";
 import BasicLayout from "@/examples/layout/index.vue";
-import AboutViewVue from "@/examples/views/AboutView.vue";
 import LayoutView from "@/examples/views/LayoutView.vue";
 import CustomValidatorView from "@/examples/views/CustomValidatorView.vue";
 import VisibleIfView from "@/examples/views/VisibleIfView.vue";
 import PasswordView from "@/examples/views/PasswordView.vue";
 import SubmitButtonView from "@/examples/views/SubmitButtonView.vue";
+import ChkInputView from "@/examples/views/ChkInputView.vue";
 
 const route: RouteRecordRaw = {
   path: "/function",
@@ -42,8 +42,7 @@ const route: RouteRecordRaw = {
     {
       path: "chkinput",
       name: "chkinput",
-      component: AboutViewVue,
-      // component: ChkInputView,
+      component: ChkInputView,
       meta: { title: "自定义选择输入框组件" },
     },
     {

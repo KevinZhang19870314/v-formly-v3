@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { StringMeta } from "@/meta/string.meta";
+import { PasswordMeta } from "./password.meta";
 import type { Meta } from "@/types/meta";
 import {
   computed,
@@ -39,7 +39,7 @@ let type = ref("password");
 let eyeVisible = ref(false);
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
-const context = new StringMeta(appContext, state, props.id, props.meta);
+const context = new PasswordMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(Input.props), context.ui);
 

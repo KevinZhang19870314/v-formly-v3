@@ -9,6 +9,7 @@ import { setupRouter } from "./examples/router";
 
 import VFormly, { registerFormComponent } from "./formly";
 import VPassword from "@/examples/components/password/Password.vue";
+import VChkInput from "@/examples/components/chk-input/ChkInput.vue";
 
 // import "./assets/main.css";
 import "@/style/index.less";
@@ -33,5 +34,6 @@ app.use(VFormly, {
 });
 
 registerFormComponent(app, "v-password", VPassword);
+registerFormComponent(app, "v-chkinput", VChkInput);
 
 app.mount("#app");

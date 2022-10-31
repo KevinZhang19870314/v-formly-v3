@@ -38,9 +38,10 @@ abstract class BaseMeta {
 
   abstract initValue(): void;
 
-  setValue(val: any) {
-    this._value.value = val || undefined;
-  }
+  abstract setValue(val: any): void;
+  // setValue(val: any) {
+  //   this._value.value = val || undefined;
+  // }
 
   get value() {
     return this._value.value;
