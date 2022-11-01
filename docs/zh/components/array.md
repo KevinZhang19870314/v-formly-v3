@@ -31,7 +31,7 @@ ArrayView
 | `:addType`     | 添加按钮类型，等同 `button type` | `string`          | `dashed` |
 | `:removable`   | 是否包含移除按钮                 | `boolean`         | `true`   |
 | `:removeTitle` | 移除按钮文本                     | `string`          | `移除`   |
-| `:required`    | 当前项是否为必填，仅影响样式     | `boolean`         | -        |
+| `:showRequired`    | 当前项是否为必填，仅影响样式     | `boolean`         | -        |
 | `@add`         | 添加回调，返回值为实例 id        | `function(id)`    | -        |
 | `@remove`      | 移除回调，返回值为实例 index     | `function(index)` | -        |
 

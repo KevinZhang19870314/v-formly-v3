@@ -128,16 +128,16 @@ export { PasswordMeta };
 
 #### 注册自定义组件
 
-我们可以在`main.js`文件中注册，如下所示：
+我们可以在`main.ts`文件中注册，如下所示：
 
-```js
+```ts
+import App from "./App.vue";
+import VFormly, { registerFormComponent } from "./formly";
 import VPassword from "@/examples/components/password/Password.vue";
 import VChkInput from "@/examples/components/chk-input/ChkInput.vue";
-import { registerFormComponent } from "@/formly.js";
 
-Vue.config.productionTip = false;
-
-Vue.use(VFormly, {
+const app = createApp(App);
+app.use(VFormly, {
   ui: {
     errors: {
       required: "必填项",
@@ -145,8 +145,8 @@ Vue.use(VFormly, {
   },
 });
 
-registerFormComponent("v-password", VPassword);
-registerFormComponent("v-chkinput", VChkInput);
+registerFormComponent(app, "v-password", VPassword);
+registerFormComponent(app, "v-chkinput", VChkInput);
 ```
 
 接下来，我们就可以直接使用自定义组件了。
@@ -157,151 +157,14 @@ registerFormComponent("v-chkinput", VChkInput);
 
 我们在来看下下面的使用代码，没有任何多余的逻辑处理，只是在`ui`中增加了一行`component: "password"`就可以了，剩余的逻辑都在自定义组件里面帮我们实现了，所以对终端用户来说创建表单非常简单！
 
-::: demo
-
-```vue
-<template>
-  <div>
-    <v-formly-v3 ref="form" v-model="data" :meta="meta"> </v-formly-v3>
-    <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "PasswordView",
-  data: function () {
-    return {
-      meta: {
-        type: "object",
-        properties: {
-          name: {
-            title: "用户名",
-            type: "string",
-            default: "kevin",
-            ui: {
-              showRequired: true,
-              errors: {
-                required: "请输入用户名",
-              },
-            },
-          },
-          password: {
-            title: "密码",
-            type: "string",
-            default: "123456",
-            ui: {
-              component: "password",
-              showRequired: true,
-              errors: {
-                required: "请输入密码",
-              },
-            },
-          },
-        },
-        required: ["name", "password"],
-      },
-      data: {},
-    };
-  },
-  methods: {
-    clear() {
-      this.data = null;
-      // this.$refs.form.reset(null);
-    },
-    async submit() {
-      let valid = await this.$refs.form.validate();
-      if (valid) {
-        console.log(this.data);
-      }
-    },
-  },
-};
-</script>
-<style lang="less" scoped></style>
-```
-
+::: block
+PasswordView
 :::
 
 ### 深入
 
 我们还在[@/examples/components/chk-input](https://github.com/KevinZhang19870314/v-formly-v3/tree/main/src/examples/components/chk-input)文件夹下定义了一个复杂一点的选择输入框的自定义组件：当你选择“Others”的时候，会多出一个输入框让你输入自定义内容。有兴趣的可以自己查看。
 
-::: demo
-
-```vue
-<template>
-  <div>
-    <v-formly-v3 ref="form" v-model="data" :meta="meta"> </v-formly-v3>
-    <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "ChkInputView",
-  data: function () {
-    return {
-      meta: {
-        type: "object",
-        properties: {
-          name: {
-            title: "姓名",
-            type: "string",
-            default: "kevin",
-            ui: {
-              showRequired: true,
-              errors: {
-                required: "请输入姓名",
-              },
-            },
-          },
-          favLanguage: {
-            title: "喜欢的前端框架",
-            type: "string",
-            enum: ["VueJs", "Angular", "React", "Others"],
-            // default: {
-            //   options: ["VueJs", "Angular", "Others"],
-            //   others: "NestJs",
-            // },
-            ui: {
-              component: "chkinput",
-              showRequired: true,
-            },
-          },
-        },
-        required: ["name", "favLanguage"],
-      },
-      data: {
-        name: "Jack",
-        favLanguage: {
-          options: ["VueJs", "Angular", "Others"],
-          others: "NestJs",
-        },
-      },
-    };
-  },
-  methods: {
-    clear() {
-      this.data = null;
-      // this.$refs.form.reset(null);
-    },
-    async submit() {
-      let valid = await this.$refs.form.validate();
-      if (valid) {
-        console.log(this.data);
-      }
-    },
-  },
-};
-</script>
-<style lang="less" scoped></style>
-```
-
+::: block
+ChkInputView
 :::
