@@ -1,6 +1,7 @@
 {
   "name": "v-formly-v3",
   "version": "0.0.1",
+  "private": false,
   "main": "./lib/v-formly-v3.umd.js",
   "module": "./lib/v-formly-v3.es.js",
   "exports": {
@@ -21,6 +22,8 @@
     "docs:dev": "vuepress dev docs --debug --clean-temp --clean-cache",
     "docs:build": "vuepress build docs"
   },
+  "author": "KevinZhang19870314",
+  "license": "MIT",
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.13",
