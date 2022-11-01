@@ -6,6 +6,7 @@ import { BaseMeta } from "./base.meta";
 class BooleanMeta extends BaseMeta {
   constructor(appContext: AppContext, state: Global, id: string, meta: Meta) {
     super(appContext, state, id, meta);
+    this.initValue();
   }
 
   initValue() {

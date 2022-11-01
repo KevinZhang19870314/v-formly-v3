@@ -9,24 +9,39 @@ v-formly-v3 内置了很多组件，一般业务场景基本可以满足，除�
 
 `Password.vue`
 
-`password.meta.js`
+`password.meta.ts`
 
 :::
 
 ### 1. 命名组件`.vue`中的`name`
 
-通常我们以`v-${id}`来命名我们的组件，其中`id`代表你注册时的组件`id`（`registerFormComponent("v-string", VString)`中的第一个参数）。
+通常我们以`v-${id}`来命名我们的组件，其中`id`代表你注册时的组件`id`（`registerFormComponent(app, "v-password", VPassword)`中的第二个参数）。
 
-### 2. 导入 mixin 到`.vue`组件中
+### 2. 新建并初始化 context 到`.meta.ts`文件中
 
-导入 mixin`componentMixin`到组件中，此 mixin 包含了一些通过的`props`、`data`等供组件使用。
+新建一个 context ts 类，比如`string.meta.ts`, 在组件中初始化 context：
 
-### 3. 新建并初始化 context 到`.meta.js`文件中
+```ts
+import { PasswordMeta } from "./password.meta";
+import type { Meta } from "@/types/meta";
+import { getCurrentInstance, inject, type ComponentInternalInstance } from "vue";
 
-新建一个 context js 类，比如`string.meta.js`, 在组件的`data`中初始化 context：
+const props = defineProps<{ id: string; meta: Meta }>();
+const state = inject("state") as Global;
 
-```vue
-data() { return { context: new StringMeta(this.state, this.id, this.meta), }; },
+const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+const context = new PasswordMeta(appContext, state, props.id, props.meta);
+```
+
+### 3. 导入 useBindings  到`.vue`组件中
+
+导入 hook`useBindings`到组件中，此 hook 导出了可供组件绑定使用的 ui props 对象`bindings`。
+
+```ts
+import { Input } from "ant-design-vue";
+import { useBindings } from "@/hooks/bindings";
+
+const { bindings } = useBindings(Object.keys(Input.props), context.ui);
 ```
 
 ### 4. 绑定`context.value`到`.vue`文件模板中
@@ -48,78 +63,99 @@ v-formly-v3 中的每个组件都对应一个 context，其中包含了组件的
   <!-- 必须要使用 v-wrapper 来包裹我们的模板 -->
   <v-wrapper :id="id" :meta="meta">
     <a-input
-      v-bind="ui"
-      :defaultValue="meta.defaultValue"
+      v-bind="bindings"
       :disabled="meta.readOnly"
       :maxLength="meta.maxLength"
       :type="type"
-      v-model="value"
+      v-model:value="value"
       @change="change"
     >
       <template v-slot:suffix>
         <div style="cursor: pointer" @click="toggle">
-          <a-icon v-if="!eyeVisible" type="eye-invisible" />
-          <a-icon v-if="eyeVisible" type="eye" />
+          <eye-invisible-outlined v-if="!eyeVisible" />
+          <eye-outlined v-if="eyeVisible" />
         </div>
       </template>
     </a-input>
   </v-wrapper>
 </template>
-<script>
-import { PasswordMeta } from "./password.meta.js";
-import { componentMixin } from "@/formly.js";
-export default {
-  name: "v-password",
-  // 导入mixin
-  mixins: [componentMixin],
-  data() {
-    return {
-      // 初始化 context
-      context: new PasswordMeta(this.state, this.id, this.meta),
-      eyeVisible: false,
-      type: "password",
-    };
+
+<script setup lang="ts">
+import { PasswordMeta } from "./password.meta";
+import type { Meta } from "@/types/meta";
+import {
+  computed,
+  getCurrentInstance,
+  inject,
+  ref,
+  unref,
+  type ComponentInternalInstance,
+} from "vue";
+import { Input } from "ant-design-vue";
+import { useBindings } from "@/hooks/bindings";
+import type { Global } from "@/utils/global";
+
+const props = defineProps<{ id: string; meta: Meta }>();
+const state = inject("state") as Global;
+let type = ref("password");
+let eyeVisible = ref(false);
+
+const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+// 初始化 context
+const context = new PasswordMeta(appContext, state, props.id, props.meta);
+// 导入 hook
+const { bindings } = useBindings(Object.keys(Input.props), context.ui);
+
+const ui = computed(() => {
+  return context.ui.value || {};
+});
+// 这个是绑定到模板的 v-model 值
+const value = computed({
+  get() {
+    return context.value;
   },
-  computed: {
-    // 这个是绑定到模板的 v-model 值
-    value: {
-      get() {
-        return this.context.value;
-      },
-      set(val) {
-        this.context.value = val || undefined;
-      },
-    },
+  set(val) {
+    context.value = val;
   },
-  methods: {
-    change() {
-      if (this.ui.change) {
-        this.ui.change(this.value);
-      }
-    },
-    toggle() {
-      this.eyeVisible = !this.eyeVisible;
-      this.type = this.eyeVisible ? "text" : "password";
-    },
-  },
-};
+});
+
+function change() {
+  if (ui.value.change) {
+    ui.value.change(unref(value));
+  }
+}
+
+function toggle() {
+  eyeVisible.value = !eyeVisible.value;
+  type.value = eyeVisible.value ? "text" : "password";
+}
 </script>
-<style lang="less" scoped></style>
 ```
 
-#### password.meta.js
+#### password.meta.ts
 
-因为密码框组件比较简单，只有一些 UI 样式的操作，所以`.meta.js`文件非常简单，只在`setValue`中设置`value`时去除两边的空格。
+因为密码框组件比较简单，只有一些 UI 样式的操作，所以`.meta.ts`文件非常简单，只在`setValue`中设置`value`时去除两边的空格。
 
-```js
-import { BaseMeta } from "@/formly.js";
+```ts
+import { BaseMeta } from "@/formly";
+import type { Meta } from "@/types/meta";
+import type { Global } from "@/utils/global";
+import type { AppContext } from "vue";
 class PasswordMeta extends BaseMeta {
-  constructor(state, id, meta) {
-    super(state, id, meta);
+  constructor(appContext: AppContext, state: Global, id: string, meta: Meta) {
+    super(appContext, state, id, meta);
   }
 
-  setValue(val) {
-    this._value = (val && val.trim()) || undefined;
+  initValue() {
+    if (this._initMetaValue) {
+      this.value = this._initMetaValue;
+    } else if (this.meta.value.default) {
+      this.value = this.meta.value.default;
+    }
+  }
+
+  setValue(val: any) {
+    this._value.value = val?.trim() || undefined;
   }
 }
 
