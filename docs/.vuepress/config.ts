@@ -34,7 +34,7 @@ export default defineUserConfig({
         rel: "icon",
         type: "image/png",
         sizes: "16x16",
-        href: `/icons/favicon-16x16.png`,
+        href: `/v-formly-v3/icons/favicon-16x16.png`,
       },
     ],
     [
@@ -43,7 +43,7 @@ export default defineUserConfig({
         rel: "icon",
         type: "image/png",
         sizes: "32x32",
-        href: `/icons/favicon-32x32.png`,
+        href: `/v-formly-v3/icons/favicon-32x32.png`,
       },
     ],
     // ["link", { rel: "manifest", href: "/manifest.webmanifest" }],
@@ -56,13 +56,13 @@ export default defineUserConfig({
     ],
     [
       "link",
-      { rel: "apple-touch-icon", href: `/icons/apple-touch-icon-152x152.png` },
+      { rel: "apple-touch-icon", href: `/v-formly-v3/icons/apple-touch-icon-152x152.png` },
     ],
     [
       "link",
       {
         rel: "mask-icon",
-        href: "/icons/safari-pinned-tab.svg",
+        href: "/v-formly-v3/icons/safari-pinned-tab.svg",
         color: "#3eaf7c",
       },
     ],
@@ -70,7 +70,7 @@ export default defineUserConfig({
       "meta",
       {
         name: "msapplication-TileImage",
-        content: "/icons/msapplication-icon-144x144.png",
+        content: "/v-formly-v3/icons/msapplication-icon-144x144.png",
       },
     ],
     ["meta", { name: "msapplication-TileColor", content: "#000000" }],
