@@ -2,11 +2,11 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta" />
     <div class="btns">
-      <a-button type="primary" @click="setName0"> 设置名称0 </a-button>
+      <a-button type="primary" @click="setName0"> 设置 name </a-button>
+      <a-button type="primary" @click="add"> 添加 1 个</a-button>
+      <a-button type="primary" @click="set(5)"> 添加 5 个</a-button>
+      <a-button type="primary" @click="clear"> 重置 </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
-      <a-button type="primary" @click="set(5)"> add more</a-button>
-      <a-button type="primary" @click="add"> add one</a-button>
-      <a-button type="primary" @click="clear"> clear </a-button>
     </div>
   </div>
 </template>
