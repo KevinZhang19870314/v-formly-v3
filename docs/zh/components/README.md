@@ -46,52 +46,8 @@ v-formly-v3 中的内置组件为了保证与原生 AntDv 组件的功能保持�
 
 v-formly-v3 中的内置组件封装的是 AntDv 的表单组件，这样就带来一个问题，一些类型为`slot`的属性我们无法透传，比如`Input 输入框`的`addonBefore`属性，它即可以直接传字符串，这个没问题，但是`slot`我们没法传进去，因为我们对`a-input`做了封装，在使用 v-formly-v3 的时候我们无法直接接触`a-input`组件，所以这里我让模板`<template>xxx</template>`一级一级的从父组件传递到子组件，再传递到孙子组件，直到传递到 AntDv 原生组件为止。下面我们举例说明一下：
 
-::: demo
-
-```vue
-<template>
-  <div>
-    <v-formly-v3 ref="form" v-model="formData" :meta="meta">
-      <!-- string1 -->
-      <template v-slot:string1_prefix>
-        <user-outlined />
-      </template>
-      <template v-slot:string1_1_suffix>
-        <a-tooltip title="Extra information">
-          <info-circle-outlined />
-        </a-tooltip>
-      </template>
-    </v-formly-v3>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "StringView",
-  data: function () {
-    return {
-      meta: {
-        type: "object",
-        properties: {
-          string1: {
-            title: "用户名",
-            type: "string",
-            ui: {
-              placeholder: "请输入用户名",
-              slotNameOfPrefix: "string1_prefix",
-              slotNameOfSuffix: "string1_1_suffix",
-            },
-          },
-        },
-      },
-      formData: {},
-    };
-  },
-};
-</script>
-<style lang="less" scoped></style>
-```
-
+::: block
+SlotsView
 :::
 
 从上面的代码中，我们可以看到，我们这里的前缀使用了`slot`来传值，我们只需要在`meta`里面定义`slotNameOfPrefix`来标明它的`slot name`，然后在`v-formly-v3`模板标签里面定义我们需要传递的模板内容，从而让表单知道我需要把这个`slot`模板传递到 AntDv 的输入框，这样就达到了`slot`的传递。
