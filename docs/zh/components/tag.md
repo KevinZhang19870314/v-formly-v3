@@ -18,7 +18,7 @@ TagView
 
 | 成员        | 说明     | 类型                            | 默认值 |
 | ----------- | -------- | ------------------------------- | ------ |
-| `:enum`     | 数据源   | `any[] \| array<{value, label>` | -      |
+| `:enum`     | 数据源   | `array<{value, label, disabled}> \| any[]` | -      |
 | `:readOnly` | 禁用状态 | `boolean`                       | -      |
 
 ### meta.ui 属性

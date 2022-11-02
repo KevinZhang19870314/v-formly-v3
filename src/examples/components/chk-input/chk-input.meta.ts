@@ -1,20 +1,19 @@
 import { BaseMeta } from "@/formly";
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/utils/global";
-import { ref, type AppContext } from "vue";
+import { ref, toRaw, unref, type AppContext } from "vue";
 class ChkInputMeta extends BaseMeta {
-  public _optionsValue: any;
-  public _othersValue: any;
+  private _optionsValue = ref();
+  private _othersValue = ref();
 
   constructor(appContext: AppContext, state: Global, id: string, meta: Meta) {
     super(appContext, state, id, meta);
+    this.initValue();
   }
 
   initValue() {
-    this._optionsValue = ref();
-    this._othersValue = ref();
     const val = this._initMetaValue || this.meta.value.default || {};
-    this._applyToValue(val.options, val.others);
+    this._applyToValue(toRaw(unref(val).options), val.others);
   }
 
   setValue(val: any) {
@@ -30,7 +29,7 @@ class ChkInputMeta extends BaseMeta {
 
   set optionsValue(val) {
     this._optionsValue.value = val;
-    this._applyToValue(this._optionsValue.value, this._othersValue.value);
+    this._applyToValue(val, this.othersValue);
   }
 
   get othersValue() {
@@ -39,7 +38,7 @@ class ChkInputMeta extends BaseMeta {
 
   set othersValue(val) {
     this._othersValue.value = val;
-    this._applyToValue(this._optionsValue, this._othersValue);
+    this._applyToValue(toRaw(this.optionsValue), val);
   }
 
   private _applyToValue(options: any, others: any) {

@@ -14,6 +14,8 @@ SliderView
 
 ## API
 
+**我们只列出属性中不一致的或新添加的，一致的地方请参考 AntDv 文档**
+
 ### meta 属性
 
 | 成员            | 说明   | 类型        | 默认值 |
@@ -27,10 +29,10 @@ SliderView
 
 | 成员             | 说明                                            | 类型                        | 默认值 |
 | -------------- | --------------------------------------------- | ------------------------- | --- |
+| `:slotNameOfMark` | 自定义刻度标记                  | `v-slot:mark`  | `{ point: number, label: any }` |
 | `@change`      | 当`Slider`的值发生改变时，会触发`change`事件，并把改变后的值作为参数传入。 | `function(value: number)` | -   |
 | `@afterChange` | 与`mouseup`触发时机一致，把当前值作为参数传入。                  | `function(value: number)` | -   |
 
 ::: tip 注意
-自定义字符的优先级：slot > character <br/>
 `multipleOf`如果小于1会出现 ajv 校验报错的情况，解决方案可参考 [multipleofprecision](https://ajv.js.org/options.html#multipleofprecision)
 :::

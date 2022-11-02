@@ -20,13 +20,13 @@ CascaderView
 
 | 成员        | 说明     | 类型                            | 默认值 |
 | ----------- | -------- | ------------------------------- | ------ |
-| `:enum`     | 数据源   | `any[] \| array<{value, label>` | -      |
+| `:enum`     | 数据源   | [Option](https://antdv.com/components/cascader-cn#option)\[] | -      |
 | `:readOnly` | 禁用状态 | `boolean`                       | -      |
 
 ### meta.ui 属性
 
 | 成员                            | 说明                 | 类型 | 默认值 |
 | ------------------------------- | -------------------- | ---- | ------ |
-| `:slotNameOfCascaderDefault`    | 自定义显示           | slot | -      |
-| `:slotNameOfCascaderSuffixIcon` | 后缀图标             | slot | -      |
+| `:slotNameOfDefault`    | 自定义显示           | slot | -      |
+| `:slotNameOfSuffixIcon` | 后缀图标             | slot | -      |
 | `:slotNameOfDisplayRender`      | 选择后展示的渲染函数 | slot | -      |
