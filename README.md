@@ -1,48 +1,62 @@
 # v-formly-v3
 
-v-formly 是 vue 3 的动态（JSON 驱动）表单库。
+[v-formly-v3](https://kevinzhang19870314.github.io/v-formly-v3/zh/) 是 vue 3 的动态（JSON 驱动）表单库。
 
-This template should help get you started developing with Vue 3 in Vite.
+<div class="features">
+  <div class="feature">
+    <h2>简洁至上</h2>
+    <p>通过标准JSON Schema & Ajv Validator生成复杂的动态表单及校验，快速、简洁、高效。</p>
+  </div>
+  <div class="feature">
+    <h2>可复用性</h2>
+    <p>通过JSON的形式生成表单模板，一份表单简单修改即可多处复用！使您能够快速开发表单页面，相比编写传统的html form表单，使用JSON形式定义表单能够极大的提高了开发效率。</p>
+  </div>
+  <div class="feature">
+    <h2>Vue 驱动</h2>
+    <p>目前支持Vue 3.x & Ant Design of Vue v3，Vue 3.x的其他UI库（DevUI，ElementUI等）支持正在开发中。。。</p>
+  </div>
+</div>
 
-## Recommended IDE Setup
+## 快速开始
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### 文档 & Demo
 
-## Type Support for `.vue` Imports in TS
+[文档](https://kevinzhang19870314.github.io/v-formly-v3/zh/)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+[Stackblitz](TODO: https://stackblitz.com/edit/github-gr9ozc?file=src%2FApp.vue&terminal=serve)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+[CodeSandbox](TODO: https://codesandbox.io/s/blazing-sun-gtvwwz)
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+### 安装
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
+使用`yarn`安装`v-formly-v3`：
 
 ```sh
-npm run build
+yarn add v-formly-v3
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+或者使用`npm`安装它：
 
 ```sh
-npm run lint
+npm i v-formly-v3 --save
 ```
+
+### 使用
+
+```js
+// 别忘了引入Ant Design of Vue v3。
+
+import VFormlyV3 from "v-formly-v3";
+
+// ...
+Vue.use(VFormlyV3);
+// ...
+```
+
+## 其他
+
+不论是学习还是使用 v-formly-v3，有任何问题可以添加 QQ 群：610930944，我们为你解答关于使用 v-formly-v3 过程中的的任何疑难杂症！
+
+<img src="https://github.com/KevinZhang19870314/v-formly-v3/blob/main/public/qq.jpg" />
+
+MIT Licensed | Copyright © 2022-present v-formly-v3
