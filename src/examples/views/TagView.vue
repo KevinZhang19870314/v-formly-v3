@@ -2,7 +2,7 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta" />
     <div class="btns">
-      <a-button type="primary" @click="changeEnum"> change enum </a-button>
+      <a-button type="primary" @click="changeEnum"> 设置 enum </a-button>
       <a-button type="primary" @click="submit"> 提交 </a-button>
     </div>
   </div>

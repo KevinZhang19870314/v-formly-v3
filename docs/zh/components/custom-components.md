@@ -19,9 +19,9 @@ v-formly-v3 内置了很多组件，一般业务场景基本可以满足，除�
 
 ### 2. 新建并初始化 context 到`.meta.ts`文件中
 
-新建一个 context ts 类，比如`string.meta.ts`, 在组件中初始化 context：
+新建一个 context ts 类，比如`password.meta.ts`, 在组件中初始化 context：
 
-```ts
+```ts {9}
 import { PasswordMeta } from "./password.meta";
 import type { Meta } from "@/types/meta";
 import { getCurrentInstance, inject, type ComponentInternalInstance } from "vue";
@@ -37,7 +37,7 @@ const context = new PasswordMeta(appContext, state, props.id, props.meta);
 
 导入 hook`useBindings`到组件中，此 hook 导出了可供组件绑定使用的 ui props 对象`bindings`。
 
-```ts
+```ts {4}
 import { Input } from "ant-design-vue";
 import { useBindings } from "@/hooks/bindings";
 
@@ -58,7 +58,7 @@ v-formly-v3 中的每个组件都对应一个 context，其中包含了组件的
 
 对应上面的自定义组件四步，理解一下这个文件。
 
-```vue
+```vue {3,19,44,46,52-59}
 <template>
   <!-- 必须要使用 v-wrapper 来包裹我们的模板 -->
   <v-wrapper :id="id" :meta="meta">
@@ -136,7 +136,7 @@ function toggle() {
 
 因为密码框组件比较简单，只有一些 UI 样式的操作，所以`.meta.ts`文件非常简单，只在`setValue`中设置`value`时去除两边的空格。
 
-```ts
+```ts {19}
 import { BaseMeta } from "@/formly";
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/utils/global";
@@ -166,7 +166,7 @@ export { PasswordMeta };
 
 我们可以在`main.ts`文件中注册，如下所示：
 
-```ts
+```ts {15-16}
 import App from "./App.vue";
 import VFormly, { registerFormComponent } from "./formly";
 import VPassword from "@/examples/components/password/Password.vue";

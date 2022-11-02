@@ -6,7 +6,7 @@ v-formly-v3 提交表单的三种方式。
 
 1. 使用默认的提交按钮，通过设置 `button='default'`。
 2. 使用 slot 暴露出来的 `submit function`，通过设置 `button='custom'` 并传入 `name='button'` 的 slot。
-3. 使用 ref 获取 form 实例，直接调用实例的 `validate function`，eg: `this.$refs.form.validate()`。
+3. 使用 ref 获取 form 实例，直接调用实例的 `validate function`，eg: `form.value.validate()`。
 
 ### 代码演示
 
