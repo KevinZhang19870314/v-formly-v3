@@ -23,9 +23,9 @@
 
 [文档](https://kevinzhang19870314.github.io/v-formly-v3/zh/)
 
-[Stackblitz](TODO: https://stackblitz.com/edit/github-gr9ozc?file=src%2FApp.vue&terminal=serve)
+[Stackblitz](https://stackblitz.com/edit/github-r1j1ut?file=src%2FApp.vue)
 
-[CodeSandbox](TODO: https://codesandbox.io/s/blazing-sun-gtvwwz)
+[CodeSandbox](https://codesandbox.io/s/nifty-sea-93ycqy)
 
 ### 安装
 
@@ -43,13 +43,14 @@ npm i v-formly-v3 --save
 
 ### 使用
 
-```js
+```ts
 // 别忘了引入Ant Design of Vue v3。
 
 import VFormlyV3 from "v-formly-v3";
 
 // ...
-Vue.use(VFormlyV3);
+const app = createApp(App);
+app.use(VFormlyV3);
 // ...
 ```
 
