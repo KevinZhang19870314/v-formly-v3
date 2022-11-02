@@ -12,16 +12,17 @@ import type { BooleanMeta } from "./boolean.meta";
 type OneMeta = StringMeta | ObjectMeta | NumberMeta | BooleanMeta | ArrayMeta;
 
 class ArrayMeta extends BaseMeta {
-  public ids; // 当前数组包含的所有子项
+  // 当前数组包含的所有子项
+  public ids = ref<Array<{ key: string }>>([]);
 
   constructor(appContext: AppContext, state: Global, id: string, meta: Meta) {
     super(appContext, state, id, meta);
-    this.ids = ref<Array<{ key: string }>>([]);
     this.initValue();
   }
 
+  setValue() {}
+
   initValue() {
-    if (!this.ids) return;
     if (this._initMetaValue?.length > 0) {
       this.value = this._initMetaValue;
     } else if (unref(this.meta).default?.length > 0) {

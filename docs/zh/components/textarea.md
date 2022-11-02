@@ -14,6 +14,8 @@ TextareaView
 
 ## API
 
+**我们只列出属性中不一致的或新添加的，一致的地方请参考 AntDv 文档**
+
 ### meta 属性
 
 | 成员         | 说明     | 类型      | 默认值 |
@@ -26,8 +28,6 @@ TextareaView
 | 成员           | 说明                                                                      | 类型                | 默认值 |
 | -------------- | ------------------------------------------------------------------------- | ------------------- | ------ |
 | `:autosize`    | 自适应内容高度，可设置为`true \| false`或对象：{ minRows: 2, maxRows: 6 } | `boolean \| object` | true   |
-| `:placeholder` | 默认文字                                                                  | `string`            | -      |
-| `:allowClear`  | 可以点击清除图标删除内容                                                  | `boolean`           | -      |
 | `@change`      | 内容变更事件                                                              | `function(value)`   | -      |
 | `@focus`       | 焦点事件                                                                  | `function(e)`       | -      |
 | `@blur`        | 失焦事件                                                                  | `function(e)`       | -      |

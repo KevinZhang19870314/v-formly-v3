@@ -33,15 +33,13 @@ abstract class BaseMeta {
     this._value.value = undefined;
 
     this._initMetaValue = this.getInitMetaValue();
-    this.initValue();
+    // 在 Meta 对象实例化后要设置 value 默认值
+    // this.initValue();
   }
 
   abstract initValue(): void;
 
   abstract setValue(val: any): void;
-  // setValue(val: any) {
-  //   this._value.value = val || undefined;
-  // }
 
   get value() {
     return this._value.value;

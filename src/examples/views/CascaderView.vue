@@ -1,10 +1,10 @@
 <template>
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta">
-      <template v-slot:slotNameOfCascaderDefault>
+      <template v-slot:slotNameOfDefault>
         <span>{{ text }} <a href="#">Change city</a></span>
       </template>
-      <template v-slot:slotNameOfCascaderSuffixIcon>
+      <template v-slot:slotNameOfSuffixIcon>
         <smile-outlined />
       </template>
       <template v-slot:slotNameOfDisplayRender="{ labels, selectedOptions }">
@@ -260,7 +260,7 @@ const meta = {
       enum: options,
       ui: {
         component: "cascader",
-        slotNameOfCascaderDefault: "slotNameOfCascaderDefault",
+        slotNameOfDefault: "slotNameOfDefault",
         change: (value: any, selectedOptions: Tag) => {
           text.value = selectedOptions!.map((o) => o.label).join(", ");
         },
@@ -284,7 +284,7 @@ const meta = {
       enum: options,
       ui: {
         component: "cascader",
-        slotNameOfCascaderSuffixIcon: "slotNameOfCascaderSuffixIcon",
+        slotNameOfSuffixIcon: "slotNameOfSuffixIcon",
         // suffixIcon: "ab",
       },
     },

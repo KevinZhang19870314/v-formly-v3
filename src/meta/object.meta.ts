@@ -15,6 +15,8 @@ class ObjectMeta extends BaseMeta {
 
   initValue() {}
 
+  setValue() {}
+
   set value(val: any) {
     this.childMetaPairs.forEach(({ key, propertyName }) => {
       const ctx = this.state.context!.getContext<any>(key);

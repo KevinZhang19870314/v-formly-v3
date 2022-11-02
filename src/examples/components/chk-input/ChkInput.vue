@@ -2,14 +2,17 @@
   <v-wrapper :id="id" :meta="meta">
     <a-checkbox-group
       class="v__checkbox"
-      v-model:value="optionsValue"
+      v-model:value="context.optionsValue"
       v-bind="bindings"
       :disabled="meta.readOnly"
       :options="meta.enum"
       @change="change"
     />
-    <a-input v-model:value="othersValue" v-show="showOthers" @change="change" />
-    <div>{{ "othersValue" + othersValue }}</div>
+    <a-input
+      v-model:value="context.othersValue"
+      v-show="showOthers"
+      @change="change"
+    />
   </v-wrapper>
 </template>
 
@@ -39,44 +42,14 @@ const ui = computed(() => {
   return context.ui.value || {};
 });
 
-const value = computed({
-  get() {
-    return context.value;
-  },
-  set(val) {
-    context.value = val;
-  },
-});
-
-const optionsValue = computed({
-  get() {
-    console.log(context.optionsValue);
-    return context.optionsValue;
-  },
-  set(val) {
-    context.optionsValue = val;
-  },
-});
-
-const othersValue = computed({
-  get() {
-    return context.othersValue;
-  },
-  set(val) {
-    context.othersValue = val;
-  },
-});
-
 const showOthers = computed(() => {
-  if (!value.value) return false;
+  if (!unref(context.value)) return false;
 
-  return (value.value.options || []).indexOf("Others") > -1;
+  return (unref(context.value).options || []).indexOf("Others") > -1;
 });
 
 function change() {
-  if (ui.value.change) {
-    ui.value.change(unref(value));
-  }
+  unref(ui).change?.(unref(context.value));
 }
 </script>
 

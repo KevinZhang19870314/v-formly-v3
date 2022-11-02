@@ -14,6 +14,8 @@ RateView
 
 ## API
 
+**我们只列出属性中不一致的或新添加的，一致的地方请参考 AntDv 文档**
+
 ### meta 属性
 
 | 成员        | 说明     | 类型      | 默认值 |
@@ -31,5 +33,5 @@ RateView
 | `@hoverChange`         | 鼠标经过时数值变化的回调 | `function(value: number)` | -       |
 
 ::: tip 注意
-自定义字符的优先级：slot > character
+自定义字符的优先级：character > slot
 :::

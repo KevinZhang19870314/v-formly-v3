@@ -6,6 +6,7 @@ class StringMeta extends BaseMeta {
   public open;
   constructor(appContext: AppContext, state: Global, id: string, meta: Meta) {
     super(appContext, state, id, meta);
+    this.initValue();
 
     if (this.meta.value) {
       this.open = this.meta.value.ui?.open || false;

@@ -12,14 +12,14 @@
       @focus="focus"
     >
       <!-- default -->
-      <template v-if="ui.slotNameOfCascaderDefault" #default>
+      <template v-if="ui.slotNameOfDefault" #default>
         <span>
-          <slot :name="ui.slotNameOfCascaderDefault"></slot>
+          <slot :name="ui.slotNameOfDefault"></slot>
         </span>
       </template>
       <!-- suffixIcon -->
-      <template v-if="ui.slotNameOfCascaderSuffixIcon" #suffixIcon>
-        <slot :name="ui.slotNameOfCascaderSuffixIcon"></slot>
+      <template v-if="ui.slotNameOfSuffixIcon" #suffixIcon>
+        <slot :name="ui.slotNameOfSuffixIcon"></slot>
       </template>
       <!-- displayRender -->
       <template v-if="ui.slotNameOfDisplayRender" #displayRender="slotProps">
