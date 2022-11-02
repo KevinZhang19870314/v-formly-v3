@@ -182,7 +182,7 @@ function getGuideSidebar(groupA, groupB) {
     },
     {
       text: groupB,
-      children: ["custom-validator.md", "layout.md", "form.md"],
+      children: ["custom-validator.md", "layout.md", "form.md", "reactive.md"],
     },
   ];
 }
