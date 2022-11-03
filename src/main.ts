@@ -1,15 +1,16 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import { setupAntd } from "./examples/ant-design-vue";
+import { setupAntd } from "./ant-design-vue/examples/ant-design-vue";
 import * as antIcons from "@ant-design/icons-vue";
 import mitt from "mitt";
 
-import { setupStore } from "./examples/store";
-import { setupRouter } from "./examples/router";
+import { setupStore } from "./ant-design-vue/examples/store";
+import { setupRouter } from "./ant-design-vue/examples/router";
 
-import VFormly, { registerFormComponent } from "./formly";
-import VPassword from "@/examples/components/password/Password.vue";
-import VChkInput from "@/examples/components/chk-input/ChkInput.vue";
+import VFormly from "./formly";
+import { registerFormComponent } from "./ant-design-vue/a-formly";
+import VPassword from "./ant-design-vue/examples/components/password/Password.vue";
+import VChkInput from "./ant-design-vue/examples/components/chk-input/ChkInput.vue";
 
 // import "./assets/main.css";
 import "@/style/index.less";
@@ -26,6 +27,7 @@ setupStore(app);
 setupRouter(app);
 
 app.use(VFormly, {
+  lib: "",
   ui: {
     errors: {
       required: "必填项",
