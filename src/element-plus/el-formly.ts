@@ -1,7 +1,24 @@
-const x = "xx";
+import VFormly from "./ElFormly.vue";
+import VWrapper from "./components/Wrapper.vue";
+import { BaseMeta } from "@/core/meta/base.meta";
+import {
+  registerFormComponent,
+  registerBuildInComponents,
+} from "./register.factory";
+import { FORM_VALUE_CHANGE } from "@/core/utils/consts";
+import type { App } from "vue";
 
-console.log(x);
+const components = [VFormly, VWrapper];
+
+function installFormly(app: App) {
+  components.forEach((component) => {
+    app.component(component.name, component);
+  });
+  registerBuildInComponents(app);
+}
+
+export { installFormly, BaseMeta, registerFormComponent, FORM_VALUE_CHANGE };
 
 export default {
-  x,
+  installFormly,
 };
