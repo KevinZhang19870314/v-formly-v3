@@ -10,6 +10,19 @@
       "require": "./lib/v-formly-v3.umd.js"
     }
   },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue 3",
+    "json schema",
+    "ajv",
+    "validation",
+    "form",
+    "formly",
+    "v-formly",
+    "vue formly",
+    "v-formly-v3"
+  ],
   "scripts": {
     "dev": "vite",
     "cli": "vite --help",
@@ -26,6 +39,7 @@
   "license": "MIT",
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
+    "@element-plus/icons-vue": "^2.0.10",
     "ajv": "^8.11.0",
     "ant-design-vue": "^3.2.13",
     "element-plus": "^2.2.19",

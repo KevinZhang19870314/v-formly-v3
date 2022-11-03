@@ -5,7 +5,7 @@
       :defaultValue="meta.defaultValue"
       :disabled="meta.readOnly"
       :maxLength="meta.maxLength"
-      v-model:value="value"
+      v-model="value"
       @change="change"
     >
       <!-- prefix & suffix -->

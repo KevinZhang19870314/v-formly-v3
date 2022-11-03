@@ -16,6 +16,7 @@ import VChkInput from "@/ant-design-vue/examples/components/chk-input/ChkInput.v
 // element-plus import
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
+import * as elIcons from "@element-plus/icons-vue";
 import { setupStore as setupStoreElementPlus } from "@/element-plus/examples/store";
 import { setupRouter as setupRouterElementPlus } from "@/element-plus/examples/router";
 
@@ -50,6 +51,10 @@ if (lib === "ant-design-vue") {
   registerFormComponent(app, "v-chkinput", VChkInput);
 } else if (lib === "element-plus") {
   app.use(ElementPlus);
+  for (const [key, component] of Object.entries(elIcons)) {
+    app.component(key, component);
+  }
+  app.config.globalProperties.$elIcons = elIcons;
   setupStoreElementPlus(app);
   setupRouterElementPlus(app);
 
