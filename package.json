@@ -26,10 +26,11 @@
   "license": "MIT",
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
+    "ajv": "^8.11.0",
     "ant-design-vue": "^3.2.13",
+    "element-plus": "^2.2.19",
     "mitt": "^3.0.0",
-    "vue": "^3.2.38",
-    "ajv": "^8.11.0"
+    "vue": "^3.2.38"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
