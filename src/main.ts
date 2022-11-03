@@ -7,15 +7,25 @@ import "@/style/index.less";
 // ant-design-vue import
 import { setupAntd } from "@/ant-design-vue/examples/ant-design-vue";
 import * as antIcons from "@ant-design/icons-vue";
-import { setupStore } from "@/ant-design-vue/examples/store";
-import { setupRouter } from "@/ant-design-vue/examples/router";
+import { setupStore as setupStoreAntDv } from "@/ant-design-vue/examples/store";
+import { setupRouter as setupRouterAntDv } from "@/ant-design-vue/examples/router";
 import { registerFormComponent } from "@/ant-design-vue/a-formly";
 import VPassword from "@/ant-design-vue/examples/components/password/Password.vue";
 import VChkInput from "@/ant-design-vue/examples/components/chk-input/ChkInput.vue";
 
+// element-plus import
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
+import { setupStore as setupStoreElementPlus } from "@/element-plus/examples/store";
+import { setupRouter as setupRouterElementPlus } from "@/element-plus/examples/router";
+
 const app = createApp(App);
 app.config.globalProperties.emitter = mitt();
+
+// ---------------------设置使用库----------------
 const lib = "ant-design-vue";
+// const lib: string = "element-plus";
+// ---------------------设置使用库----------------
 
 // ant-design-vue
 if (lib === "ant-design-vue") {
@@ -24,8 +34,8 @@ if (lib === "ant-design-vue") {
     app.component(key, (antIcons as any)[key]);
   });
   app.config.globalProperties.$antIcons = antIcons;
-  setupStore(app);
-  setupRouter(app);
+  setupStoreAntDv(app);
+  setupRouterAntDv(app);
 
   app.use(VFormly, {
     lib: lib,
@@ -38,8 +48,19 @@ if (lib === "ant-design-vue") {
 
   registerFormComponent(app, "v-password", VPassword);
   registerFormComponent(app, "v-chkinput", VChkInput);
-} else if (lib === "element-ui") {
-  // TODO: element-ui
+} else if (lib === "element-plus") {
+  app.use(ElementPlus);
+  setupStoreElementPlus(app);
+  setupRouterElementPlus(app);
+
+  app.use(VFormly, {
+    lib: lib,
+    ui: {
+      errors: {
+        required: "必填项",
+      },
+    },
+  });
 }
 
 app.mount("#app");

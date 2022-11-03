@@ -7,7 +7,7 @@ const install = function (app: App, options: any) {
 
   if (!options.lib || options.lib === "ant-design-vue") {
     aformly.installFormly(app);
-  } else if (options.lib === "element-ui") {
+  } else if (options.lib === "element-plus") {
     // TODO
   } else {
     throw new Error("Unsupport lib");
