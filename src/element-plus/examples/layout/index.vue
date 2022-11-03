@@ -1,13 +1,13 @@
 <template>
-  <a-layout>
+  <el-container direction="vertical">
     <LayoutHeader />
-    <a-layout>
+    <el-container>
       <LayoutSidebar />
-      <a-layout :class="getLayoutClass">
+      <el-container :class="getLayoutClass">
         <LayoutContent />
-      </a-layout>
-    </a-layout>
-  </a-layout>
+      </el-container>
+    </el-container>
+  </el-container>
 </template>
 
 <script setup lang="ts">

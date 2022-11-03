@@ -1,10 +1,10 @@
 <template>
-  <a-sub-menu :key="menu.path">
-    <template #icon>
-      <component :is="menu.meta?.icon" />
-    </template>
+  <el-sub-menu :index="menu.path">
     <template #title>
-      {{ menu.meta?.title }}
+      <el-icon>
+        <component :is="menu.meta?.icon" />
+      </el-icon>
+      <span>{{ menu.meta?.title }}</span>
     </template>
     <template
       v-for="subMenu in menu.children"
@@ -23,10 +23,10 @@
         :current-depth="currentDepth + 1"
       />
     </template>
-  </a-sub-menu>
+  </el-sub-menu>
 </template>
 <script setup lang="ts">
-import type { GetArrayItemType } from "@/examples/router/type";
+import type { GetArrayItemType } from "@/element-plus/examples/router/type";
 import type { RouteRecordRaw } from "vue-router";
 import MenuItem from "./MenuItem.vue";
 

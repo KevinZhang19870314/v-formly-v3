@@ -1,10 +1,10 @@
 <template>
-  <a-menu
-    mode="inline"
-    theme="light"
+  <el-menu
+    :collapse="getCollapsed"
     class="menu-wrapper"
-    v-model:openKeys="openKeys"
-    v-model:selectedKeys="selectedKeys"
+    unique-opened
+    :default-active="selectedKeys[selectedKeys.length - 1]"
+    :default-openeds="openKeys"
   >
     <template v-for="menu in menus" :key="menu.path">
       <menu-item v-if="menu.meta?.single" :menu="menu" />
@@ -15,7 +15,7 @@
         :menu="menu"
       />
     </template>
-  </a-menu>
+  </el-menu>
 </template>
 <script setup lang="ts">
 import MenuWithChildren from "./MenuWithChildren.vue";
@@ -24,12 +24,14 @@ import type { RouteRecordRaw } from "vue-router";
 import { useRouter } from "vue-router";
 import { ref, watch } from "vue";
 import { useRouteStore } from "@/ant-design-vue/examples/store/routes";
+import { useCollapsed } from "../useCollapsed";
 
 const selectedKeys = ref<string[]>([]);
 const openKeys = ref<string[]>([]);
 
 const router = useRouter();
 const routeStore = useRouteStore();
+const { getCollapsed } = useCollapsed();
 const menus = ref<RouteRecordRaw[]>([]);
 
 watch(
@@ -87,8 +89,9 @@ function getCurrentMenuRecursive(
 <style scoped lang="less">
 .menu-wrapper {
   padding: 16px 0;
-  :deep(.ant-menu-sub.ant-menu-inline) {
-    background: #fff;
+  min-height: 100%;
+  &:not(.el-menu--collapse) {
+    width: var(--sidebar-width);
   }
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <a-breadcrumb class="breadcrumb-wrapper">
-    <a-breadcrumb-item v-for="(item, index) in routes" :key="index">
+  <el-breadcrumb class="breadcrumb-wrapper">
+    <el-breadcrumb-item v-for="(item, index) in routes" :key="index">
       {{ item.meta.title }}
-    </a-breadcrumb-item>
-  </a-breadcrumb>
+    </el-breadcrumb-item>
+  </el-breadcrumb>
 </template>
 
 <script setup lang="ts">

@@ -1,299 +1,315 @@
-@import './variable.less';
+@import "./variable.less";
 
-html, body {
+html,
+body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
 
-@ant-prefix: ~'ant';
-@v-prefix: ~'.v';
+@ant-prefix: ~"ant";
+@v-prefix: ~".v";
 
 @{v-prefix} {
-    display: block;
-  
-    &__optional {
-      margin-left: 2px;
-      color: rgba(0, 0, 0, 0.35);
+  display: block;
+
+  &__optional {
+    margin-left: 2px;
+    color: rgba(0, 0, 0, 0.35);
+  }
+  // 固定 label
+  &__fixed {
+    display: flex;
+    .@{ant-prefix}-form-item-control-wrapper {
+      flex: 1;
     }
-    // 固定 label
-    &__fixed {
+  }
+
+  &__title {
+    margin-bottom: 8px;
+    padding: 0 16px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  &__default-submit-button {
+    text-align: right;
+  }
+
+  .@{ant-prefix}-form-extra {
+    text-align: left;
+  }
+
+  .@{ant-prefix}-form-explain {
+    text-align: left;
+  }
+
+  .@{ant-prefix}-form-item-required::before {
+    line-height: inherit;
+  }
+
+  // Boolean
+  &__boolean {
+    &.@{ant-prefix}-switch {
+      display: block;
+      // margin-top: 8px;
+    }
+  }
+
+  // Checkbox
+  &__checkbox {
+    &.@{ant-prefix}-checkbox-group {
       display: flex;
-      .@{ant-prefix}-form-item-control-wrapper {
-        flex: 1;
-      }
-    }
-  
-    &__title {
-      margin-bottom: 8px;
-      padding: 0 16px;
-      font-weight: 700;
-      text-align: left;
-    }
-
-    &__default-submit-button {
-      text-align: right;
-    }
-
-    .@{ant-prefix}-form-extra {
-      text-align: left;
-    }
-
-    .@{ant-prefix}-form-explain {
-      text-align: left;
-    }
-
-    .@{ant-prefix}-form-item-required::before {
+      justify-content: flex-start;
       line-height: inherit;
-    }
 
-    // Boolean
-    &__boolean {
-      &.@{ant-prefix}-switch {
+      .v__text-left {
+        text-align: left;
+      }
+    }
+  }
+
+  // Date
+  &__date {
+    &.@{ant-prefix}-calendar-picker {
+      display: block;
+    }
+  }
+
+  // Number
+  &__number {
+    &.@{ant-prefix}-input-number {
+      width: 100%;
+
+      &@{v-prefix}__input-number-hidden-step {
+        .@{ant-prefix}-input-number-handler-wrap {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // Number
+  &__time {
+    &.@{ant-prefix}-time-picker {
+      width: 100%;
+    }
+  }
+
+  // Number
+  &__radio-vertical {
+    &.@{ant-prefix}-radio-group {
+      // margin-top: 8px;
+
+      & > label {
         display: block;
-        // margin-top: 8px;
+        margin-bottom: 8px;
       }
     }
+  }
 
-    // Checkbox
-    &__checkbox {
-      &.@{ant-prefix}-checkbox-group {
-        display: flex;
-        justify-content: flex-start;
-        line-height: inherit;
-        
-        .v__text-left {
-          text-align: left;
-        }
+  // Object
+  &__object {
+    &-card {
+      .@{ant-prefix}-card-body {
+        padding-left: 0;
       }
-    }
-
-    // Date
-    &__date {
-      &.@{ant-prefix}-calendar-picker {
-        display: block;
+      @{v-prefix}__fixed {
+        flex-wrap: wrap;
       }
-    }
 
-    // Number
-    &__number {
-      &.@{ant-prefix}-input-number {
-        width: 100%;
-
-        &@{v-prefix}__input-number-hidden-step {
-          .@{ant-prefix}-input-number-handler-wrap {
-            display: none;
-          }
-        }
-      }
-    }
-
-    // Number
-    &__time {
-      &.@{ant-prefix}-time-picker {
-        width: 100%;
-      }
-    }
-
-    // Number
-    &__radio-vertical {
-      &.@{ant-prefix}-radio-group {
-        // margin-top: 8px;
-
-        &>label {
-          display: block;
-          margin-bottom: 8px;
-        }
-      }
-    }
-
-    // Object
-    &__object {
-      &-card {
+      &-fold {
         .@{ant-prefix}-card-body {
-          padding-left: 0;
-        }
-        @{v-prefix}__fixed {
-          flex-wrap: wrap;
-        }
-  
-        &-fold {
-          .@{ant-prefix}-card-body {
-            display: none;
-          }
+          display: none;
         }
       }
     }
-    // Array
-    &__array {
-      > .@{ant-prefix}-form-item {
-        margin-bottom: 8px;
-      }
-  
-      &-add {
-        margin-right: 16px;
-      }
-  
-      &-container {
-        .@{ant-prefix}-card {
-          margin: 0 16px 16px 0;
-  
-          &-body {
-            padding-bottom: 0;
+  }
+  // Array
+  &__array {
+    > .@{ant-prefix}-form-item {
+      margin-bottom: 8px;
+    }
+
+    &-add {
+      margin-right: 16px;
+    }
+
+    &-container {
+      .@{ant-prefix}-card {
+        margin: 0 16px 16px 0;
+
+        &-body {
+          padding-bottom: 0;
+        }
+        @{v-prefix}__array-remove {
+          position: absolute;
+          top: -16px;
+          right: -16px;
+          display: none;
+          width: 32px;
+          height: 32px;
+          font-size: 20px;
+          line-height: 32px;
+          text-align: center;
+          background: rgba(0, 0, 0, 0.26);
+          border-radius: 50%;
+          cursor: pointer;
+
+          i {
+            color: #fff;
           }
+        }
+
+        &:hover {
           @{v-prefix}__array-remove {
-            position: absolute;
-            top: -16px;
-            right: -16px;
-            display: none;
-            width: 32px;
-            height: 32px;
-            font-size: 20px;
-            line-height: 32px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.26);
-            border-radius: 50%;
-            cursor: pointer;
-  
-            i {
-              color: #fff;
-            }
-          }
-  
-          &:hover {
-            @{v-prefix}__array-remove {
-              display: block;
-            }
-          }
-        }
-      }
-    }
-  
-    // upload
-    .@{ant-prefix}-upload-select-picture-card i {
-      color: #999;
-      font-size: 32px;
-    }
-    .@{ant-prefix}-upload.@{ant-prefix}-upload-drag {
-      height: 180px;
-    }
-    // transfer
-    .@{ant-prefix}-transfer {
-      &-list {
-        background: #fff;
-  
-        &-header {
-          label {
-            position: unset;
-          }
-        }
-      }
-      .@{ant-prefix}-btn + .@{ant-prefix}-btn {
-        margin-left: 0;
-      }
-    }
-  
-    &__no-error {
-      .@{ant-prefix}-form-item {
-        margin-bottom: 8px;
-      }
-    }
-  
-    &__inline {
-      .@{ant-prefix}-form-item {        
-        display: inline-block;
-        margin-right: 16px;
-        margin-bottom: 0;
-
-        .@{ant-prefix}-form-item-label {
-          display: inline-block;
-          vertical-align: top;
-        }
-
-        .@{ant-prefix}-form-item-control-wrapper {
-          display: inline-block;
-          vertical-align: top;
-        }
-      }
-
-      @{v-prefix}__item {
-        display: inline-block;
-        margin-bottom: 8px;
-        vertical-align: top;
-      }
-      .@{ant-prefix}-form-inline {
-        > @{v-prefix}__item {
-          margin-bottom: 0;
-        }
-        .@{ant-prefix}-select {
-          min-width: 100px;
-        }
-      }
-      @{v-prefix} {
-        // 强制所有数组宽度为 100% 状态
-        &__array-container {
-          > @{v-prefix}__array-item {
-            flex: initial;
-            width: 100%;
-            max-width: 100%;
-          }
-          .@{ant-prefix}-card {
-            margin: 0;
-  
-            &-body {
-              padding: 8px 0 0 8px;
-              > @{v-prefix}__item {
-                margin-bottom: 0;
-              }
-            }
-          }
-        }
-  
-        &-btns {
-          display: inline-block;
-          margin-right: 0;
-        }
-      }
-    }
-  
-    &__horizontal {
-      .@{ant-prefix}-form-item-label > label {
-        display: flex;
-        justify-content: flex-end;
-      }
-      @{v-prefix}__label-text {
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-  
-    &__no-colon {
-      .@{ant-prefix}-form-item-label {
-        label {
-          &::after {
-            content: ' ';
-          }
-        }
-      }
-    }
-  
-    &__compact {
-      .@{ant-prefix}-form-item {
-        margin-bottom: 8px;
-      }
-      @{v-prefix}__array {
-        &-container {
-          .@{ant-prefix}-card {
-            margin: 0 8px 8px 0;
-          }
-        }
-  
-        &-item {
-          .@{ant-prefix}-card-body {
-            padding: 8px;
+            display: block;
           }
         }
       }
     }
   }
+
+  // upload
+  .@{ant-prefix}-upload-select-picture-card i {
+    color: #999;
+    font-size: 32px;
+  }
+  .@{ant-prefix}-upload.@{ant-prefix}-upload-drag {
+    height: 180px;
+  }
+  // transfer
+  .@{ant-prefix}-transfer {
+    &-list {
+      background: #fff;
+
+      &-header {
+        label {
+          position: unset;
+        }
+      }
+    }
+    .@{ant-prefix}-btn + .@{ant-prefix}-btn {
+      margin-left: 0;
+    }
+  }
+
+  &__no-error {
+    .@{ant-prefix}-form-item {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__inline {
+    .@{ant-prefix}-form-item {
+      display: inline-block;
+      margin-right: 16px;
+      margin-bottom: 0;
+
+      .@{ant-prefix}-form-item-label {
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .@{ant-prefix}-form-item-control-wrapper {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+
+    @{v-prefix}__item {
+      display: inline-block;
+      margin-bottom: 8px;
+      vertical-align: top;
+    }
+    .@{ant-prefix}-form-inline {
+      > @{v-prefix}__item {
+        margin-bottom: 0;
+      }
+      .@{ant-prefix}-select {
+        min-width: 100px;
+      }
+    }
+    @{v-prefix} {
+      // 强制所有数组宽度为 100% 状态
+      &__array-container {
+        > @{v-prefix}__array-item {
+          flex: initial;
+          width: 100%;
+          max-width: 100%;
+        }
+        .@{ant-prefix}-card {
+          margin: 0;
+
+          &-body {
+            padding: 8px 0 0 8px;
+            > @{v-prefix}__item {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      &-btns {
+        display: inline-block;
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__horizontal {
+    .@{ant-prefix}-form-item-label > label {
+      display: flex;
+      justify-content: flex-end;
+    }
+    @{v-prefix}__label-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__no-colon {
+    .@{ant-prefix}-form-item-label {
+      label {
+        &::after {
+          content: " ";
+        }
+      }
+    }
+  }
+
+  &__compact {
+    .@{ant-prefix}-form-item {
+      margin-bottom: 8px;
+    }
+    @{v-prefix}__array {
+      &-container {
+        .@{ant-prefix}-card {
+          margin: 0 8px 8px 0;
+        }
+      }
+
+      &-item {
+        .@{ant-prefix}-card-body {
+          padding: 8px;
+        }
+      }
+    }
+  }
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  margin: 0;
+}

@@ -1,16 +1,16 @@
 <template>
-  <a-menu-item
-    :key="parentPath ? `${parentPath}/${menu.path}` : menu.path"
-    @click="handleClick(menu.path, menu.name!)"
-  >
-    <template #icon>
+  <el-menu-item :index="key" @click="handleClick(menu.path, menu.name!)">
+    <el-icon>
       <component :is="menu.meta?.icon" />
+    </el-icon>
+    <template #title>
+      {{ menu.meta!.title }}
     </template>
-    {{ menu.meta!.title }}
-  </a-menu-item>
+  </el-menu-item>
 </template>
 <script setup lang="ts">
-import type { GetArrayItemType } from "@/examples/router/type";
+import type { GetArrayItemType } from "@/element-plus/examples/router/type";
+import { computed } from "vue";
 import type { RouteRecordRaw } from "vue-router";
 import { useRouter } from "vue-router";
 
@@ -22,6 +22,11 @@ interface Props {
 
 const props = defineProps<Props>();
 const router = useRouter();
+
+const key = computed(() => {
+  const { parentPath, menu } = props;
+  return parentPath ? `${parentPath}/${menu.path}` : menu.path;
+});
 
 function handleClick(path: string, name: any) {
   const routeMeta = props.menu.meta;
