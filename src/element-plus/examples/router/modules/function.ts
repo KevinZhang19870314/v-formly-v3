@@ -7,13 +7,14 @@ import VisibleIfView from "@/element-plus/examples/views/VisibleIfView.vue";
 import PasswordView from "@/element-plus/examples/views/PasswordView.vue";
 import SubmitButtonView from "@/element-plus/examples/views/SubmitButtonView.vue";
 import ChkInputView from "@/element-plus/examples/views/ChkInputView.vue";
+import { markRaw } from "vue";
 
 const route: RouteRecordRaw = {
   path: "/function",
   name: "function",
   component: BasicLayout,
   redirect: "/function/custom-validator",
-  meta: { title: "Functional 功能性", icon: SetUp },
+  meta: { title: "Functional 功能性", icon: markRaw(SetUp) },
   children: [
     {
       path: "custom-validator",

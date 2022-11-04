@@ -18,13 +18,14 @@ import SelectView from "@/element-plus/examples/views/SelectView.vue";
 import SliderView from "@/element-plus/examples/views/SliderView.vue";
 import TagView from "@/element-plus/examples/views/TagView.vue";
 import CascaderView from "@/element-plus/examples/views/CascaderView.vue";
+import { markRaw } from "vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
   name: "form",
   component: BasicLayout,
   redirect: "/form/string",
-  meta: { title: "Components 组件", icon: Edit },
+  meta: { title: "Components 组件", icon: markRaw(Edit) },
   children: [
     {
       path: "string",

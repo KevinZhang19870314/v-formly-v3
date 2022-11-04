@@ -1,6 +1,7 @@
 import type { App } from "vue";
 import mitt from "mitt";
 import aformly from "./ant-design-vue/a-formly";
+import elformly from "./element-plus/el-formly";
 
 const install = function (app: App, options: any) {
   app.config.globalProperties.emitter = mitt();
@@ -8,7 +9,7 @@ const install = function (app: App, options: any) {
   if (!options.lib || options.lib === "ant-design-vue") {
     aformly.installFormly(app);
   } else if (options.lib === "element-plus") {
-    // TODO
+    elformly.installFormly(app);
   } else {
     throw new Error("Unsupport lib");
   }

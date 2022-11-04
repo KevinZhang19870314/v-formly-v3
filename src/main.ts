@@ -25,8 +25,8 @@ const app = createApp(App);
 app.config.globalProperties.emitter = mitt();
 
 // ---------------------设置使用库----------------
-const lib = "ant-design-vue";
-// const lib: string = "element-plus";
+// const lib = "ant-design-vue";
+const lib: string = "element-plus";
 // ---------------------设置使用库----------------
 
 // ant-design-vue
