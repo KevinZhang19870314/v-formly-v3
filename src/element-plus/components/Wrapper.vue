@@ -1,10 +1,5 @@
 <template>
-  <el-form-item
-    :labelCol="labelCol"
-    :wrapperCol="wrapperCol"
-    :required="ui.showRequired"
-    :class="{ 'ant-form-item-has-error': error }"
-  >
+  <el-form-item :required="ui.showRequired" :error="error">
     <template #label>
       <span class="v__label-text">{{ meta.title }}</span>
       <span v-if="ui.optional || oh" class="v__optional">
@@ -24,13 +19,7 @@
       </span>
     </template>
     <slot></slot>
-    <!-- description -->
-    <template v-if="meta.description" #extra>
-      <div v-html="meta.description"></div>
-    </template>
-    <div v-if="error" class="ant-form-item-explain-error">
-      {{ error }}
-    </div>
+    <div v-if="meta.description" v-html="meta.description"></div>
   </el-form-item>
 </template>
 

@@ -1,22 +1,18 @@
 <template>
   <div>
-    <a-radio-group
-      v-model:value="mode"
-      style="margin-bottom: 32px; margin-left: 64px"
-    >
-      <a-radio-button value="horizontal"> 水平 </a-radio-button>
-      <a-radio-button value="vertical"> 垂直 </a-radio-button>
-      <a-radio-button value="inline"> 行内 </a-radio-button>
-    </a-radio-group>
-    <v-formly-v3 ref="form" v-model="formData" :meta="meta" :layout="mode">
-    </v-formly-v3>
+    <el-radio-group v-model="mode">
+      <el-radio-button label="horizontal"> 水平 </el-radio-button>
+      <el-radio-button label="vertical"> 垂直 </el-radio-button>
+      <el-radio-button label="inline"> 行内 </el-radio-button>
+    </el-radio-group>
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta" :layout="mode" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 
-let mode = ref("horizontal");
+const mode = ref("horizontal");
 const meta = {
   type: "object",
   properties: {
@@ -48,7 +44,11 @@ const meta = {
   },
   required: ["name"],
 };
-let formData = ref({ enable: true });
+const formData = ref({ enable: true });
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.el-radio-group {
+  margin: 20px;
+}
+</style>
