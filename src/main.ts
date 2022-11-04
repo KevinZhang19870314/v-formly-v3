@@ -5,7 +5,8 @@ import VFormly from "./formly";
 import "@/style/index.less";
 
 // ant-design-vue import
-import { setupAntd } from "@/ant-design-vue/examples/ant-design-vue";
+import Antd from "ant-design-vue";
+import "ant-design-vue/dist/antd.css";
 import * as antIcons from "@ant-design/icons-vue";
 import { setupStore as setupStoreAntDv } from "@/ant-design-vue/examples/store";
 import { setupRouter as setupRouterAntDv } from "@/ant-design-vue/examples/router";
@@ -30,7 +31,7 @@ const lib = "ant-design-vue";
 
 // ant-design-vue
 if (lib === "ant-design-vue") {
-  setupAntd(app);
+  app.use(Antd);
   Object.keys(antIcons).forEach((key) => {
     app.component(key, (antIcons as any)[key]);
   });

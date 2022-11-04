@@ -1,28 +1,16 @@
 <template>
-  <a-layout-sider
-    v-model:collapsed="getCollapsed"
-    class="layout-sidebar"
-    :trigger="null"
-    collapsible
-    collapsed-width="56"
-    width="228"
-    theme="light"
-  >
+  <div class="layout-sidebar">
     <Menu />
-  </a-layout-sider>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { useCollapsed } from "../useCollapsed";
-
 import Menu from "./Menu.vue";
-
-const { getCollapsed } = useCollapsed();
 </script>
 
 <style scoped lang="less">
 .layout-sidebar {
-  margin-top: -56px;
+  margin-top: -64px;
   &--fixed {
     position: fixed;
     top: 0;

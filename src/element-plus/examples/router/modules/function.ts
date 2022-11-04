@@ -1,19 +1,19 @@
 import type { RouteRecordRaw } from "vue-router";
-import { ControlOutlined } from "@ant-design/icons-vue";
-import BasicLayout from "@/ant-design-vue/examples/layout/index.vue";
-import LayoutView from "@/ant-design-vue/examples/views/LayoutView.vue";
-import CustomValidatorView from "@/ant-design-vue/examples/views/CustomValidatorView.vue";
-import VisibleIfView from "@/ant-design-vue/examples/views/VisibleIfView.vue";
-import PasswordView from "@/ant-design-vue/examples/views/PasswordView.vue";
-import SubmitButtonView from "@/ant-design-vue/examples/views/SubmitButtonView.vue";
-import ChkInputView from "@/ant-design-vue/examples/views/ChkInputView.vue";
+import { SetUp } from "@element-plus/icons-vue";
+import BasicLayout from "@/element-plus/examples/layout/index.vue";
+import LayoutView from "@/element-plus/examples/views/LayoutView.vue";
+import CustomValidatorView from "@/element-plus/examples/views/CustomValidatorView.vue";
+import VisibleIfView from "@/element-plus/examples/views/VisibleIfView.vue";
+import PasswordView from "@/element-plus/examples/views/PasswordView.vue";
+import SubmitButtonView from "@/element-plus/examples/views/SubmitButtonView.vue";
+import ChkInputView from "@/element-plus/examples/views/ChkInputView.vue";
 
 const route: RouteRecordRaw = {
   path: "/function",
   name: "function",
   component: BasicLayout,
   redirect: "/function/custom-validator",
-  meta: { title: "Functional 功能性", icon: ControlOutlined },
+  meta: { title: "Functional 功能性", icon: SetUp },
   children: [
     {
       path: "custom-validator",

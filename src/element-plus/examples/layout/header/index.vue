@@ -1,10 +1,10 @@
 <template>
-  <a-layout-header :class="getHeaderClass">
+  <el-header :class="getHeaderClass">
     <div class="header-left">
       <SiderTrigger class="layout-header-action" />
       <Breadcrumb />
     </div>
-  </a-layout-header>
+  </el-header>
 </template>
 
 <script setup lang="ts">
@@ -63,7 +63,7 @@ const getHeaderClass = computed(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 8px;
     height: 100%;
     font-size: 1rem;
     line-height: 1.5rem;

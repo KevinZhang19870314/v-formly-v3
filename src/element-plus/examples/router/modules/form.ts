@@ -1,30 +1,30 @@
 import type { RouteRecordRaw } from "vue-router";
-import { FormOutlined } from "@ant-design/icons-vue";
-import BasicLayout from "@/ant-design-vue/examples/layout/index.vue";
-import ArrayView from "@/ant-design-vue/examples/views/ArrayView.vue";
-import CheckboxView from "@/ant-design-vue/examples/views/CheckboxView.vue";
-import StringView from "@/ant-design-vue/examples/views/StringView.vue";
-import BooleanView from "@/ant-design-vue/examples/views/BooleanView.vue";
-import AutoCompleteView from "@/ant-design-vue/examples/views/AutocompleteView.vue";
-import DateView from "@/ant-design-vue/examples/views/DateView.vue";
-import TimeView from "@/ant-design-vue/examples/views/TimeView.vue";
-import NumberView from "@/ant-design-vue/examples/views/NumberView.vue";
-import TextView from "@/ant-design-vue/examples/views/TextView.vue";
-import TextareaView from "@/ant-design-vue/examples/views/TextareaView.vue";
-import RateView from "@/ant-design-vue/examples/views/RateView.vue";
-import ObjectView from "@/ant-design-vue/examples/views/ObjectView.vue";
-import RadioView from "@/ant-design-vue/examples/views/RadioView.vue";
-import SelectView from "@/ant-design-vue/examples/views/SelectView.vue";
-import SliderView from "@/ant-design-vue/examples/views/SliderView.vue";
-import TagView from "@/ant-design-vue/examples/views/TagView.vue";
-import CascaderView from "@/ant-design-vue/examples/views/CascaderView.vue";
+import { Edit } from "@element-plus/icons-vue";
+import BasicLayout from "@/element-plus/examples/layout/index.vue";
+import ArrayView from "@/element-plus/examples/views/ArrayView.vue";
+import CheckboxView from "@/element-plus/examples/views/CheckboxView.vue";
+import StringView from "@/element-plus/examples/views/StringView.vue";
+import BooleanView from "@/element-plus/examples/views/BooleanView.vue";
+import AutoCompleteView from "@/element-plus/examples/views/AutocompleteView.vue";
+import DateView from "@/element-plus/examples/views/DateView.vue";
+import TimeView from "@/element-plus/examples/views/TimeView.vue";
+import NumberView from "@/element-plus/examples/views/NumberView.vue";
+import TextView from "@/element-plus/examples/views/TextView.vue";
+import TextareaView from "@/element-plus/examples/views/TextareaView.vue";
+import RateView from "@/element-plus/examples/views/RateView.vue";
+import ObjectView from "@/element-plus/examples/views/ObjectView.vue";
+import RadioView from "@/element-plus/examples/views/RadioView.vue";
+import SelectView from "@/element-plus/examples/views/SelectView.vue";
+import SliderView from "@/element-plus/examples/views/SliderView.vue";
+import TagView from "@/element-plus/examples/views/TagView.vue";
+import CascaderView from "@/element-plus/examples/views/CascaderView.vue";
 
 const route: RouteRecordRaw = {
   path: "/form",
   name: "form",
   component: BasicLayout,
   redirect: "/form/string",
-  meta: { title: "Components 组件", icon: FormOutlined },
+  meta: { title: "Components 组件", icon: Edit },
   children: [
     {
       path: "string",
