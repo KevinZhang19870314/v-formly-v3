@@ -6,154 +6,144 @@
       :meta="meta"
       :layout="'horizontal'"
     >
-      <template v-slot:auto1-textarea>
-        <a-textarea
-          placeholder="input here"
-          style="height: 50px"
-          @keypress="auto1_handleKeyPress"
-        />
+      <template v-slot:auto2_suffix>
+        <el-icon class="el-input__icon" @click="handleAuto2SuffixIconClick">
+          <edit />
+        </el-icon>
       </template>
-      <template v-slot:auto2-option="item">
-        <template v-if="item.options">
-          <span>
-            {{ item.value }}
-            <a
-              style="float: right"
-              href="https://www.google.com/search?q=antd"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              more
-            </a>
-          </span>
-        </template>
-        <template v-else-if="item.value === 'all'">
-          <a
-            href="https://www.google.com/search?q=ant-design-vue"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View all results
-          </a>
-        </template>
-        <template v-else>
-          <div style="display: flex; justify-content: space-between">
-            {{ item.value }}
-            <span>
-              <UserOutlined />
-              {{ item.count }}
-            </span>
-          </div>
-        </template>
-      </template>
-      <template v-slot:auto2-inputsearch>
-        <a-input-search placeholder="input here" size="large"></a-input-search>
+      <template v-slot:auto2_default="{ item }">
+        <div class="value">{{ item.value }}</div>
+        <span class="link">{{ item.link }}</span>
       </template>
     </v-formly-v3>
     <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="danger" @click="clear"> 重置 </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, toRaw, unref } from "vue";
-import type VFormlyV3 from "@/Formly.vue";
-import type { StringMeta } from "@/meta/string.meta";
-import { auto2_dataSource } from "../data/autocomplete2";
-
-//#region init
-interface MockVal {
-  value: string;
-}
-
-const mockVal = (str: string, repeat = 1): MockVal => {
-  return {
-    value: str.repeat(repeat),
-  };
-};
-
-const auto1_handleKeyPress = (ev: KeyboardEvent) => {
-  console.log("auto1_handleKeyPress", ev);
-};
+import { onMounted, ref, toRaw, unref } from "vue";
+import type VFormlyV3 from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormlyV3>>(null);
-const auto_options = ref<MockVal[]>([]);
 
-const auto1_options = ref<{ value: string }[]>([]);
-//#endregion
+interface RestaurantItem {
+  value: string;
+  link: string;
+}
+const restaurants = ref<RestaurantItem[]>([]);
+const createFilter = (queryString: string) => {
+  return (restaurant: RestaurantItem) => {
+    return (
+      restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+    );
+  };
+};
+const loadAll = () => {
+  return [
+    { value: "vue", link: "https://github.com/vuejs/vue" },
+    { value: "element", link: "https://github.com/ElemeFE/element" },
+    { value: "cooking", link: "https://github.com/ElemeFE/cooking" },
+    { value: "mint-ui", link: "https://github.com/ElemeFE/mint-ui" },
+    { value: "vuex", link: "https://github.com/vuejs/vuex" },
+    { value: "vue-router", link: "https://github.com/vuejs/vue-router" },
+    { value: "babel", link: "https://github.com/babel/babel" },
+  ];
+};
+const querySearchAutoAndAuto1 = (queryString: string, cb: any) => {
+  const results = queryString
+    ? restaurants.value.filter(createFilter(queryString))
+    : restaurants.value;
+  // call callback function to return suggestions
+  cb(results);
+};
 
+interface LinkItem {
+  value: string;
+  link: string;
+}
+const links = ref<LinkItem[]>([]);
+const querySearchAuto2 = (queryString: string, cb: any) => {
+  const results = queryString
+    ? links.value.filter(createFilter(queryString))
+    : links.value;
+  // call callback function to return suggestion objects
+  cb(results);
+};
+const handleAuto2SuffixIconClick = (ev: Event) => {
+  console.log(ev);
+};
+
+let timeout: any;
+const querySearchAsyncAuto3 = (queryString: string, cb: (arg: any) => void) => {
+  const results = queryString
+    ? links.value.filter(createFilter(queryString))
+    : links.value;
+
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    cb(results);
+  }, 3000 * Math.random());
+};
+onMounted(() => {
+  restaurants.value = loadAll();
+  links.value = loadAll();
+});
 const meta = {
   type: "object",
   properties: {
     auto: {
       type: "string",
-      title: "基本使用",
+      title: "list suggestions when activated",
       ui: {
         component: "autocomplete",
-        placeholder: "input here",
-        options: auto_options.value,
+        placeholder: "Please Input",
+        clearable: true,
+        fetchSuggestions: querySearchAutoAndAuto1,
         select: function (value: string) {
           console.log("onSelect", value);
-        },
-        search: function (searchText: string) {
-          console.log(searchText);
-          auto_options.value = !searchText
-            ? []
-            : [
-                mockVal(searchText),
-                mockVal(searchText, 2),
-                mockVal(searchText, 3),
-              ];
-          const context = form.value!.getContext<StringMeta>("/auto");
-          console.log(toRaw(auto_options.value));
-          context.ui.value.options = auto_options;
         },
       },
     },
     auto1: {
       type: "string",
-      title: "自定义输入组件",
+      title: "list suggestions on input",
       ui: {
         component: "autocomplete",
-        slotNameOfDefault: "auto1-textarea",
-        options: auto1_options,
+        placeholder: "Please Input",
+        clearable: true,
+        triggerOnFocus: false,
+        fetchSuggestions: querySearchAutoAndAuto1,
         select: function (value: string) {
           console.log("onSelect", value);
-        },
-        search: function (searchText: string, value: string) {
-          auto1_options.value = !value
-            ? []
-            : [
-                { value },
-                { value: value + value },
-                { value: value + value + value },
-              ];
         },
       },
     },
     auto2: {
       type: "string",
-      title: "查询模式 - 确定类目",
+      title: "自定义模板",
       ui: {
         component: "autocomplete",
-        options: auto2_dataSource,
-        slotNameOfOption: "auto2-option",
-        slotNameOfDefault: "auto2-inputsearch",
+        placeholder: "Please Input",
+        slotNameOfDefault: "auto2_default",
+        slotNameOfSuffix: "auto2_suffix",
+        fetchSuggestions: querySearchAuto2,
         select: function (value: string) {
           console.log("onSelect", value);
         },
-        search: function (searchText: string, value: string) {
-          auto1_options.value = !value
-            ? []
-            : [
-                { value },
-                { value: value + value },
-                { value: value + value + value },
-              ];
-          const context = form.value!.getContext<StringMeta>("/auto1");
-          context.ui.value.options = auto1_options;
+      },
+    },
+    auto3: {
+      type: "string",
+      title: "远程搜索",
+      ui: {
+        component: "autocomplete",
+        placeholder: "Please Input",
+        fetchSuggestions: querySearchAsyncAuto3,
+        select: function (value: string) {
+          console.log("onSelect", value);
         },
       },
     },

@@ -1,20 +1,28 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-auto-complete
+    <el-autocomplete
       v-bind="bindings"
       :disabled="meta.readOnly"
-      v-model:value="value"
+      v-model="value"
       @change="change"
-      @search="search"
       @select="select"
     >
-      <template v-if="ui.slotNameOfOption" v-slot:option="item">
-        <slot :name="ui.slotNameOfOption" v-bind="item"></slot>
+      <template v-if="ui.slotNameOfPrefix" v-slot:prefix>
+        <slot :name="ui.slotNameOfPrefix"></slot>
       </template>
-      <template v-if="ui.slotNameOfDefault" v-slot:default>
-        <slot :name="ui.slotNameOfDefault"></slot>
+      <template v-if="ui.slotNameOfSuffix" v-slot:suffix>
+        <slot :name="ui.slotNameOfSuffix"></slot>
       </template>
-    </a-auto-complete>
+      <template v-if="ui.slotNameOfPrepend" v-slot:prepend>
+        <slot :name="ui.slotNameOfPrepend"></slot>
+      </template>
+      <template v-if="ui.slotNameOfAppend" v-slot:append>
+        <slot :name="ui.slotNameOfAppend"></slot>
+      </template>
+      <template v-if="ui.slotNameOfDefault" v-slot:default="item">
+        <slot :name="ui.slotNameOfDefault" v-bind="item"></slot>
+      </template>
+    </el-autocomplete>
   </v-wrapper>
 </template>
 
@@ -23,7 +31,7 @@ import { useBindings } from "@/core/hooks/bindings";
 import { StringMeta } from "@/core/meta/string.meta";
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/core/utils/global";
-import { AutoComplete } from "ant-design-vue";
+import { ElAutocomplete } from "element-plus";
 import {
   computed,
   getCurrentInstance,
@@ -39,7 +47,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(AutoComplete.props), context.ui);
+const { bindings } = useBindings(Object.keys(ElAutocomplete.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};
@@ -60,15 +68,9 @@ function change(value: string) {
   }
 }
 
-function search(searchText: string) {
-  if (ui.value.search) {
-    ui.value.search(searchText, unref(value));
-  }
-}
-
-function select(value: string, option: any) {
+function select(item: any) {
   if (ui.value.select) {
-    ui.value.select(unref(value), option);
+    ui.value.select(item);
   }
 }
 </script>
