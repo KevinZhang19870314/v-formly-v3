@@ -25,7 +25,6 @@ export const demoCodePlugin = (options: DemoCodePluginOption): Plugin => {
             return params.trim().match(/^block\s*(.*)$/);
           },
           render: function (tokens: Token[], i: number) {
-            debugger
             // 拿到含有demo的token
             const m = tokens[i].info.trim().match(/^block\s+(.*)$/);
             if (tokens[i].nesting === 1) {
