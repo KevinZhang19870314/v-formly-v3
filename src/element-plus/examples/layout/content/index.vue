@@ -14,8 +14,8 @@
 .layout-content {
   position: relative;
   min-height: calc(100vh - var(--header-height));
-  margin: 24px;
   background: white;
+  flex: 1;
   .content-wrapper {
     height: 100%;
     padding: 32px;

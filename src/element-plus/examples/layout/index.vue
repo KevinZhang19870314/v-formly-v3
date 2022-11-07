@@ -29,6 +29,8 @@ const getLayoutClass = computed(() => {
 
 <style scoped lang="less">
 .default-layout-main {
+  background: #f0f2f5;
+  padding: 24px;
   transition: all cubic-bezier(0.4, 0, 0.2, 1) 200ms;
 }
 </style>

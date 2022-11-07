@@ -87,6 +87,11 @@ function getCurrentMenuRecursive(
 </script>
 
 <style scoped lang="less">
+.el-menu--vertical:not(.el-menu--collapse):not(.el-menu--popup-container) {
+  :deep(.el-menu-item) {
+    padding-left: var(--el-menu-base-level-padding);
+  }
+}
 .menu-wrapper {
   padding: 16px 0;
   min-height: 100%;

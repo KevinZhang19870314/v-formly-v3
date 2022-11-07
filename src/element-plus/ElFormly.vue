@@ -2,10 +2,11 @@
   <div class="v__formly">
     <el-form
       class="v"
-      :inline="layout === 'inline'"
+      :inline="isInline"
+      :label-width="isInline ? null : '20.83333333%'"
       :label-position="layout === 'vertical' ? 'top' : 'right'"
       :class="{
-        v__inline: layout === 'inline',
+        v__inline: isInline,
         v__horizontal: layout === 'horizontal',
       }"
     >
@@ -89,6 +90,7 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const emitter = useEventBus(appContext);
 onCreated();
 
+const isInline = computed(() => props.layout === "inline");
 const wrapperCol = computed(() => {
   const ui = Object.assign({}, globalInstance.ui);
   return props.layout === "vertical"

@@ -54,6 +54,7 @@ const ui = computed(() => {
 });
 
 const gutter = computed(() => {
+  if (layout.value === "inline") return 0;
   return Object.assign({}, state.ui.grid, ui.value.grid).gutter;
 });
 
@@ -66,7 +67,7 @@ function visible(meta: Meta) {
 }
 
 function grid(item: any) {
-  if (layout.value === "inline") return {};
+  if (layout.value === "inline") return { span: null };
   const grid = (item.meta.ui && item.meta.ui.grid) || {};
   return Object.assign({}, state.ui.grid, ui.value.grid, grid);
 }
