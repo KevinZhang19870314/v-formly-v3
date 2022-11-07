@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/ant-design-vue/AFormly.vue";
 import { HeartOutlined } from "@ant-design/icons-vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);

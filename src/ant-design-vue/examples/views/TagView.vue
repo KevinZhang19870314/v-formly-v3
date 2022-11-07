@@ -10,8 +10,8 @@
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
-import type { NumberMeta } from "@/meta/number.meta";
+import type VFormly from "@/ant-design-vue/AFormly.vue";
+import type { NumberMeta } from "@/core/meta/number.meta";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const formData = ref({});

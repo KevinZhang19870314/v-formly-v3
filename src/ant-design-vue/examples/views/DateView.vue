@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/ant-design-vue/AFormly.vue";
 import { ref, toRaw, unref } from "vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);

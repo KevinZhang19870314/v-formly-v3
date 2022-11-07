@@ -59,8 +59,8 @@
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormlyV3 from "@/Formly.vue";
-import type { StringMeta } from "@/meta/string.meta";
+import type VFormlyV3 from "@/ant-design-vue/AFormly.vue";
+import type { StringMeta } from "@/core/meta/string.meta";
 import { auto2_dataSource } from "../data/autocomplete2";
 
 //#region init
