@@ -22,7 +22,7 @@ class StringMeta extends BaseMeta {
   }
 
   setValue(val: any) {
-    this._value.value = val || undefined;
+    this._value.value = val || "";
   }
 }
 
