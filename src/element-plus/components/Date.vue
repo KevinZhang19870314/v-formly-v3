@@ -1,32 +1,20 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-range-picker
+    <el-date-picker
       class="v__date"
-      v-if="ui.type === 'range'"
-      v-model:value="value"
-      v-bind="rangeBindings"
+      v-model="value"
+      v-bind="bindings"
       :disabled="meta.readOnly"
-      @calendarChange="calendarChange"
-      @ok="ok"
       @change="change"
     >
-      <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
-        <slot :name="ui.slotNameOfSuffixIcon"></slot>
+      <template v-if="ui.slotNameOfRangeSeparator" v-slot:range-separator>
+        <slot :name="ui.slotNameOfRangeSeparator"></slot>
       </template>
-    </a-range-picker>
-    <a-date-picker
-      class="v__date"
-      v-if="ui.type !== 'range'"
-      v-model:value="value"
-      v-bind="dateBindings"
-      :disabled="meta.readOnly"
-      @ok="ok"
-      @change="change"
-    >
-      <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
-        <slot :name="ui.slotNameOfSuffixIcon"></slot>
+
+      <template v-if="ui.slotNameOfDefault" v-slot:default>
+        <slot :name="ui.slotNameOfDefault"></slot>
       </template>
-    </a-date-picker>
+    </el-date-picker>
   </v-wrapper>
 </template>
 
@@ -37,11 +25,10 @@ import {
   computed,
   getCurrentInstance,
   inject,
-  unref,
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
-import { DatePicker, RangePicker } from "ant-design-vue";
+import { ElDatePicker } from "element-plus";
 import { useBindings } from "@/core/hooks/bindings";
 import type { Global } from "@/core/utils/global";
 
@@ -51,15 +38,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
-let rangeBindings = {};
-let dateBindings = {};
-if (context.ui.value.type === "range") {
-  const { bindings } = useBindings(Object.keys(RangePicker.props), context.ui);
-  rangeBindings = bindings;
-} else {
-  const { bindings } = useBindings(Object.keys(DatePicker.props), context.ui);
-  dateBindings = bindings;
-}
+const { bindings } = useBindings(Object.keys(ElDatePicker.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};
@@ -74,21 +53,9 @@ const value = computed({
   },
 });
 
-function change() {
+function change(value: any) {
   if (ui.value.change) {
-    ui.value.change(unref(value));
-  }
-}
-
-function ok(value: any) {
-  if (ui.value.ok) {
-    ui.value.ok(value);
-  }
-}
-
-function calendarChange(dates: any, dateStrings: any, info: any) {
-  if (ui.value.calendarChange) {
-    ui.value.calendarChange(dates, dateStrings, info);
+    ui.value.change(value);
   }
 }
 </script>

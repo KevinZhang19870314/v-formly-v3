@@ -7,12 +7,6 @@
       :disabled="meta.readOnly"
       @change="change"
     >
-      <template v-if="ui.slotNameOfCheckedChildren" v-slot:checkedChildren>
-        <slot :name="ui.slotNameOfCheckedChildren"></slot>
-      </template>
-      <template v-if="ui.slotNameOfUnCheckedChildren" v-slot:unCheckedChildren>
-        <slot :name="ui.slotNameOfUnCheckedChildren"></slot>
-      </template>
     </el-switch>
   </v-wrapper>
 </template>
