@@ -10,10 +10,25 @@ import { demoCodePlugin } from "./plugins";
 
 const __dirname = getDirname(import.meta.url);
 const isProd = process.env.NODE_ENV === "production";
+const enum Lib { Antdv = 'antdv', Element = 'element' }
 
+const lib = process.env.VFORMLY_LIB || Lib.Antdv
+const LIB_MAP = {
+  [Lib.Antdv]: {
+    base: "/v-formly-v3/",
+    text: 'Ant Design Vue',
+    examplesPath: path.resolve(__dirname, "../../src/ant-design-vue/examples/views"),
+
+  },
+  [Lib.Element]: {
+    base: "/v-formly-v3/element-plus/",
+    text: 'Element Plus',
+    examplesPath: path.resolve(__dirname, "../../src/element-plus/examples/views"),
+  },
+}
 export default defineUserConfig({
   lang: "zh-CN",
-  base: "/v-formly-v3/",
+  base: LIB_MAP[lib].base,
   locales: {
     "/": {
       lang: "en-US",
@@ -86,6 +101,10 @@ export default defineUserConfig({
         navbar: [
           { text: "Guide", link: "/guide/" },
           { text: "Config Reference", link: "/components/" },
+          {
+            text: LIB_MAP[lib].text,
+            children: getNavbarLib(lib as Lib),
+          },
         ],
         selectLanguageText: "Languages",
         selectLanguageName: "English",
@@ -103,6 +122,10 @@ export default defineUserConfig({
         navbar: [
           { text: "指南", link: "/zh/guide/" },
           { text: "组件", link: "/zh/components/" },
+          {
+            text: LIB_MAP[lib].text,
+            children: getNavbarLib(lib as Lib, '/zh/'),
+          },
         ],
         selectLanguageText: "选择语言",
         selectLanguageName: "简体中文",
@@ -136,9 +159,7 @@ export default defineUserConfig({
     },
   }),
   plugins: [
-    demoCodePlugin({
-      examplesPath: path.resolve(__dirname, "../../src/examples/views"),
-    }),
+    demoCodePlugin({ examplesPath: LIB_MAP[lib].examplesPath }),
     searchPlugin(),
     pwaPlugin(),
     pwaPopupPlugin({
@@ -167,11 +188,15 @@ export default defineUserConfig({
     viteOptions: {
       resolve: {
         alias: {
+          "@antdv": path.resolve(__dirname, "../../src/ant-design-vue/"),
           "@": path.resolve(__dirname, "../../src/"),
         },
       },
     },
   }),
+  define: {
+    __VFORMLY_LIB__: lib,
+  },
 });
 
 function getGuideSidebar(groupA, groupB) {
@@ -217,4 +242,21 @@ function getComponentsSidebar(groupA, groupB) {
       children: ["custom-components.md"],
     },
   ];
+}
+
+function getNavbarLib(lib: Lib, lang: string = '/') {
+  const url = 'http://127.0.0.1:5500/v-formly-v3'
+  const list = [
+    {
+      lib: Lib.Antdv,
+      text: LIB_MAP[Lib.Antdv].text,
+      link: `${url}${lang}`,
+    },
+    {
+      lib: Lib.Element,
+      text: LIB_MAP[Lib.Element].text,
+      link: `${url}/element-plus${lang}`,
+    },
+  ]
+  return list.filter(item => item.lib !== lib).map(({ text, link }) => ({ text, link }))
 }
