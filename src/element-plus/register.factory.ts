@@ -1,6 +1,6 @@
 import VObject from "./components/Object.vue";
 import VString from "./components/String.vue";
-// import VBoolean from "./components/Boolean.vue";
+import VBoolean from "./components/Boolean.vue";
 import VAutoComplete from "./components/AutoComplete.vue";
 // import VCheckbox from "./components/Checkbox.vue";
 // import VDate from "./components/Date.vue";
@@ -31,7 +31,7 @@ function registerFormComponent(app: App, id: string, component: any) {
 function registerBuildInComponents(app: App) {
   registerFormComponent(app, "v-object", VObject);
   registerFormComponent(app, "v-string", VString);
-  //   registerFormComponent(app, "v-boolean", VBoolean);
+  registerFormComponent(app, "v-boolean", VBoolean);
   //   registerFormComponent(app, "v-array", VArray);
   registerFormComponent(app, "v-autocomplete", VAutoComplete);
   //   registerFormComponent(app, "v-checkbox", VCheckbox);

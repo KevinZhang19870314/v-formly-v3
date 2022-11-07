@@ -1,83 +1,174 @@
 <template>
   <div>
-    <v-formly-v3 ref="form" v-model="formData" :meta="meta">
-      <!-- boolean3 -->
-      <template v-slot:boolean3_checked_icon>
-        <check-outlined />
-      </template>
-      <template v-slot:boolean3_unchecked_icon>
-        <close-outlined />
-      </template>
-    </v-formly-v3>
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta"> </v-formly-v3>
     <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="danger" @click="clear"> 重置 </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, toRaw, unref } from "vue";
-import { CloseOutlined, CheckOutlined } from "@ant-design/icons-vue";
+import { markRaw, ref, toRaw, unref } from "vue";
+import { Check, Close } from "@element-plus/icons-vue";
+import { ElMessage } from "element-plus";
 
 const form = ref(null);
 let formData: any = ref({});
+const boolean8_1Loading1 = ref(false);
+const boolean8_2Loading2 = ref(false);
 const meta = {
   type: "object",
   properties: {
-    boolean1: {
-      title: "基本用法",
+    boolean1_1: {
+      title: "基础用法",
       type: "boolean",
       default: true,
       ui: {
-        change: (val: string, event: Event) => console.log(val, event),
+        change: (val: any) => console.log(val),
       },
     },
-    boolean2: {
-      title: "文字和图标",
-      type: "boolean",
-      ui: {
-        checkedChildren: "开",
-        unCheckedChildren: "关",
-      },
-    },
-    boolean3: {
-      title: "文字和图标slot",
+    boolean1_2: {
+      title: "基础用法",
       type: "boolean",
       default: true,
       ui: {
-        slotNameOfCheckedChildren: "boolean3_checked_icon",
-        slotNameOfUnCheckedChildren: "boolean3_unchecked_icon",
+        style: "--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949",
       },
     },
-    boolean4: {
-      title: "加载中",
+    boolean2_1: {
+      title: "尺寸",
+      type: "boolean",
+      default: true,
+      ui: {
+        size: "large",
+        activeText: "开",
+        inactiveText: "关",
+      },
+    },
+    boolean2_2: {
+      title: "尺寸",
+      type: "boolean",
+      default: true,
+      ui: {
+        activeText: "开",
+        inactiveText: "关",
+      },
+    },
+    boolean2_3: {
+      title: "尺寸",
+      type: "boolean",
+      default: true,
+      ui: {
+        size: "small",
+        activeText: "开",
+        inactiveText: "关",
+      },
+    },
+    boolean3_1: {
+      title: "文字描述",
+      type: "boolean",
+      default: true,
+      ui: {
+        activeText: "Pay by month",
+        inactiveText: "Pay by year",
+        style: "--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949",
+      },
+    },
+    boolean3_2: {
+      title: "文字描述",
+      type: "boolean",
+      default: true,
+      ui: {
+        activeText: "是",
+        inactiveText: "否",
+        inlinePrompt: true,
+      },
+    },
+    boolean3_3: {
+      title: "文字描述",
+      type: "boolean",
+      default: true,
+      ui: {
+        activeText: "Y",
+        inactiveText: "N",
+        style: "--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949",
+      },
+    },
+    boolean4_1: {
+      title: "显示自定义图标",
+      type: "boolean",
+      default: true,
+      ui: {
+        activeIcon: markRaw(Check),
+        inactiveIcon: markRaw(Close),
+      },
+    },
+    boolean4_2: {
+      title: "显示自定义图标",
+      type: "boolean",
+      default: true,
+      ui: {
+        inlinePrompt: true,
+        activeIcon: markRaw(Check),
+        inactiveIcon: markRaw(Close),
+      },
+    },
+    boolean5: {
+      title: "扩展的 value 类型",
+      type: "boolean",
+      default: true,
+      ui: {
+        style: "--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949",
+        activeValue: "100",
+        inactiveValue: "0",
+      },
+    },
+    boolean6: {
+      title: "禁用状态",
+      type: "boolean",
+      default: true,
+      readOnly: true,
+    },
+    boolean7: {
+      title: "加载状态",
       type: "boolean",
       default: true,
       ui: {
         loading: true,
       },
     },
-    boolean5: {
-      title: "不可用",
+    boolean8_1: {
+      title: "阻止切换",
       type: "boolean",
-      default: true,
-      readOnly: true,
-    },
-    obj: {
-      type: "object",
-      properties: {
-        boolean6_1: {
-          title: "大",
-          type: "boolean",
-          default: true,
+      ui: {
+        loading: boolean8_1Loading1,
+        beforeChange: () => {
+          boolean8_1Loading1.value = true;
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              boolean8_1Loading1.value = false;
+              ElMessage.success("Switch success");
+              return resolve(true);
+            }, 1000);
+          });
         },
-        boolean6_2: {
-          title: "小",
-          type: "boolean",
-          ui: {
-            size: "small",
-          },
+      },
+    },
+    boolean8_2: {
+      title: "阻止切换",
+      type: "boolean",
+      ui: {
+        loading: boolean8_2Loading2,
+        beforeChange: () => {
+          boolean8_2Loading2.value = true;
+          return new Promise((_, reject) => {
+            setTimeout(() => {
+              boolean8_2Loading2.value = false;
+              ElMessage.error("Switch failed");
+              return reject(new Error("Error"));
+            }, 1000);
+          });
         },
       },
     },

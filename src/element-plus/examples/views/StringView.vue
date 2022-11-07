@@ -183,20 +183,14 @@ const meta = {
       ui: {
         placeholder: "Please input",
         slotNameOfPrepend: "string9_1_prepend",
-        grid: {
-          span: 12,
-        },
       },
     },
     string9_2: {
-      title: "",
+      title: "复合型输入框",
       type: "string",
       ui: {
         placeholder: "Please input",
         slotNameOfAppend: "string9_2_append",
-        grid: {
-          span: 12,
-        },
       },
     },
     string9_3: {

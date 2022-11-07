@@ -1,8 +1,8 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-switch
+    <el-switch
       class="v__boolean"
-      v-model:checked="value"
+      v-model="value"
       v-bind="bindings"
       :disabled="meta.readOnly"
       @change="change"
@@ -13,7 +13,7 @@
       <template v-if="ui.slotNameOfUnCheckedChildren" v-slot:unCheckedChildren>
         <slot :name="ui.slotNameOfUnCheckedChildren"></slot>
       </template>
-    </a-switch>
+    </el-switch>
   </v-wrapper>
 </template>
 
@@ -22,12 +22,12 @@ import { useBindings } from "@/core/hooks/bindings";
 import { BooleanMeta } from "@/core/meta/boolean.meta";
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/core/utils/global";
-import { Switch } from "ant-design-vue";
+import { ElSwitch } from "element-plus";
 import {
   computed,
   getCurrentInstance,
   inject,
-  unref,
+  toRef,
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
@@ -38,11 +38,14 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new BooleanMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(Switch.props), context.ui);
+const { bindings } = useBindings(Object.keys(ElSwitch.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};
 });
+
+// Need support styling in el-switch element
+bindings.value["style"] = toRef(ui.value, "style");
 
 const value = computed({
   get() {
@@ -53,9 +56,9 @@ const value = computed({
   },
 });
 
-function change() {
+function change(value: string | number | boolean) {
   if (ui.value.change) {
-    ui.value.change(unref(value));
+    ui.value.change(value);
   }
 }
 </script>
