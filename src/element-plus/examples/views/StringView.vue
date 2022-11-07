@@ -1,162 +1,277 @@
 <template>
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta">
-      <!-- string2_x -->
-      <template v-slot:string2_2_prefix>
-        <user-outlined />
+      <template v-slot:string6_3_suffix>
+        <el-icon class="el-input__icon"><calendar /></el-icon>
       </template>
-      <template v-slot:string2_2_suffix>
-        <a-tooltip title="Extra information">
-          <info-circle-outlined />
-        </a-tooltip>
+      <template v-slot:string6_4_prefix>
+        <el-icon class="el-input__icon"><search /></el-icon>
       </template>
-
-      <!-- string3_x -->
-      <template v-slot:string3_1_addon_before>
-        <a-select default-value="Http://" style="width: 90px">
-          <a-select-option value="Http://"> Http:// </a-select-option>
-          <a-select-option value="Https://"> Https:// </a-select-option>
-        </a-select>
+      <template #string9_1_prepend>Http://</template>
+      <template #string9_2_append>.com</template>
+      <template #string9_3_prepend>
+        <el-select
+          v-model="string9Select"
+          placeholder="Select"
+          style="width: 115px"
+        >
+          <el-option label="Restaurant" value="1" />
+          <el-option label="Order No." value="2" />
+          <el-option label="Tel" value="3" />
+        </el-select>
       </template>
-      <template v-slot:string3_2_addon_after>
-        <a-select default-value=".com" style="width: 80px">
-          <a-select-option value=".com"> .com </a-select-option>
-          <a-select-option value=".jp"> .jp </a-select-option>
-          <a-select-option value=".cn"> .cn </a-select-option>
-          <a-select-option value=".org"> .org </a-select-option>
-        </a-select>
+      <template #string9_3_append><el-button :icon="Search" /></template>
+      <template #string9_4_prepend>
+        <el-button :icon="Search" />
       </template>
-
-      <!-- string6 -->
-      <template v-slot:string6_suffix>
-        <div style="cursor: pointer" @click="string6SuffixClick">
-          <eye-invisible-outlined v-if="!visibilityToggle" />
-          <eye-outlined v-if="visibilityToggle" />
-        </div>
+      <template #string9_4_append>
+        <el-select
+          v-model="string9Select"
+          placeholder="Select"
+          style="width: 115px"
+        >
+          <el-option label="Restaurant" value="1" />
+          <el-option label="Order No." value="2" />
+          <el-option label="Tel" value="3" />
+        </el-select>
       </template>
     </v-formly-v3>
     <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="danger" @click="clear"> 重置 </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
-import type { StringMeta } from "@/meta/string.meta";
+import type VFormly from "@/element-plus/ElFormly.vue";
+import { Search } from "@element-plus/icons-vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
+const string9Select = ref("");
 const meta = {
   type: "object",
   properties: {
     string1: {
-      title: "基本使用",
+      title: "基础用法",
       type: "string",
       ui: {
         showRequired: true,
-        placeholder: "Basic usage",
+        placeholder: "Please input",
         errors: {
           required: "请输入",
         },
         change: (val: string) => console.log(val),
       },
     },
-    string2_1: {
-      title: "前缀和后缀",
+    string2: {
+      title: "禁用状态",
       type: "string",
+      readOnly: true,
       ui: {
-        placeholder: "prefix and suffix",
-        prefix: "￥",
-        suffix: "RMB",
+        placeholder: "Please input",
       },
     },
-    string2_2: {
-      title: "前缀和后缀slot",
+    string3: {
+      title: "一键清空",
       type: "string",
       ui: {
-        placeholder: "prefix and suffix with slot",
-        slotNameOfPrefix: "string2_2_prefix",
-        slotNameOfSuffix: "string2_2_suffix",
-      },
-    },
-    string3_1: {
-      title: "前置/后置标签",
-      type: "string",
-      default: "mysite",
-      ui: {
-        placeholder: "addonBefore/addonAfter",
-        addonBefore: "Http://",
-        addonAfter: ".com",
-      },
-    },
-    string3_2: {
-      title: "前置/后置标签slot",
-      type: "string",
-      ui: {
-        placeholder: "addonBefore/addonAfter with slot",
-        slotNameOfAddonBefore: "string3_1_addon_before",
-        slotNameOfAddonAfter: "string3_2_addon_after",
+        placeholder: "Please input",
+        clearable: true,
       },
     },
     string4: {
-      title: "带移除图标",
+      title: "格式化",
       type: "string",
       ui: {
-        placeholder: "input with clear icon",
-        allowClear: true,
+        placeholder: "Please input",
+        formatter: (value: any) =>
+          `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        parser: (value: any) => value.replace(/\$\s?|(,*)/g, ""),
       },
     },
-    string5_1: {
-      title: "大",
+    string5: {
+      title: "密码框",
       type: "string",
       ui: {
-        placeholder: "large size",
+        placeholder: "Please input password",
+        type: "password",
+        showPassword: true,
+      },
+    },
+    string6_1: {
+      title: "带图标的输入框(Using attributes)",
+      type: "string",
+      ui: {
+        placeholder: "Pick a date",
+        suffixIcon: "Calendar",
+        grid: {
+          span: 12,
+        },
+      },
+    },
+    string6_2: {
+      title: "",
+      type: "string",
+      ui: {
+        placeholder: "Type something",
+        prefixIcon: "Search",
+        grid: {
+          span: 12,
+        },
+      },
+    },
+    string6_3: {
+      title: "带图标的输入框(Using slots)",
+      type: "string",
+      ui: {
+        placeholder: "Pick a date",
+        slotNameOfSuffix: "string6_3_suffix",
+        grid: {
+          span: 12,
+        },
+      },
+    },
+    string6_4: {
+      title: "",
+      type: "string",
+      ui: {
+        placeholder: "Type something",
+        slotNameOfPrefix: "string6_4_prefix",
+        grid: {
+          span: 12,
+        },
+      },
+    },
+    string7: {
+      title: "文本域",
+      type: "string",
+      ui: {
+        placeholder: "Please input",
+        type: "textarea",
+        rows: 2,
+      },
+    },
+    string8_1: {
+      title: "自适应文本域",
+      type: "string",
+      ui: {
+        placeholder: "Please input",
+        type: "textarea",
+        autosize: true,
+        grid: {
+          span: 12,
+        },
+      },
+    },
+    string8_2: {
+      title: "",
+      type: "string",
+      ui: {
+        placeholder: "Please input",
+        type: "textarea",
+        autosize: { minRows: 2, maxRows: 4 },
+        grid: {
+          span: 12,
+        },
+      },
+    },
+    string9_1: {
+      title: "复合型输入框",
+      type: "string",
+      ui: {
+        placeholder: "Please input",
+        slotNameOfPrepend: "string9_1_prepend",
+        grid: {
+          span: 12,
+        },
+      },
+    },
+    string9_2: {
+      title: "",
+      type: "string",
+      ui: {
+        placeholder: "Please input",
+        slotNameOfAppend: "string9_2_append",
+        grid: {
+          span: 12,
+        },
+      },
+    },
+    string9_3: {
+      title: "复合型输入框",
+      type: "string",
+      ui: {
+        placeholder: "Please input",
+        slotNameOfPrepend: "string9_3_prepend",
+        slotNameOfAppend: "string9_3_append",
+      },
+    },
+    string9_4: {
+      title: "复合型输入框",
+      type: "string",
+      ui: {
+        placeholder: "Please input",
+        slotNameOfPrepend: "string9_4_prepend",
+        slotNameOfAppend: "string9_4_append",
+      },
+    },
+    string10_1: {
+      title: "尺寸",
+      type: "string",
+      ui: {
+        placeholder: "Please input",
         size: "large",
         grid: {
           span: 8,
         },
       },
     },
-    string5_2: {
-      title: "默认",
+    string10_2: {
+      title: "尺寸",
       type: "string",
       ui: {
-        placeholder: "default size",
+        placeholder: "Please input",
         grid: {
           span: 8,
         },
       },
     },
-    string5_3: {
-      title: "小",
+    string10_3: {
+      title: "尺寸",
       type: "string",
       ui: {
-        placeholder: "small size",
+        placeholder: "Please input",
         size: "small",
         grid: {
           span: 8,
         },
       },
     },
-    string6: {
-      title: "密码框",
+    string11_1: {
+      title: "输入长度限制",
       type: "string",
+      maxLength: 10,
       ui: {
-        placeholder: "input password",
-        type: "password",
-        slotNameOfSuffix: "string6_suffix",
+        placeholder: "Please input",
+        type: "text",
+        showWordLimit: true,
+        grid: {
+          span: 12,
+        },
       },
     },
-    string7: {
-      title: "正则表达式",
+    string11_2: {
+      title: "",
       type: "string",
-      pattern: "^[abc]+$",
+      maxLength: 30,
       ui: {
-        placeholder: "^[abc]+$",
-        errors: {
-          pattern: "数据格式不正确",
+        placeholder: "Please input",
+        type: "textarea",
+        showWordLimit: true,
+        grid: {
+          span: 12,
         },
       },
     },
@@ -164,7 +279,6 @@ const meta = {
   required: ["string1"],
 };
 let formData: any = ref({});
-let visibilityToggle = ref(false);
 
 function clear() {
   formData.value = null;
@@ -175,12 +289,6 @@ async function submit() {
   if (valid) {
     console.log(toRaw(unref(formData)));
   }
-}
-
-function string6SuffixClick() {
-  visibilityToggle.value = !visibilityToggle.value;
-  const context = form.value!.getContext<StringMeta>("/string6");
-  context.ui.value.type = visibilityToggle.value ? "text" : "password";
 }
 </script>
 

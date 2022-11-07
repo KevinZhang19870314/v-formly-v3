@@ -2,9 +2,9 @@
   <v-wrapper :id="id" :meta="meta">
     <el-input
       v-bind="bindings"
-      :defaultValue="meta.defaultValue"
       :disabled="meta.readOnly"
-      :maxLength="meta.maxLength"
+      :minlength="meta.minLength"
+      :maxlength="meta.maxLength"
       v-model="value"
       @change="change"
     >
@@ -16,12 +16,12 @@
         <slot :name="ui.slotNameOfSuffix"></slot>
       </template>
 
-      <!-- addonBefore & addonAfter -->
-      <template v-if="ui.slotNameOfAddonBefore" v-slot:addonBefore>
-        <slot :name="ui.slotNameOfAddonBefore"></slot>
+      <!-- prepend & append -->
+      <template v-if="ui.slotNameOfPrepend" v-slot:prepend>
+        <slot :name="ui.slotNameOfPrepend"></slot>
       </template>
-      <template v-if="ui.slotNameOfAddonAfter" v-slot:addonAfter>
-        <slot :name="ui.slotNameOfAddonAfter"></slot>
+      <template v-if="ui.slotNameOfAppend" v-slot:append>
+        <slot :name="ui.slotNameOfAppend"></slot>
       </template>
     </el-input>
   </v-wrapper>
@@ -34,11 +34,10 @@ import {
   computed,
   getCurrentInstance,
   inject,
-  unref,
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
-import { Input } from "ant-design-vue";
+import { ElInput } from "element-plus";
 import { useBindings } from "@/core/hooks/bindings";
 import type { Global } from "@/core/utils/global";
 
@@ -48,7 +47,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(Input.props), context.ui);
+const { bindings } = useBindings(Object.keys(ElInput.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};
@@ -63,9 +62,9 @@ const value = computed({
   },
 });
 
-function change() {
+function change(value: any) {
   if (ui.value.change) {
-    ui.value.change(unref(value));
+    ui.value.change(value);
   }
 }
 </script>
