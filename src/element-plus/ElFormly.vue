@@ -3,7 +3,7 @@
     <el-form
       class="v"
       :inline="isInline"
-      :label-width="isInline ? null : '20.83333333%'"
+      :label-width="isInline ? null : '120px'"
       :label-position="layout === 'vertical' ? 'top' : 'right'"
       :class="{
         v__inline: isInline,

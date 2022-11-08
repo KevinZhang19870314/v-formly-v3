@@ -1,20 +1,22 @@
 <template>
-  <el-form-item :required="ui.showRequired" :error="error">
-    <template #label>
-      <span class="v__label-text">{{ meta.title }}</span>
+  <el-form-item
+    :required="ui.showRequired"
+    :error="error"
+    :size="ui.size"
+    :class="[{ 'no-label': !meta.title }]"
+  >
+    <template #label v-if="meta.title">
+      <span class="v__label-text" :title="meta.title">{{ meta.title }}</span>
       <span v-if="ui.optional || oh" class="v__optional">
         {{ ui.optional }}
         <el-tooltip
-          v-if="oh"
-          :title="oh.text"
-          :placement="oh.placement"
-          :trigger="oh.trigger"
-          :overlayStyle="oh.overlayStyle"
-          :mouseEnterDelay="oh.mouseEnterDelay"
-          :mouseLeaveDelay="oh.mouseLeaveDelay"
-          :overlayClassName="oh.overlayClassName"
+          v-if="oh.icon"
+          v-bind="oh"
+          :placement="oh.placement || 'top'"
         >
-          <component v-if="oh.icon" :is="globalProperties.$antIcons[oh.icon]" />
+          <el-icon>
+            <component :is="globalProperties.$elIcons[oh.icon]" />
+          </el-icon>
         </el-tooltip>
       </span>
     </template>
@@ -55,18 +57,6 @@ const oh = computed(() => {
   return Object.assign({}, state.ui, props.meta.ui).optionalHelp;
 });
 
-const labelCol = computed(() => {
-  return state.layout.value === "vertical" || state.layout.value === "inline"
-    ? undefined
-    : { span: ui.value.spanLabel };
-});
-
-const wrapperCol = computed(() => {
-  return state.layout.value === "vertical" || state.layout.value === "inline"
-    ? undefined
-    : { span: ui.value.spanControl, offset: ui.value.offsetControl || 0 };
-});
-
 const error = computed({
   get() {
     return context.error.value;
@@ -95,4 +85,26 @@ function formErrorChangeCallback(err: any) {
 export default { name: "v-wrapper" };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+// 去除 label 占位（在 label 为空值的情况下）
+.el-form-item.no-label {
+  :deep(.el-form-item__content) {
+    margin-left: 0 !important;
+  }
+}
+
+.v__label-text {
+  white-space: nowrap;
+}
+
+.v__optional {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  .el-icon {
+    margin-left: 2px;
+    font-size: calc(var(--el-form-label-font-size) + 2px);
+  }
+}
+</style>
