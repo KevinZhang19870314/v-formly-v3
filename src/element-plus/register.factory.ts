@@ -8,7 +8,6 @@ import VTime from "./components/Time.vue";
 import VNumber from "./components/Number.vue";
 // import VArray from "./components/Array.vue";
 // import VText from "./components/Text.vue";
-// import VTextarea from "./components/Textarea.vue";
 // import VSlider from "./components/Slider.vue";
 // import VRate from "./components/Rate.vue";
 // import VTag from "./components/Tag.vue";
@@ -40,7 +39,6 @@ function registerBuildInComponents(app: App) {
   registerFormComponent(app, "v-time", VTime);
   //   registerFormComponent(app, "v-text", VText);
   registerFormComponent(app, "v-radio", VRadio);
-  //   registerFormComponent(app, "v-textarea", VTextarea);
   //   registerFormComponent(app, "v-slider", VSlider);
   //   registerFormComponent(app, "v-rate", VRate);
   //   registerFormComponent(app, "v-tag", VTag);

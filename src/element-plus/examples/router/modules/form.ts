@@ -10,7 +10,6 @@ import DateView from "@/element-plus/examples/views/DateView.vue";
 import TimeView from "@/element-plus/examples/views/TimeView.vue";
 import NumberView from "@/element-plus/examples/views/NumberView.vue";
 import TextView from "@/element-plus/examples/views/TextView.vue";
-import TextareaView from "@/element-plus/examples/views/TextareaView.vue";
 import RateView from "@/element-plus/examples/views/RateView.vue";
 import ObjectView from "@/element-plus/examples/views/ObjectView.vue";
 import RadioView from "@/element-plus/examples/views/RadioView.vue";
@@ -92,12 +91,6 @@ const route: RouteRecordRaw = {
       name: "radio",
       component: RadioView,
       meta: { title: "Radio 单选框" },
-    },
-    {
-      path: "textarea",
-      name: "textarea",
-      component: TextareaView,
-      meta: { title: "Textarea 多行文本框" },
     },
     {
       path: "slider",
