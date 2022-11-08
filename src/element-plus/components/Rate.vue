@@ -1,17 +1,12 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-rate
+    <el-rate
       v-bind="bindings"
       :disabled="meta.readOnly"
-      :count="meta.maximum || 5"
-      v-model:value="value"
+      :max="meta.maximum || 5"
+      v-model="value"
       @change="change"
-      @hoverChange="hoverChange"
-    >
-      <template v-if="ui.slotNameOfCharacter" #character>
-        <slot :name="ui.slotNameOfCharacter"></slot>
-      </template>
-    </a-rate>
+    />
   </v-wrapper>
 </template>
 
@@ -22,7 +17,7 @@ import type { ComponentInternalInstance } from "vue";
 import { computed, getCurrentInstance, inject, unref } from "vue";
 import VWrapper from "./Wrapper.vue";
 import { NumberMeta } from "@/core/meta/number.meta";
-import { Rate } from "ant-design-vue";
+import { ElRate } from "element-plus";
 import { useBindings } from "@/core/hooks/bindings";
 
 const props = defineProps<{ id: string; meta: Meta }>();
@@ -30,7 +25,7 @@ const state: Global = inject("state")!;
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new NumberMeta(appContext, state, props.id, props.meta);
-const { bindings } = useBindings(Object.keys(Rate.props), context.ui);
+const { bindings } = useBindings(Object.keys(ElRate.props), context.ui);
 
 const ui = computed(() => context.ui.value || {});
 const value = computed({
@@ -44,8 +39,5 @@ const value = computed({
 
 function change(value: number) {
   unref(ui).change?.(value);
-}
-function hoverChange(value: number) {
-  unref(ui).hoverChange?.(value);
 }
 </script>

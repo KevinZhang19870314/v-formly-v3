@@ -1,179 +1,163 @@
 <template>
   <div>
-    <v-formly-v3 ref="form" v-model="formData" :meta="meta">
-      <template #slotNameOfMark="{ label, point }">
-        <template v-if="point === 100">
-          <strong>{{ label }}</strong>
-        </template>
-        <template v-else>{{ label }}</template>
-      </template>
-    </v-formly-v3>
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta" />
     <div class="btns">
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, toRaw, unref, h } from "vue";
-import type VFormly from "@/Formly.vue";
+import { reactive, ref, toRaw, unref } from "vue";
+import type { CSSProperties } from "vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const formData = ref({});
-const marks = ref<Record<number, any>>({
+
+interface Mark {
+  style: CSSProperties;
+  label: string;
+}
+
+type Marks = Record<number, Mark | string>;
+
+const marks = reactive<Marks>({
   0: "0°C",
-  26: "26°C",
+  8: "8°C",
   37: "37°C",
-  100: () => ({
+  50: {
     style: {
-      color: "#f50",
+      color: "#1989FA",
     },
-    label: h("strong", null, "100°C"),
-  }),
+    label: "50%",
+  },
 });
 
 const meta = {
   properties: {
-    count: {
+    count1_1: {
       type: "number",
-      title: "数量(初始值)",
+      title: "Default value",
       ui: {
         component: "slider",
-        change: (val: number) => console.log("change", val),
-        afterChange: (val: number) => console.log("afterChange", val),
+        change: (val: any) => console.log("change", val),
+        input: (val: any) => console.log("input", val),
       },
-      default: 10,
     },
-    count1: {
+    count1_2: {
       type: "number",
-      title: "禁用状态",
+      title: "Customized initial value",
+      default: 10,
+      ui: {
+        component: "slider",
+      },
+    },
+    count1_3: {
+      type: "number",
+      title: "Hide Tooltip",
+      ui: {
+        component: "slider",
+        showTooltip: false,
+      },
+    },
+    count1_4: {
+      type: "number",
+      title: "Format Tooltip",
+      ui: {
+        component: "slider",
+        formatTooltip: (val: number) => `${val}%`,
+      },
+    },
+    count1_5: {
+      type: "number",
+      title: "Disabled",
       readOnly: true,
+      default: 50,
       ui: {
         component: "slider",
       },
-      default: 10,
     },
-    count2: {
+    count2_1: {
       type: "number",
-      title: "step(0.01)",
+      title: "Breakpoints not displayed",
       ui: {
         component: "slider",
       },
-      minimum: 0,
-      maximum: 1,
-      multipleOf: 0.01,
+      multipleOf: 10,
     },
-    count3: {
+    count2_2: {
       type: "number",
-      title: "tipFormatter",
+      title: "Breakpoints displayed",
       ui: {
         component: "slider",
-        tipFormatter: (val: number) => `${val}%`,
+        showStops: true,
+      },
+      multipleOf: 10,
+    },
+    count3_1: {
+      type: "number",
+      title: "带有输入框的滑块",
+      ui: {
+        component: "slider",
+        showInput: true,
+        size: "large",
+      },
+    },
+    count3_2: {
+      type: "number",
+      title: "带有输入框的滑块",
+      ui: {
+        component: "slider",
+        showInput: true,
+      },
+    },
+    count3_3: {
+      type: "number",
+      title: "带有输入框的滑块",
+      ui: {
+        component: "slider",
+        showInput: true,
+        size: "small",
       },
     },
     count4: {
       type: "number",
-      title: "隐藏 Tooltip",
+      title: "位置",
       ui: {
         component: "slider",
-        tipFormatter: null,
+        placement: "right",
       },
     },
-    count5: {
+    vertical: {
       type: "number",
-      title: "始终显示 Tooltip",
+      title: "垂直模式",
       ui: {
         component: "slider",
-        tooltipVisible: true,
+        vertical: true,
+        height: "200px",
       },
-    },
-    range: {
-      type: "number",
-      title: "范围(双滑块模式)",
-      ui: {
-        component: "slider",
-        range: true,
-      },
-      default: [10, 20],
     },
     range1: {
       type: "number",
-      title: "禁用状态(双滑块模式)",
-      readOnly: true,
+      title: "范围选择",
       ui: {
         component: "slider",
         range: true,
+        showStops: true,
       },
-      default: [10, 20],
+      maximum: 10,
+      default: [4, 8],
     },
     range2: {
       type: "number",
-      title: "marks",
-      ui: {
-        component: "slider",
-        marks: marks,
-      },
-      default: 37,
-    },
-    range3: {
-      type: "number",
-      title: "marks range",
+      title: "显示标记",
       ui: {
         component: "slider",
         range: true,
         marks: marks,
       },
-      default: [26, 37],
-    },
-    range4: {
-      type: "number",
-      title: "included=false",
-      ui: {
-        component: "slider",
-        included: false,
-        marks: marks,
-      },
-      default: 37,
-    },
-    range5: {
-      type: "number",
-      title: "marks & step",
-      ui: {
-        component: "slider",
-        marks: marks,
-      },
-      default: 0,
-      multipleOf: 10,
-    },
-    range6: {
-      type: "number",
-      title: "dots",
-      ui: {
-        component: "slider",
-        dots: true,
-      },
-      multipleOf: 10,
-      default: 40,
-    },
-    range7: {
-      type: "number",
-      title: "v-slot:mark",
-      ui: {
-        component: "slider",
-        slotNameOfMark: "slotNameOfMark",
-        marks: {
-          0: "0°C",
-          26: "26°C",
-          37: "37°C",
-          100: {
-            style: {
-              color: "#f50",
-            },
-            label: "100°C",
-          },
-        },
-      },
-      default: 37,
+      default: [30, 60],
     },
   },
 };

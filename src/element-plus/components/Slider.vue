@@ -1,21 +1,15 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-slider
+    <el-slider
       v-bind="bindings"
       :disabled="meta.readOnly"
       :min="meta.minimum || 0"
       :max="meta.maximum || 100"
       :step="meta.multipleOf || 1"
-      :tipFormatter="hiddenTooltip ? null : tipFormatter"
-      v-model:value="value"
+      v-model="value"
+      @input="input"
       @change="change"
-      @afterChange="afterChange"
-    >
-      <!-- mark -->
-      <template v-if="ui.slotNameOfMark" #mark="slotProps">
-        <slot :name="ui.slotNameOfMark" v-bind="slotProps"></slot>
-      </template>
-    </a-slider>
+    />
   </v-wrapper>
 </template>
 
@@ -26,7 +20,7 @@ import type { ComponentInternalInstance } from "vue";
 import { computed, getCurrentInstance, inject, unref } from "vue";
 import VWrapper from "./Wrapper.vue";
 import { NumberMeta } from "@/core/meta/number.meta";
-import { Slider } from "ant-design-vue";
+import { ElSlider } from "element-plus";
 import { useBindings } from "@/core/hooks/bindings";
 import { isNumber } from "@/core/utils/utils";
 
@@ -35,7 +29,7 @@ const state: Global = inject("state")!;
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new NumberMeta(appContext, state, props.id, props.meta);
-const { bindings } = useBindings(Object.keys(Slider.props), context.ui);
+const { bindings } = useBindings(Object.keys(ElSlider.props), context.ui);
 
 const ui = computed(() => context.ui.value || {});
 const value = computed({
@@ -50,16 +44,11 @@ const value = computed({
     }
   },
 });
-const hiddenTooltip = computed(() => ui.value.tipFormatter === null);
 
-function tipFormatter(value: number) {
-  const { tipFormatter } = ui.value;
-  return tipFormatter ? tipFormatter(value) : `${value}`;
+function input(value: any) {
+  unref(ui).input?.(value);
 }
-function change(value: number) {
+function change(value: any) {
   unref(ui).change?.(value);
-}
-function afterChange(value: number) {
-  unref(ui).afterChange?.(value);
 }
 </script>

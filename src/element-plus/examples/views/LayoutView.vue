@@ -27,19 +27,18 @@ const meta = {
         },
       },
     },
-    desc: {
-      title: "描述",
+    region: {
+      title: "地区",
       type: "string",
-      default: "Base on technical, but not limited on it!",
-      ui: {
-        change: (val: any) => {
-          console.log("val = ", val);
-        },
-      },
+      default: "China",
     },
     enable: {
       title: "启用",
       type: "boolean",
+    },
+    desc: {
+      type: "string",
+      default: "Base on technical, but not limited on it!",
     },
   },
   required: ["name"],

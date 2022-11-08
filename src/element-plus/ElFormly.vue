@@ -17,7 +17,7 @@
       </v-formly-v3-item>
       <!-- submit button -->
       <template v-if="button === 'default'">
-        <el-form-item :wrapperCol="wrapperCol" class="v__default-submit-button">
+        <el-form-item class="v__default-submit-button">
           <el-space>
             <el-button type="danger" @click="clearForm"> 重置 </el-button>
             <el-button type="primary" @click="submitForm" :loading="loading">
@@ -91,12 +91,6 @@ const emitter = useEventBus(appContext);
 onCreated();
 
 const isInline = computed(() => props.layout === "inline");
-const wrapperCol = computed(() => {
-  const ui = Object.assign({}, globalInstance.ui);
-  return props.layout === "vertical"
-    ? null
-    : { span: ui.spanControl, offset: ui.spanLabel };
-});
 
 watch(
   () => props.modelValue,

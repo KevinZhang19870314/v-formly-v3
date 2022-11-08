@@ -8,20 +8,19 @@
       </template>
     </v-formly-v3>
     <div class="btns">
-      <a-button type="primary" @click="changeText"> 设置文本 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="primary" @click="changeText"> 设置文本 </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type VFormly from "@/Formly.vue";
 import { ref, toRaw, unref } from "vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<InstanceType<typeof VFormly> | null>(null);
 const formData = ref<any>({});
-
-const id1Text = ref("包含 title 和 description 的文本");
+const id1Text = ref("包含 title 和 text 的文本");
 
 const meta = {
   properties: {
@@ -34,7 +33,6 @@ const meta = {
     },
     id1: {
       title: "title",
-      description: "description",
       type: "null",
       ui: {
         component: "text",
@@ -46,7 +44,6 @@ const meta = {
       ui: {
         component: "text",
         text: () => "() => string 类型的 text", // () => string
-        offsetControl: 5,
       },
     },
     id3: {
@@ -55,7 +52,6 @@ const meta = {
         component: "text",
         html: `<h1 style="color: red">HTML 类型的 text</h1>`, // v-html
         text: "default text",
-        offsetControl: 5,
       },
     },
     id4: {
@@ -65,30 +61,6 @@ const meta = {
         slotNameOfDefault: "testSlot", // slot
         html: `<h1 style="color: red">I am Text</h1>`,
         text: "default text",
-        offsetControl: 5,
-      },
-    },
-    id5: {
-      type: "null",
-      ui: {
-        component: "text",
-        text: "没有 title 和 offsetControl",
-      },
-    },
-    id6: {
-      type: "null",
-      ui: {
-        component: "text",
-        text: "没有 title, offsetControl = 5",
-        offsetControl: 5,
-      },
-    },
-    id7: {
-      type: "null",
-      ui: {
-        component: "text",
-        text: "没有 title, offsetControl = 4",
-        offsetControl: 4,
       },
     },
     id8: {

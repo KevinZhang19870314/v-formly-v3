@@ -2,16 +2,16 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta" />
     <div class="btns">
-      <a-button type="primary" @click="changeEnum"> 设置 enum </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="primary" @click="changeEnum"> 设置 enum </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
-import type { NumberMeta } from "@/meta/number.meta";
+import type VFormly from "@/element-plus/ElFormly.vue";
+import type { NumberMeta } from "@/core/meta/number.meta";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const formData = ref({});
