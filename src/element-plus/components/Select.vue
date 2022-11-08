@@ -1,59 +1,34 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-select
-      v-model:value="value"
+    <el-select
+      v-model="value"
       v-bind="bindings"
       :disabled="meta.readOnly"
       @blur="blur"
-      @deselect="deselect"
       @focus="focus"
-      @inputKeydown="inputKeyDown"
-      @mouseenter="mouseenter"
-      @mouseleave="mouseleave"
-      @popupScroll="popupScroll"
-      @search="search"
-      @select="select"
-      @dropdownVisibleChange="dropdownVisibleChange"
+      @clear="clear"
+      @removeTag="removeTag"
+      @visibleChange="visibleChange"
       @change="change"
     >
-      <slot
-        v-if="ui.slotNameOfSelectDefault"
-        :name="ui.slotNameOfSelectDefault"
-      ></slot>
-      <template v-if="ui.slotNameOfClearIcon" v-slot:clearIcon>
-        <slot :name="ui.slotNameOfClearIcon"></slot>
+      <el-option
+        v-for="(item, index) in ui.options"
+        :key="index"
+        :label="item.label"
+        :value="item.value"
+        :disabled="item.disabled"
+      />
+
+      <template v-if="ui.slotNameOfSelectDefault" v-slot:default>
+        <slot :name="ui.slotNameOfSelectDefault"></slot>
       </template>
-      <template v-if="ui.slotNameOfDropdownRender" v-slot:dropdownRender>
-        <slot :name="ui.slotNameOfDropdownRender"></slot>
+      <template v-if="ui.slotNameOfPrefix" v-slot:prefix>
+        <slot :name="ui.slotNameOfPrefix"></slot>
       </template>
-      <template v-if="ui.slotNameOfMaxTagPlaceholder" v-slot:maxTagPlaceholder>
-        <slot :name="ui.slotNameOfMaxTagPlaceholder"></slot>
+      <template v-if="ui.slotNameOfEmpty" v-slot:empty>
+        <slot :name="ui.slotNameOfEmpty"></slot>
       </template>
-      <template
-        v-if="ui.slotNameOfMenuItemSelectedIcon"
-        v-slot:menuItemSelectedIcon
-      >
-        <slot :name="ui.slotNameOfMenuItemSelectedIcon"></slot>
-      </template>
-      <template v-if="ui.slotNameOfNotFoundContent" v-slot:notFoundContent>
-        <slot :name="ui.slotNameOfNotFoundContent"></slot>
-      </template>
-      <template v-if="ui.slotNameOfOption" v-slot:option="item">
-        <slot :name="ui.slotNameOfOption" v-bind="item"></slot>
-      </template>
-      <template v-if="ui.slotNameOfPlaceholder" v-slot:placeholder>
-        <slot :name="ui.slotNameOfPlaceholder"></slot>
-      </template>
-      <template v-if="ui.slotNameOfRemoveIcon" v-slot:removeIcon>
-        <slot :name="ui.slotNameOfRemoveIcon"></slot>
-      </template>
-      <template v-if="ui.slotNameOfSuffixIcon" v-slot:suffixIcon>
-        <slot :name="ui.slotNameOfSuffixIcon"></slot>
-      </template>
-      <template v-if="ui.slotNameOfTagRender" v-slot:tagRender>
-        <slot :name="ui.slotNameOfTagRender"></slot>
-      </template>
-    </a-select>
+    </el-select>
   </v-wrapper>
 </template>
 
@@ -68,7 +43,7 @@ import {
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
-import { Select } from "ant-design-vue";
+import { ElSelect } from "element-plus";
 import { useBindings } from "@/core/hooks/bindings";
 import type { Global } from "@/core/utils/global";
 
@@ -78,7 +53,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(Select.props), context.ui);
+const { bindings } = useBindings(Object.keys(ElSelect.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};
@@ -93,48 +68,28 @@ const value = computed({
   },
 });
 
-function change(value: any, option: any) {
-  if (unref(ui).change) unref(ui).change(value, option);
+function change(value: any) {
+  if (unref(ui).change) unref(ui).change(value);
 }
 
 function blur() {
   if (unref(ui).blur) unref(ui).blur();
 }
 
-function deselect(value: any, option: any) {
-  if (unref(ui).deselect) unref(ui).deselect(value, option);
-}
-
-function dropdownVisibleChange(open: any) {
-  if (unref(ui).dropdownVisibleChange) unref(ui).dropdownVisibleChange(open);
+function visibleChange(open: any) {
+  if (unref(ui).visibleChange) unref(ui).visibleChange(open);
 }
 
 function focus() {
   if (unref(ui).focus) unref(ui).focus();
 }
 
-function inputKeyDown() {
-  if (unref(ui).inputKeyDown) unref(ui).inputKeyDown();
+function clear() {
+  if (unref(ui).clear) unref(ui).clear();
 }
 
-function mouseenter() {
-  if (unref(ui).mouseenter) unref(ui).mouseenter();
-}
-
-function mouseleave() {
-  if (unref(ui).mouseleave) unref(ui).mouseleave();
-}
-
-function popupScroll() {
-  if (unref(ui).popupScroll) unref(ui).popupScroll();
-}
-
-function search(value: any) {
-  if (unref(ui).search) unref(ui).search(value);
-}
-
-function select(value: any, option: any) {
-  if (unref(ui).select) unref(ui).select(value, option);
+function removeTag(value: any) {
+  if (unref(ui).select) unref(ui).removeTag(value);
 }
 </script>
 

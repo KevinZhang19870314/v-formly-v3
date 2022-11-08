@@ -13,7 +13,7 @@ import VNumber from "./components/Number.vue";
 // import VTag from "./components/Tag.vue";
 // import VCascader from "./components/Cascader.vue";
 import VRadio from "./components/Radio.vue";
-// import VSelect from "./components/Select.vue";
+import VSelect from "./components/Select.vue";
 
 import type { App } from "vue";
 
@@ -42,7 +42,7 @@ function registerBuildInComponents(app: App) {
   //   registerFormComponent(app, "v-slider", VSlider);
   //   registerFormComponent(app, "v-rate", VRate);
   //   registerFormComponent(app, "v-tag", VTag);
-  //   registerFormComponent(app, "v-select", VSelect);
+  registerFormComponent(app, "v-select", VSelect);
   //   registerFormComponent(app, "v-cascader", VCascader);
 }
 
