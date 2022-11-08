@@ -2,13 +2,13 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <template v-for="tag in tags" :key="tag.value">
-      <a-checkable-tag
+      <el-check-tag
         :class="{ disabled: tag.disabled }"
         :checked="tag.checked"
         @change="(checked: boolean) => handleChange(tag, checked)"
       >
         <span>{{ tag.label }}</span>
-      </a-checkable-tag>
+      </el-check-tag>
     </template>
   </v-wrapper>
 </template>
@@ -80,7 +80,10 @@ function updateTags(val: Tag[] | string[]) {
 }
 </script>
 <style lang="less" scoped>
-.ant-tag-checkable.disabled {
+.el-check-tag.disabled {
   pointer-events: none;
+}
+.el-check-tag + .el-check-tag {
+  margin-left: 8px;
 }
 </style>

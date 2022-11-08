@@ -24,10 +24,6 @@
     :deep(.btns) {
       display: flex;
       justify-content: flex-end;
-
-      .ant-btn {
-        margin-right: 8px;
-      }
     }
   }
 }

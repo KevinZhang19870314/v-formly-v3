@@ -1,13 +1,13 @@
 <template>
   <div>
-    <a-divider>button = 'default' 显示默认的提交按钮</a-divider>
+    <el-divider>button = 'default' 显示默认的提交按钮</el-divider>
     <v-formly-v3
       v-model="formData1"
       :meta="meta"
       :button="'default'"
       @form-submit="submit"
     />
-    <a-divider>button = 'custom' 自定义提交按钮，传入 default slot</a-divider>
+    <el-divider>button = 'custom' 自定义提交按钮，传入 default slot</el-divider>
     <v-formly-v3
       v-model="formData2"
       :meta="meta"
@@ -16,24 +16,24 @@
     >
       <template v-slot:button="{ loading, clearForm, submitForm }">
         <div class="btns">
-          <a-button type="danger" @click="clearForm"> 自定义重置 </a-button>
-          <a-button type="primary" @click="submitForm" :loading="loading">
+          <el-button type="danger" @click="clearForm"> 自定义重置 </el-button>
+          <el-button type="primary" @click="submitForm" :loading="loading">
             自定义提交
-          </a-button>
+          </el-button>
         </div>
       </template>
     </v-formly-v3>
-    <a-divider>button = undefined 不需要提交按钮，完全由外部控制</a-divider>
+    <el-divider>button = undefined 不需要提交按钮，完全由外部控制</el-divider>
     <v-formly-v3 ref="form" v-model="formData3" :meta="meta" />
     <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submitAsync"> 提交 </a-button>
+      <el-button type="danger" @click="clear"> 重置 </el-button>
+      <el-button type="primary" @click="submitAsync"> 提交 </el-button>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const formData1 = ref({});

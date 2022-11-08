@@ -32,6 +32,13 @@ const meta = {
       title: "描述",
       type: "string",
       default: "Base on technical, but not limited on it!",
+      ui: {
+        optional: "(选填)",
+        optionalHelp: {
+          icon: "QuestionFilled",
+          content: "选填帮助",
+        },
+      },
     },
     enable: {
       title: "启用",
