@@ -1,93 +1,111 @@
 <template>
   <div>
-    <v-formly-v3
-      ref="form"
-      v-model="formData"
-      :meta="meta"
-      :layout="'horizontal'"
-    >
-      <template #addon-before>
-        <a-select v-model:value="addonBeforeValue" style="width: 60px">
-          <a-select-option value="add">+</a-select-option>
-          <a-select-option value="minus">-</a-select-option>
-        </a-select>
-      </template>
-      <template #addon-after>
-        <a-select v-model:value="addonAfterValue" style="width: 60px">
-          <a-select-option value="USD">$</a-select-option>
-          <a-select-option value="EUR">€</a-select-option>
-          <a-select-option value="GBP">£</a-select-option>
-          <a-select-option value="CNY">¥</a-select-option>
-        </a-select>
-      </template>
-    </v-formly-v3>
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta"> </v-formly-v3>
     <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="danger" @click="clear"> 重置 </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const meta = {
   type: "object",
   properties: {
-    price: {
+    number1: {
       type: "number",
-      title: "价格(10<x<100)",
-      minimum: 10,
-      maximum: 100,
-      multipleOf: 2,
+      title: "基础用法",
+      minimum: 1,
+      maximum: 10,
+      default: 1,
       ui: {
         showRequired: true,
+        change: (curVal: any, oldVal: any) => console.log(curVal, oldVal),
       },
     },
-    grade: {
-      type: "integer",
-      title: "年级",
+    number2: {
+      type: "number",
+      title: "禁用状态",
+      default: 1,
+      readOnly: true,
+    },
+    number3: {
+      type: "number",
+      title: "步进",
+      default: 5,
+      ui: {
+        step: 2,
+      },
+    },
+    number4: {
+      type: "number",
+      title: "严格步进",
+      default: 2,
+      ui: {
+        step: 2,
+        stepStrictly: true,
+      },
+    },
+    number5: {
+      type: "number",
+      title: "精度",
+      default: 1,
+      ui: {
+        step: 0.1,
+        maximum: 10,
+        precision: 2,
+      },
+    },
+    number6_1: {
+      type: "number",
+      title: "不同的输入框尺寸",
+      default: 1,
+      ui: {
+        size: "large",
+        grid: {
+          span: 8,
+        },
+      },
+    },
+    number6_2: {
+      type: "number",
+      title: "不同的输入框尺寸",
+      default: 2,
+      ui: {
+        grid: {
+          span: 8,
+        },
+      },
+    },
+    number6_3: {
+      type: "number",
+      title: "不同的输入框尺寸",
       default: 3,
-    },
-    salary: {
-      type: "number",
-      title: "薪资",
-      default: 88888.88,
       ui: {
-        formatter: (value: any) =>
-          `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        parser: (value: any) => value.replace(/\$\s?|(,*)/g, ""),
+        size: "small",
+        grid: {
+          span: 8,
+        },
       },
     },
-    increase: {
+    number7: {
       type: "number",
-      title: "薪资涨幅",
-      default: 30,
-      ui: { unit: "%", prefix: "涨" },
-    },
-    hideStep: {
-      type: "number",
-      title: "隐藏step",
-      default: 10000,
-      ui: { hideStep: true },
-    },
-    addon: {
-      type: "number",
-      title: "前置/后置标签",
-      default: 10000,
+      title: "按钮位置",
+      default: 1,
+      minimum: 1,
+      maximum: 10,
       ui: {
-        slotNameOfAddonAfter: "addon-after",
-        slotNameOfAddonBefore: "addon-before",
+        controlsPosition: "right",
       },
     },
   },
-  required: ["price"],
+  required: ["number1"],
 };
 let formData: any = ref({});
-let addonBeforeValue = ref("add");
-let addonAfterValue = ref("USD");
 
 function clear() {
   formData.value = null;
