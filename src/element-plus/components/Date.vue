@@ -1,7 +1,6 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
     <el-date-picker
-      class="v__date"
       v-model="value"
       v-bind="bindings"
       :disabled="meta.readOnly"
@@ -11,8 +10,9 @@
         <slot :name="ui.slotNameOfRangeSeparator"></slot>
       </template>
 
-      <template v-if="ui.slotNameOfDefault" v-slot:default>
-        <slot :name="ui.slotNameOfDefault"></slot>
+      <!-- TODO: 这个default插槽不起作用？ -->
+      <template v-if="ui.slotNameOfDefault" v-slot:default="cell">
+        <slot :name="ui.slotNameOfDefault" v-bind="cell"></slot>
       </template>
     </el-date-picker>
   </v-wrapper>

@@ -45,7 +45,8 @@
     "@element-plus/icons-vue": "^2.0.10",
     "ajv": "^8.11.0",
     "ant-design-vue": "^3.2.13",
-    "element-plus": "^2.2.19",
+    "dayjs": "^1.11.6",
+    "element-plus": "^2.2.20",
     "mitt": "^3.0.0",
     "vue": "^3.2.38"
   },

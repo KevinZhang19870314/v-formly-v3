@@ -6,7 +6,6 @@ import "@/style/index.less";
 
 // ant-design-vue import
 import Antd from "ant-design-vue";
-import "ant-design-vue/dist/antd.css";
 import * as antIcons from "@ant-design/icons-vue";
 import { setupStore as setupStoreAntDv } from "@/ant-design-vue/examples/store";
 import { setupRouter as setupRouterAntDv } from "@/ant-design-vue/examples/router";
@@ -16,7 +15,6 @@ import VChkInput from "@/ant-design-vue/examples/components/chk-input/ChkInput.v
 
 // element-plus import
 import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
 import * as elIcons from "@element-plus/icons-vue";
 import { setupStore as setupStoreElementPlus } from "@/element-plus/examples/store";
 import { setupRouter as setupRouterElementPlus } from "@/element-plus/examples/router";
@@ -31,6 +29,7 @@ const lib: string = "element-plus";
 
 // ant-design-vue
 if (lib === "ant-design-vue") {
+  await import("ant-design-vue/dist/antd.css");
   app.use(Antd);
   Object.keys(antIcons).forEach((key) => {
     app.component(key, (antIcons as any)[key]);
@@ -38,7 +37,6 @@ if (lib === "ant-design-vue") {
   app.config.globalProperties.$antIcons = antIcons;
   setupStoreAntDv(app);
   setupRouterAntDv(app);
-
   app.use(VFormly, {
     lib: lib,
     ui: {
@@ -47,10 +45,10 @@ if (lib === "ant-design-vue") {
       },
     },
   });
-
   registerFormComponent(app, "v-password", VPassword);
   registerFormComponent(app, "v-chkinput", VChkInput);
 } else if (lib === "element-plus") {
+  await import("element-plus/dist/index.css");
   app.use(ElementPlus);
   for (const [key, component] of Object.entries(elIcons)) {
     app.component(key, component);

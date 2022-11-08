@@ -3,7 +3,7 @@ import VString from "./components/String.vue";
 import VBoolean from "./components/Boolean.vue";
 import VAutoComplete from "./components/AutoComplete.vue";
 import VCheckbox from "./components/Checkbox.vue";
-// import VDate from "./components/Date.vue";
+import VDate from "./components/Date.vue";
 // import VTime from "./components/Time.vue";
 // import VNumber from "./components/Number.vue";
 // import VArray from "./components/Array.vue";
@@ -35,7 +35,7 @@ function registerBuildInComponents(app: App) {
   //   registerFormComponent(app, "v-array", VArray);
   registerFormComponent(app, "v-autocomplete", VAutoComplete);
   registerFormComponent(app, "v-checkbox", VCheckbox);
-  //   registerFormComponent(app, "v-date", VDate);
+  registerFormComponent(app, "v-date", VDate);
   //   registerFormComponent(app, "v-number", VNumber);
   //   registerFormComponent(app, "v-integer", VNumber);
   //   registerFormComponent(app, "v-time", VTime);
