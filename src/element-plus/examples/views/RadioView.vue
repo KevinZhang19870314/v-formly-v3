@@ -2,80 +2,78 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta"> </v-formly-v3>
     <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="danger" @click="clear"> 重置 </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const meta = {
   type: "object",
   properties: {
-    single: {
-      title: "基本",
+    radio1: {
+      title: "基础用法",
       type: "string",
       ui: {
-        showRequired: true,
         component: "radio",
-        options: ["同意"],
+        options: [{ label: "Option 1" }, { label: "Option 2" }],
       },
     },
-    multiple: {
-      title: "规格",
+    radio2: {
+      title: "禁用状态",
       type: "string",
-      default: "中",
+      readOnly: true,
+      default: "Option 2",
       ui: {
         component: "radio",
-        options: ["大", "中", "小"],
+        options: [{ label: "Option 1" }, { label: "Option 2" }],
       },
     },
-    buttonStyle: {
-      title: "按钮样式",
+    radio3: {
+      title: "单选框组",
       type: "string",
+      default: 3,
       ui: {
         component: "radio",
         options: [
-          { label: "北京", value: "北京" },
-          { label: "上海", value: "上海" },
-          { label: "深圳", value: "深圳", disabled: true },
-          { label: "广州", value: "广州" },
+          { text: "Option 1", label: 3 },
+          { text: "Option 2", label: 6 },
+          { text: "Option 3", label: 9 },
         ],
-        optionType: "button",
-        buttonStyle: "outline",
       },
     },
-    buttonStyleSolid: {
+    radio4: {
       title: "按钮样式",
       type: "string",
-      default: "上海",
+      default: "New York",
       ui: {
         component: "radio",
+        button: true,
         options: [
-          { label: "北京", value: "北京" },
-          { label: "上海", value: "上海" },
-          { label: "深圳", value: "深圳", disabled: true },
-          { label: "广州", value: "广州" },
+          { label: "New York" },
+          { label: "Washington" },
+          { label: "Los Angeles" },
+          { label: "Chicago" },
         ],
-        optionType: "button",
-        buttonStyle: "solid",
       },
     },
-    vertical: {
-      title: "竖向排列",
+    radio5: {
+      title: "带有边框",
       type: "string",
+      default: "Option 1",
       ui: {
         component: "radio",
-        options: ["大", "中", "小"],
-        direction: "vertical",
+        border: true,
+        options: [{ label: "Option 1" }, { label: "Option 2" }],
       },
     },
   },
-  required: ["single"],
+  required: [""],
 };
 let formData: any = ref({});
 
