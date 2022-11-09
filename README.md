@@ -29,6 +29,10 @@
 
 ### 安装
 
+**推荐使用 [vite cli](https://cn.vitejs.dev/) 搭建项目**
+
+搭建完成后:
+
 使用`yarn`安装`v-formly-v3`：
 
 ```sh
