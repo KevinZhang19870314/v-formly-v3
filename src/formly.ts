@@ -6,7 +6,7 @@ import elformly from "./element-plus/el-formly";
 const install = function (app: App, options: any) {
   app.config.globalProperties.emitter = mitt();
 
-  if (!options.lib || options.lib === "antDv") {
+  if (!options.lib || options.lib === "antdv") {
     aformly.installFormly(app);
   } else if (options.lib === "element") {
     elformly.installFormly(app);

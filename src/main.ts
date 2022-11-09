@@ -26,7 +26,7 @@ const app = createApp(App);
 app.config.globalProperties.emitter = mitt();
 
 // ---------------------设置使用库----------------
-// const lib = "antDv";
+// const lib = "antdv";
 const lib: string = "element";
 // ---------------------设置使用库----------------
 

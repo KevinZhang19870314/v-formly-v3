@@ -6,7 +6,7 @@ import "@/style/index.less";
 const install = function (app: App, options: any) {
   app.config.globalProperties.emitter = mitt();
 
-  if (!options.lib || options.lib === "antDv") {
+  if (!options.lib || options.lib === "antdv") {
     aformly.installFormly(app);
   } else {
     throw new Error("Unsupport lib");
