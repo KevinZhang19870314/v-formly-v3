@@ -26,8 +26,8 @@ const app = createApp(App);
 app.config.globalProperties.emitter = mitt();
 
 // ---------------------设置使用库----------------
-// const lib = "ant-design-vue";
-const lib: string = "element-plus";
+// const lib = "antDv";
+const lib: string = "element";
 // ---------------------设置使用库----------------
 
 // ant-design-vue
@@ -50,7 +50,7 @@ if (lib === "ant-design-vue") {
   });
   registerFormComponent(app, "v-password", VPassword);
   registerFormComponent(app, "v-chkinput", VChkInput);
-} else if (lib === "element-plus") {
+} else if (lib === "element") {
   await import("element-plus/dist/index.css");
   app.use(ElementPlus);
   for (const [key, component] of Object.entries(elIcons)) {

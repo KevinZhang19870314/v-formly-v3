@@ -1,6 +1,6 @@
 {
   "name": "v-formly-v3",
-  "version": "1.0.2-beta",
+  "version": "1.0.2-beta2",
   "private": false,
   "main": "./lib/v-formly-v3.umd.js",
   "module": "./lib/v-formly-v3.es.js",
@@ -8,6 +8,14 @@
     ".": {
       "import": "./lib/v-formly-v3.es.js",
       "require": "./lib/v-formly-v3.umd.js"
+    },
+    "./antdv": {
+      "import": "./lib/antdv/v-formly-v3-antdv.es.js",
+      "require": "./lib/antdv/v-formly-v3-antdv.umd.js"
+    },
+    "./element": {
+      "import": "./lib/element/v-formly-v3-element.es.js",
+      "require": "./lib/element/v-formly-v3-element.umd.js"
     }
   },
   "keywords": [
@@ -42,7 +50,8 @@
   },
   "author": "KevinZhang19870314",
   "license": "MIT",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@element-plus/icons-vue": "^2.0.10",
     "ajv": "^8.11.0",
@@ -50,9 +59,7 @@
     "dayjs": "^1.11.6",
     "element-plus": "^2.2.20",
     "mitt": "^3.0.0",
-    "vue": "^3.2.38"
-  },
-  "devDependencies": {
+    "vue": "^3.2.38",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/node": "^16.11.56",
     "@vitejs/plugin-vue": "^3.0.3",
