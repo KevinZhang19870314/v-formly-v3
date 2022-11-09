@@ -9,7 +9,7 @@ export default defineConfig({
     outDir: "lib/antdv",
     lib: {
       entry: path.resolve(__dirname, "src/aformly.ts"),
-      name: "v-formly-v3",
+      name: "lib",
       fileName: (format: any) => `v-formly-v3-antdv.${format}.js`,
     },
     rollupOptions: {
