@@ -1,322 +1,326 @@
 <template>
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta">
-      <template v-slot:slotNameOfDefault>
-        <span>{{ text }} <a href="#">Change city</a></span>
-      </template>
-      <template v-slot:slotNameOfSuffixIcon>
-        <smile-outlined />
-      </template>
-      <template v-slot:slotNameOfDisplayRender="{ labels, selectedOptions }">
-        <span
-          v-for="(label, index) in labels"
-          :key="selectedOptions[index].value"
-        >
-          <span v-if="index === labels.length - 1">
-            {{ label }} (
-            <a
-              @click="(e) => handleAreaClick(e, label, selectedOptions[index])"
-            >
-              {{ selectedOptions[index].code }}
-            </a>
-            )
-          </span>
-          <span v-else>{{ label }} /</span>
-        </span>
+      <template v-slot:slotNameOfDefault="{ node, data }">
+        <span>{{ data.label }}</span>
+        <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
       </template>
     </v-formly-v3>
     <div class="btns">
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
-import type { CascaderProps } from "ant-design-vue";
-
-type Tag = CascaderProps["options"];
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const formData = ref({});
-const text = ref<string>("Unselect");
-const options: Tag = [
+let id = 0;
+const options = [
   {
-    value: "zhejiang",
-    label: "Zhejiang",
+    value: "guide",
+    label: "Guide",
     children: [
       {
-        value: "hangzhou",
-        label: "Hangzhou",
+        value: "disciplines",
+        label: "Disciplines",
         children: [
           {
-            value: "xihu",
-            label: "West Lake",
-            code: 752100,
+            value: "consistency",
+            label: "Consistency",
+          },
+        ],
+      },
+      {
+        value: "navigation",
+        label: "Navigation",
+        children: [
+          {
+            value: "side nav",
+            label: "Side Navigation",
           },
         ],
       },
     ],
   },
   {
-    value: "jiangsu",
-    label: "Jiangsu",
+    value: "component",
+    label: "Component",
     children: [
       {
-        value: "nanjing",
-        label: "Nanjing",
+        value: "basic",
+        label: "Basic",
         children: [
           {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-            code: 453400,
+            value: "layout",
+            label: "Layout",
           },
         ],
+      },
+      {
+        value: "form",
+        label: "Form",
+        children: [
+          {
+            value: "radio",
+            label: "Radio",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: "resource",
+    label: "Resource",
+    children: [
+      {
+        value: "axure",
+        label: "Axure Components",
+      },
+      {
+        value: "sketch",
+        label: "Sketch Templates",
       },
     ],
   },
 ];
-const asyncOptions = ref<CascaderProps["options"]>([
+const disabledOptions = [
   {
-    value: "zhejiang",
-    label: "Zhejiang",
-    isLeaf: false,
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    isLeaf: false,
-  },
-]);
-const customOptions = [
-  {
-    code: "zhejiang",
-    name: "Zhejiang",
-    items: [
-      {
-        code: "hangzhou",
-        name: "Hangzhou",
-        items: [
-          {
-            code: "xihu",
-            name: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    code: "jiangsu",
-    name: "Jiangsu",
-    items: [
-      {
-        code: "nanjing",
-        name: "Nanjing",
-        items: [
-          {
-            code: "zhonghuamen",
-            name: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-];
-const searchOptions: Tag = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
+    value: "guide",
+    label: "Guide",
+    disabled: true,
     children: [
       {
-        value: "hangzhou",
-        label: "Hangzhou",
+        value: "disciplines",
+        label: "Disciplines",
         children: [
           {
-            value: "xihu",
-            label: "West Lake",
-          },
-          {
-            value: "xiasha",
-            label: "Xia Sha",
-            disabled: true,
+            value: "consistency",
+            label: "Consistency",
           },
         ],
       },
     ],
   },
   {
-    value: "jiangsu",
-    label: "Jiangsu",
+    value: "component",
+    label: "Component",
     children: [
       {
-        value: "nanjing",
-        label: "Nanjing",
+        value: "basic",
+        label: "Basic",
+        disabled: true,
         children: [
           {
-            value: "zhonghuamen",
-            label: "Zhong Hua men",
+            value: "layout",
+            label: "Layout",
           },
         ],
       },
     ],
   },
-];
-const moreOptions: Tag = [
   {
-    label: "Light",
-    value: "light",
-    children: new Array(20)
-      .fill(null)
-      .map((_, index) => ({ label: `Number ${index}`, value: index })),
-  },
-  {
-    label: "Bamboo",
-    value: "bamboo",
+    value: "resource",
+    label: "Resource",
     children: [
       {
-        label: "Little",
-        value: "little",
-        children: [
-          {
-            label: "Toy Fish",
-            value: "fish",
-          },
-          {
-            label: "Toy Cards",
-            value: "cards",
-          },
-          {
-            label: "Toy Bird",
-            value: "bird",
-          },
-        ],
+        value: "axure",
+        label: "Axure Components",
+        disabled: true,
+      },
+      {
+        value: "sketch",
+        label: "Sketch Templates",
       },
     ],
   },
 ];
 const meta = {
   properties: {
-    static: {
+    data1_1: {
       type: "string",
-      title: "省市区级联",
-      enum: options,
-      // readOnly: true,
-      default: ["jiangsu", "nanjing", "zhonghuamen"],
-      ui: {
-        component: "cascader",
-        placeholder: "Please select area",
-        // size: "large",
-        // allowClear: false,
-        // autoFocus: true,
-        // bordered: false,
-        // changeOnSelect: true,
-        // expandTrigger: "hover",
-        // open: true,
-        // placement: "bottomRight",
-        // dropdownClassName: "custom-popup-classname",
-        // dropdownStyle: { color: "red" },
-        // notFoundContent: "Not Found !!!",
-        // change: (value: any, option: any) =>
-        //   console.log("change", value, option),
-        // dropdownVisibleChange: (visible: boolean) =>
-        //   console.log("visible", visible),
-        // blur: (e: FocusEvent) => console.log("blur", e),
-        // focus: (e: FocusEvent) => console.log("focus", e),
-      },
-    },
-    async: {
-      type: "string",
-      title: "动态加载选项",
-      enum: unref(asyncOptions),
-      ui: {
-        component: "cascader",
-        changeOnSelect: true,
-        loadData: loadData,
-        change: (value: any, option: any) => console.log(value, option),
-      },
-    },
-    displayRender1: {
-      type: "string",
-      title: "自定义已选项(slot)",
+      title: "clicked (default)",
       enum: options,
       ui: {
         component: "cascader",
-        slotNameOfDisplayRender: "slotNameOfDisplayRender",
+        change,
+        expandChange,
+        visibleChange: (visible: boolean) => console.log("visible", visible),
+        blur: (e: FocusEvent) => console.log("blur", e),
+        focus: (e: FocusEvent) => console.log("focus", e),
       },
     },
-    displayRender2: {
+    data1_2: {
       type: "string",
-      title: "自定义已选项(function)",
+      title: "hovered",
       enum: options,
       ui: {
         component: "cascader",
-        displayRender: ({ labels }: any) => labels[labels.length - 1],
+        props: {
+          expandTrigger: "hover",
+        },
       },
     },
-    slot: {
+    data2: {
       type: "string",
-      title: "自定义显示",
+      title: "有禁用选项",
+      enum: disabledOptions,
+      ui: {
+        component: "cascader",
+      },
+    },
+    data3: {
+      type: "string",
+      title: "可清空",
+      enum: options,
+      ui: {
+        component: "cascader",
+        clearable: true,
+      },
+    },
+    data4: {
+      type: "string",
+      title: "仅显示最后一级",
+      enum: options,
+      ui: {
+        component: "cascader",
+        showAllLevels: false,
+      },
+    },
+    data5_1: {
+      type: "string",
+      title: "多选(Display all tags)",
+      enum: options,
+      ui: {
+        component: "cascader",
+        clearable: true,
+        removeTag: (data: any[]) => console.log("removeTag", data),
+        props: {
+          multiple: true,
+        },
+      },
+    },
+    data5_2: {
+      type: "string",
+      title: "Collapse tags",
+      enum: options,
+      ui: {
+        component: "cascader",
+        clearable: true,
+        collapseTags: true,
+        props: {
+          multiple: true,
+        },
+      },
+    },
+    data5_3: {
+      type: "string",
+      title: "Collapse tags tooltip",
+      enum: options,
+      ui: {
+        component: "cascader",
+        clearable: true,
+        collapseTags: true,
+        collapseTagsTooltip: true,
+        props: {
+          multiple: true,
+        },
+      },
+    },
+    data6_1: {
+      type: "string",
+      title: "选择任意一级选项",
+      enum: options,
+      ui: {
+        component: "cascader",
+        clearable: true,
+        props: {
+          checkStrictly: true,
+        },
+      },
+    },
+    data6_2: {
+      type: "string",
+      title: "选择任意一级选项(多选)",
+      enum: options,
+      ui: {
+        component: "cascader",
+        clearable: true,
+        props: {
+          multiple: true,
+          checkStrictly: true,
+        },
+      },
+    },
+    data7: {
+      type: "string",
+      title: "动态加载",
+      ui: {
+        component: "cascader",
+        clearable: true,
+        props: {
+          lazy: true,
+          lazyLoad(node: any, resolve: any) {
+            const { level } = node;
+            setTimeout(() => {
+              const nodes = Array.from({ length: level + 1 }).map((item) => ({
+                value: ++id,
+                label: `Option - ${id}`,
+                leaf: level >= 2,
+              }));
+              // Invoke `resolve` callback to return the child nodes data and indicate the loading is finished.
+              resolve(nodes);
+            }, 1000);
+          },
+        },
+      },
+    },
+    data8_1: {
+      type: "string",
+      title: "可搜索",
+      enum: options,
+      ui: {
+        component: "cascader",
+        placeholder: "Try searching Guide",
+        clearable: true,
+        filterable: true,
+      },
+    },
+    data8_2: {
+      type: "string",
+      title: "可搜索(多选)",
+      enum: options,
+      ui: {
+        component: "cascader",
+        placeholder: "Try searching Guide",
+        clearable: true,
+        filterable: true,
+        props: {
+          multiple: true,
+        },
+      },
+    },
+    data9: {
+      type: "string",
+      title: "自定义节点内容",
       enum: options,
       ui: {
         component: "cascader",
         slotNameOfDefault: "slotNameOfDefault",
-        change: (value: any, selectedOptions: Tag) => {
-          text.value = selectedOptions!.map((o) => o.label).join(", ");
-        },
       },
     },
-    disabled: {
+    data10: {
       type: "string",
-      title: "禁用选项",
-      enum: options.map((option, i: number) => {
-        const o = { ...option };
-        if (i === 1) o.disabled = true;
-        return o;
-      }),
-      ui: {
-        component: "cascader",
-      },
-    },
-    icon: {
-      type: "string",
-      title: "自定义后缀图标",
+      title: "级联面板",
       enum: options,
       ui: {
         component: "cascader",
-        slotNameOfSuffixIcon: "slotNameOfSuffixIcon",
-        // suffixIcon: "ab",
-      },
-    },
-    fieldNames: {
-      type: "string",
-      title: "自定义字段名",
-      enum: customOptions,
-      ui: {
-        component: "cascader",
-        fieldNames: { label: "name", value: "code", children: "items" },
-      },
-    },
-    showSearch: {
-      type: "string",
-      title: "搜索",
-      enum: searchOptions,
-      ui: {
-        component: "cascader",
-        showSearch: { filter: filter },
-        search: (value: any) => console.log("search", value),
-        change: (value: any, option: any) =>
-          console.log("change", value, option),
-      },
-    },
-    more: {
-      type: "string",
-      title: "一次性选择多个选项",
-      enum: moreOptions,
-      ui: {
-        component: "cascader",
-        multiple: true,
-        maxTagCount: 3,
+        type: "panel",
+        change,
+        expandChange,
       },
     },
   },
@@ -328,38 +332,10 @@ async function submit() {
     console.log(toRaw(unref(formData)));
   }
 }
-const handleAreaClick = (
-  e: Event,
-  label: string,
-  option: CascaderProps["options"]
-) => {
-  e.stopPropagation();
-  console.log("clicked", label, option);
-};
-function loadData(selectedOptions: Tag) {
-  const targetOption = selectedOptions![selectedOptions!.length - 1];
-  targetOption.loading = true;
-
-  // load options lazily
-  setTimeout(() => {
-    targetOption.loading = false;
-    targetOption.children = [
-      {
-        label: `${targetOption.label} Dynamic 1`,
-        value: "dynamic1",
-      },
-      {
-        label: `${targetOption.label} Dynamic 2`,
-        value: "dynamic2",
-      },
-    ];
-    asyncOptions.value = [...asyncOptions.value!];
-  }, 1000);
+function change(value: any) {
+  console.log("change", value);
 }
-function filter(inputValue: string, path: any[]) {
-  return path.some(
-    (option: { label: string }) =>
-      option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
-  );
+function expandChange(value: any) {
+  console.log("expandChange", value);
 }
 </script>

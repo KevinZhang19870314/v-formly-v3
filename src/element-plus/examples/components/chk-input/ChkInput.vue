@@ -1,15 +1,18 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-checkbox-group
+    <el-checkbox-group
       class="v__checkbox"
-      v-model:value="context.optionsValue"
       v-bind="bindings"
       :disabled="meta.readOnly"
-      :options="meta.enum"
+      v-model="context.optionsValue"
       @change="change"
-    />
-    <a-input
-      v-model:value="context.othersValue"
+    >
+      <el-checkbox v-for="item in meta.enum" :key="item" :label="item">
+        {{ item }}
+      </el-checkbox>
+    </el-checkbox-group>
+    <el-input
+      v-model="context.othersValue"
       v-show="showOthers"
       @change="change"
     />
@@ -52,5 +55,3 @@ function change() {
   unref(ui).change?.(unref(context.value));
 }
 </script>
-
-<style scoped></style>

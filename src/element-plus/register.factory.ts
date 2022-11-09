@@ -6,12 +6,12 @@ import VCheckbox from "./components/Checkbox.vue";
 import VDate from "./components/Date.vue";
 import VTime from "./components/Time.vue";
 import VNumber from "./components/Number.vue";
-// import VArray from "./components/Array.vue";
+import VArray from "./components/Array.vue";
 import VText from "./components/Text.vue";
 import VSlider from "./components/Slider.vue";
 import VRate from "./components/Rate.vue";
 import VTag from "./components/Tag.vue";
-// import VCascader from "./components/Cascader.vue";
+import VCascader from "./components/Cascader.vue";
 import VRadio from "./components/Radio.vue";
 import VSelect from "./components/Select.vue";
 
@@ -31,7 +31,7 @@ function registerBuildInComponents(app: App) {
   registerFormComponent(app, "v-object", VObject);
   registerFormComponent(app, "v-string", VString);
   registerFormComponent(app, "v-boolean", VBoolean);
-  //   registerFormComponent(app, "v-array", VArray);
+  registerFormComponent(app, "v-array", VArray);
   registerFormComponent(app, "v-autocomplete", VAutoComplete);
   registerFormComponent(app, "v-checkbox", VCheckbox);
   registerFormComponent(app, "v-date", VDate);
@@ -43,7 +43,7 @@ function registerBuildInComponents(app: App) {
   registerFormComponent(app, "v-rate", VRate);
   registerFormComponent(app, "v-tag", VTag);
   registerFormComponent(app, "v-select", VSelect);
-  //   registerFormComponent(app, "v-cascader", VCascader);
+  registerFormComponent(app, "v-cascader", VCascader);
 }
 
 export { registerFormComponent, registerBuildInComponents };
