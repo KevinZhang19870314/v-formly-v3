@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts" name="v-object">
-import VFormlyV3Item from "@/ant-design-vue/AFormlyItem.vue";
+import VFormlyV3Item from "@/element-plus/ElFormlyItem.vue";
 import { useSlots } from "@/core/hooks/slots";
 import { ObjectMeta } from "@/core/meta/object.meta";
 import type { Meta } from "@/types/meta";
