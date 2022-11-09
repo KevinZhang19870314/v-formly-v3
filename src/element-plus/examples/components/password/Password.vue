@@ -1,20 +1,20 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-input
+    <el-input
       v-bind="bindings"
       :disabled="meta.readOnly"
       :maxLength="meta.maxLength"
       :type="type"
-      v-model:value="value"
+      v-model="value"
       @change="change"
     >
       <template v-slot:suffix>
         <div style="cursor: pointer" @click="toggle">
-          <eye-invisible-outlined v-if="!eyeVisible" />
-          <eye-outlined v-if="eyeVisible" />
+          <el-icon v-if="!eyeVisible"><Hide /></el-icon>
+          <el-icon v-if="eyeVisible"><View /></el-icon>
         </div>
       </template>
-    </a-input>
+    </el-input>
   </v-wrapper>
 </template>
 
@@ -29,7 +29,7 @@ import {
   unref,
   type ComponentInternalInstance,
 } from "vue";
-import { Input } from "ant-design-vue";
+import { ElInput } from "element-plus";
 import { useBindings } from "@/core/hooks/bindings";
 import type { Global } from "@/core/utils/global";
 
@@ -41,7 +41,7 @@ let eyeVisible = ref(false);
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new PasswordMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(Input.props), context.ui);
+const { bindings } = useBindings(Object.keys(ElInput.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};

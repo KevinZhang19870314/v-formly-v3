@@ -18,6 +18,9 @@ import ElementPlus from "element-plus";
 import * as elIcons from "@element-plus/icons-vue";
 import { setupStore as setupStoreElementPlus } from "@/element-plus/examples/store";
 import { setupRouter as setupRouterElementPlus } from "@/element-plus/examples/router";
+import { registerFormComponent as registerFormComponentEl } from "@/element-plus/el-formly";
+import VPasswordEl from "@/element-plus/examples/components/password/Password.vue";
+import VChkInputEl from "@/element-plus/examples/components/chk-input/ChkInput.vue";
 
 const app = createApp(App);
 app.config.globalProperties.emitter = mitt();
@@ -65,6 +68,9 @@ if (lib === "ant-design-vue") {
       },
     },
   });
+
+  registerFormComponentEl(app, "v-password", VPasswordEl);
+  registerFormComponentEl(app, "v-chkinput", VChkInputEl);
 }
 
 app.mount("#app");
