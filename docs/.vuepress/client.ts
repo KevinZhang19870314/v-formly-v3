@@ -40,7 +40,7 @@ async function initAntdV(app: App) {
   });
   app.config.globalProperties.$antIcons = antIcons;
   app.use(VFormly, {
-    lib: "ant-design-vue",
+    lib: "antdv",
     ui: {
       errors: {
         required: "必填项",
@@ -63,7 +63,7 @@ async function initElement(app: App) {
   }
   app.config.globalProperties.$elIcons = elIcons;
   app.use(VFormly, {
-    lib: "element-plus",
+    lib: "element",
     ui: {
       errors: {
         required: "必填项",
