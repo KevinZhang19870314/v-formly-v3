@@ -3,12 +3,12 @@
     <v-formly-v3 ref="form" v-model="formData" :meta="meta">
       <!-- string1 -->
       <template v-slot:string1_prefix>
-        <user-outlined />
+        <el-icon><User /></el-icon>
       </template>
       <template v-slot:string1_1_suffix>
-        <a-tooltip title="Extra information">
-          <info-circle-outlined />
-        </a-tooltip>
+        <el-tooltip title="Extra information">
+          <el-icon><Warning /></el-icon>
+        </el-tooltip>
       </template>
     </v-formly-v3>
   </div>
@@ -16,7 +16,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
+import { User, Warning } from "@element-plus/icons-vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const meta = {

@@ -2,27 +2,27 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta"></v-formly-v3>
     <div class="btns">
-      <a-button type="primary" @click="submit"> 设置边框 </a-button>
+      <el-button type="primary" @click="submit"> 设置禁用 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
-const hasBorder = ref(true);
+const isDisabled = ref(false);
 const meta = {
   type: "object",
   properties: {
     string1: {
       title: "基本使用",
       type: "string",
+      readOnly: isDisabled,
       ui: {
         showRequired: true,
         placeholder: "Basic usage",
-        bordered: hasBorder,
         errors: {
           required: "请输入",
         },
@@ -35,7 +35,7 @@ const meta = {
 let formData: any = ref({});
 
 function submit() {
-  hasBorder.value = !hasBorder.value;
+  isDisabled.value = !isDisabled.value;
 }
 </script>
 

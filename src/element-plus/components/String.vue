@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <el-input
       v-bind="bindings"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       :minlength="meta.minLength"
       :maxlength="meta.maxLength"
       v-model="value"
@@ -34,6 +34,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  toRef,
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
@@ -48,6 +49,7 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(ElInput.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
   return context.ui.value || {};
