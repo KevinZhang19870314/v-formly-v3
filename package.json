@@ -1,6 +1,6 @@
 {
   "name": "v-formly-v3",
-  "version": "1.0.1",
+  "version": "1.0.2-beta",
   "private": false,
   "main": "./lib/v-formly-v3.umd.js",
   "module": "./lib/v-formly-v3.es.js",
