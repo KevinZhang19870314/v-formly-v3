@@ -23,9 +23,9 @@
 
 [文档](https://kevinzhang19870314.github.io/v-formly-v3/zh/)
 
-[Stackblitz](TODO: https://stackblitz.com/edit/github-gr9ozc?file=src%2FApp.vue&terminal=serve)
+[Stackblitz](https://stackblitz.com/edit/github-r1j1ut?file=src%2FApp.vue)
 
-[CodeSandbox](TODO: https://codesandbox.io/s/blazing-sun-gtvwwz)
+[CodeSandbox](https://codesandbox.io/s/nifty-sea-93ycqy)
 
 ### 安装
 
@@ -43,14 +43,59 @@ npm i v-formly-v3 --save
 
 ### 使用
 
-```js
-// 别忘了引入Ant Design of Vue v3。
+#### 基于 ant-design-vue 组件库
 
-import VFormlyV3 from "v-formly-v3";
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+import Antd from "ant-design-vue";
+import "element-plus/dist/index.css";
+import * as antIcons from "@ant-design/icons-vue";
+import VFormly from "v-formly-v3/antdv";
 
-// ...
-Vue.use(VFormlyV3);
-// ...
+const app = createApp(App);
+app.use(Antd);
+Object.keys(antIcons).forEach((key) => {
+  app.component(key, (antIcons as any)[key]);
+});
+app.config.globalProperties.$antIcons = antIcons;
+
+app.use(VFormly, {
+  ui: {
+    errors: {
+      required: "必填项",
+    },
+  },
+});
+app.mount("#app");
+```
+
+#### 基于 element-pus 组件库
+
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
+import * as elIcons from "@element-plus/icons-vue";
+import VFormly from "v-formly-v3/element";
+
+const app = createApp(App);
+app.use(ElementPlus);
+for (const [key, component] of Object.entries(elIcons)) {
+  app.component(key, component);
+}
+app.config.globalProperties.$elIcons = elIcons;
+
+app.use(VFormly, {
+  lib: "element-plus",
+  ui: {
+    errors: {
+      required: "必填项",
+    },
+  },
+});
+app.mount("#app");
 ```
 
 ## 其他
