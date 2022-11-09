@@ -74,7 +74,7 @@ app.use(VFormly, {
 app.mount("#app");
 ```
 
-#### 基于 element-pus 组件库
+#### 基于 element-plus 组件库
 
 ```ts
 import { createApp } from "vue";
@@ -92,7 +92,7 @@ for (const [key, component] of Object.entries(elIcons)) {
 app.config.globalProperties.$elIcons = elIcons;
 
 app.use(VFormly, {
-  lib: "element-plus",
+  lib: "element",
   ui: {
     errors: {
       required: "必填项",
