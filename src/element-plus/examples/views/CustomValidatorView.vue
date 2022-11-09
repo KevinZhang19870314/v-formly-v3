@@ -2,15 +2,15 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta"> </v-formly-v3>
     <div class="btns">
-      <a-button type="danger" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="danger" @click="clear"> 重置 </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 let formData: any = ref({});
