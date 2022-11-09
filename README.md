@@ -13,7 +13,7 @@
   </div>
   <div class="feature">
     <h2>Vue 驱动</h2>
-    <p>目前支持Vue 3.x & Ant Design of Vue v3，Vue 3.x的其他UI库（DevUI，ElementUI等）支持正在开发中。。。</p>
+    <p>目前支持Vue 3.x，组件库支持antdv v3 & element-plus，Vue 3.x的其他UI库（DevUI等）支持正在开发中。。。</p>
   </div>
 </div>
 
