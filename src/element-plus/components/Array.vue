@@ -1,71 +1,49 @@
 <!-- 创建对象数组 -->
 <template>
-  <a-form-item>
-    <a-row>
-      <a-col class="ant-form-item-label" v-if="meta.title" :span="ui.spanLabel">
-        <label :class="{ 'ant-form-item-required': ui.showRequired }">
-          {{ meta.title }}
-          <span class="v__optional">
-            {{ ui.optional }}
-            <a-tooltip
-              v-if="oh"
-              :title="oh.text"
-              :placement="oh.placement"
-              :trigger="oh.trigger"
-              :overlayStyle="oh.overlayStyle"
-              :overlayClassName="oh.overlayClassName"
-              :mouseEnterDelay="oh.mouseEnterDelay"
-              :mouseLeaveDelay="oh.mouseLeaveDelay"
+  <el-form-item
+    :required="ui.showRequired"
+    :error="error"
+    :size="ui.size"
+    :class="[{ 'no-label': !meta.title }]"
+  >
+    <template #label v-if="meta.title">
+      <span class="v__label-text" :title="meta.title">{{ meta.title }}</span>
+      <span v-if="ui.optional || oh" class="v__optional">
+        {{ ui.optional }}
+        <el-tooltip
+          v-if="oh.icon"
+          v-bind="oh"
+          :placement="oh.placement || 'top'"
+        >
+          <el-icon>
+            <component :is="globalProperties.$elIcons[oh.icon]" />
+          </el-icon>
+        </el-tooltip>
+      </span>
+    </template>
+    <!-- content -->
+    <div class="v__array-add">
+      <el-button :type="ui.addType" :disabled="addDisabled" @click="addItem">
+        {{ ui.addTitle || "添加" }}
+      </el-button>
+    </div>
+    <el-row class="v__array-container" :gutter="16">
+      <template v-for="(p, i) in context.ids.value" :key="p.key">
+        <el-col :span="arraySpan" class="v__array-item">
+          <el-card shadow="never">
+            <v-formly-v3-item :id="generateId(i)" :meta="meta.items!" />
+            <span
+              v-if="showRemove"
+              class="v__array-remove"
+              @click="removeItem(i)"
             >
-              <component
-                v-if="oh.icon"
-                :is="globalProperties.$antIcons[oh.icon]"
-              />
-            </a-tooltip>
-          </span>
-        </label>
-        <div class="v__array-add">
-          <a-button
-            :type="ui.addType || 'dashed'"
-            :disabled="addDisabled"
-            @click="addItem"
-          >
-            {{ ui.addTitle || "添加" }}
-          </a-button>
-        </div>
-      </a-col>
-      <a-col
-        class="ant-form-item-control-wrapper"
-        :span="ui.spanControl"
-        :offset="ui.offsetControl"
-      >
-        <div class="ant-form-item-control">
-          <a-row class="v__array-container">
-            <template v-for="(p, i) in context.ids.value" :key="p.key">
-              <a-col :span="arraySpan" class="v__array-item">
-                <a-card>
-                  <v-formly-v3-item :id="generateId(i)" :meta="meta.items!" />
-                  <span
-                    v-if="showRemove"
-                    class="v__array-remove"
-                    @click="removeItem(i)"
-                  >
-                    <delete-outlined />
-                  </span>
-                </a-card>
-              </a-col>
-            </template>
-          </a-row>
-          <div v-if="meta.description" class="ant-form-item-extra">
-            {{ meta.description }}
-          </div>
-          <div v-if="error" class="ant-form-item-explain-error">
-            {{ error }}
-          </div>
-        </div>
-      </a-col>
-    </a-row>
-  </a-form-item>
+              <el-button :icon="Delete" circle />
+            </span>
+          </el-card>
+        </el-col>
+      </template>
+    </el-row>
+  </el-form-item>
 </template>
 
 <script setup lang="ts" name="v-array">
@@ -84,7 +62,8 @@ import { ArrayMeta } from "@/core/meta/array.meta";
 import useEventBus from "@/core/hooks/event-bus";
 import useCurrentInstance from "@/core/hooks/current-instance";
 import { FORM_ERROR_CHANGE } from "@/core/utils/consts";
-import VFormlyV3Item from "@/ant-design-vue/AFormlyItem.vue";
+import VFormlyV3Item from "@/element-plus/ElFormlyItem.vue";
+import { Delete } from "@element-plus/icons-vue";
 
 const props = defineProps<{ id: string; meta: Meta }>();
 const state: Global = inject("state")!;
@@ -161,3 +140,41 @@ function removeItem(i: number) {
   unref(ui).remove?.(i);
 }
 </script>
+
+<style lang="less" scoped>
+:deep(.v__array-container .el-form-item) {
+  margin-bottom: 18px;
+}
+.v__array-add {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(calc(-100% - 12px), 100%);
+}
+.v__array-container {
+  margin-bottom: -10px;
+  min-height: 74px;
+
+  .v__array-item {
+    margin-bottom: 18px;
+  }
+
+  .el-card {
+    position: relative;
+    overflow: unset;
+    .v__array-remove {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      display: none;
+    }
+
+    &:hover {
+      .v__array-remove {
+        display: block;
+      }
+    }
+  }
+}
+</style>

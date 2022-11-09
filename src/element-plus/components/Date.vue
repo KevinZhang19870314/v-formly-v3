@@ -10,9 +10,10 @@
         <slot :name="ui.slotNameOfRangeSeparator"></slot>
       </template>
 
-      <!-- TODO: 这个default插槽不起作用？ -->
       <template v-if="ui.slotNameOfDefault" v-slot:default="cell">
-        <slot :name="ui.slotNameOfDefault" v-bind="cell"></slot>
+        <span>
+          <slot :name="ui.slotNameOfDefault" v-bind="cell"></slot>
+        </span>
       </template>
     </el-date-picker>
   </v-wrapper>

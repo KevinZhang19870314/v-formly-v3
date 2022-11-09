@@ -2,6 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 import { Edit } from "@element-plus/icons-vue";
 import BasicLayout from "@/element-plus/examples/layout/index.vue";
 import ArrayView from "@/element-plus/examples/views/ArrayView.vue";
+// import ArrayLayoutView from "@/element-plus/examples/views/ArrayLayoutView.vue";
 import CheckboxView from "@/element-plus/examples/views/CheckboxView.vue";
 import StringView from "@/element-plus/examples/views/StringView.vue";
 import BooleanView from "@/element-plus/examples/views/BooleanView.vue";
@@ -48,6 +49,7 @@ const route: RouteRecordRaw = {
       path: "array",
       name: "array",
       component: ArrayView,
+      // component: ArrayLayoutView,
       meta: { title: "Array 数组" },
     },
     {

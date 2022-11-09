@@ -2,18 +2,18 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta" />
     <div class="btns">
-      <a-button type="primary" @click="setName0"> 设置 name </a-button>
-      <a-button type="primary" @click="add"> 添加 1 个</a-button>
-      <a-button type="primary" @click="set(5)"> 添加 5 个</a-button>
-      <a-button type="primary" @click="clear"> 重置 </a-button>
-      <a-button type="primary" @click="submit"> 提交 </a-button>
+      <el-button type="primary" @click="setName0"> 设置 name </el-button>
+      <el-button type="primary" @click="add"> 添加 1 个</el-button>
+      <el-button type="primary" @click="set(5)"> 添加 5 个</el-button>
+      <el-button type="primary" @click="clear"> 重置 </el-button>
+      <el-button type="primary" @click="submit"> 提交 </el-button>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
-import type VFormly from "@/Formly.vue";
-import type { ArrayMeta } from "@/meta/array.meta";
+import type VFormly from "@/element-plus/ElFormly.vue";
+import type { ArrayMeta } from "@/core/meta/array.meta";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const formData = ref({
@@ -72,11 +72,11 @@ const meta = {
         showRequired: true,
         grid: { arraySpan: 24 },
         addTitle: "添加",
-        optional: "(选填)",
-        optionalHelp: {
-          icon: "QuestionCircleOutlined",
-          text: "选填帮助",
-        },
+        // optional: "(选填)",
+        // optionalHelp: {
+        //   icon: "QuestionCircleOutlined",
+        //   text: "选填帮助",
+        // },
       },
       default: [
         {

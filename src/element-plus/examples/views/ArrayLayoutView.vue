@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import type VFormly from "@/Formly.vue";
+import type VFormly from "@/element-plus/ElFormly.vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 const formData = ref({});

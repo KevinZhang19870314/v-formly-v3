@@ -1,31 +1,37 @@
 <template>
   <v-wrapper :id="id" :meta="meta">
-    <a-cascader
-      v-bind="bindings"
-      :disabled="meta.readOnly"
-      :options="meta.enum"
-      v-model:value="value"
-      @change="change"
-      @dropdownVisibleChange="dropdownVisibleChange"
-      @search="search"
-      @blur="blur"
-      @focus="focus"
-    >
-      <!-- default -->
-      <template v-if="ui.slotNameOfDefault" #default>
-        <span>
-          <slot :name="ui.slotNameOfDefault"></slot>
-        </span>
-      </template>
-      <!-- suffixIcon -->
-      <template v-if="ui.slotNameOfSuffixIcon" #suffixIcon>
-        <slot :name="ui.slotNameOfSuffixIcon"></slot>
-      </template>
-      <!-- displayRender -->
-      <template v-if="ui.slotNameOfDisplayRender" #displayRender="slotProps">
-        <slot :name="ui.slotNameOfDisplayRender" v-bind="slotProps"></slot>
-      </template>
-    </a-cascader>
+    <template v-if="isPanel">
+      <el-cascader-panel
+        v-bind="panelBindings"
+        :disabled="meta.readOnly"
+        :options="meta.enum"
+        v-model="value"
+        @change="change"
+        @expand-change="expandChange"
+      >
+        <template v-if="ui.slotNameOfDefault" #default="slotProps">
+          <slot :name="ui.slotNameOfDefault" v-bind="slotProps"></slot>
+        </template>
+      </el-cascader-panel>
+    </template>
+    <template v-else>
+      <el-cascader
+        v-bind="bindings"
+        :disabled="meta.readOnly"
+        :options="meta.enum"
+        v-model="value"
+        @change="change"
+        @visible-change="visibleChange"
+        @expand-change="expandChange"
+        @remove-tag="removeTag"
+        @blur="blur"
+        @focus="focus"
+      >
+        <template v-if="ui.slotNameOfDefault" #default="slotProps">
+          <slot :name="ui.slotNameOfDefault" v-bind="slotProps"></slot>
+        </template>
+      </el-cascader>
+    </template>
   </v-wrapper>
 </template>
 
@@ -33,8 +39,7 @@
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/core/utils/global";
 import type { ComponentInternalInstance } from "vue";
-import type { CascaderProps } from "ant-design-vue";
-import { Cascader } from "ant-design-vue";
+import { ElCascader, ElCascaderPanel } from "element-plus";
 import { computed, getCurrentInstance, inject, unref } from "vue";
 import VWrapper from "./Wrapper.vue";
 import { StringMeta } from "@/core/meta/string.meta";
@@ -45,9 +50,14 @@ const state: Global = inject("state")!;
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
-const { bindings } = useBindings(Object.keys(Cascader.props), context.ui);
+const { bindings } = useBindings(Object.keys(ElCascader.props), context.ui);
+const panelBindings = useBindings(
+  Object.keys(ElCascaderPanel.props),
+  context.ui
+).bindings;
 
 const ui = computed(() => context.ui.value || {});
+const isPanel = computed(() => unref(ui).type === "panel");
 const value = computed({
   get() {
     return context.value;
@@ -58,15 +68,17 @@ const value = computed({
 });
 
 // 选择完成后的回调
-function change(value: any, selectedOptions: CascaderProps["options"]) {
-  unref(ui).change?.(value, selectedOptions);
+function change(value: any) {
+  unref(ui).change?.(value);
 }
-function dropdownVisibleChange(visible: boolean) {
-  unref(ui).dropdownVisibleChange?.(visible);
+function visibleChange(visible: boolean) {
+  unref(ui).visibleChange?.(visible);
 }
-// 输入框变化时的回调
-function search(value: any) {
-  unref(ui).search?.(value);
+function expandChange(data: any[]) {
+  unref(ui).expandChange?.(data);
+}
+function removeTag(data: any[]) {
+  unref(ui).removeTag?.(data);
 }
 function blur(e: FocusEvent) {
   unref(ui).blur?.(e);
