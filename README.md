@@ -47,7 +47,7 @@ npm i v-formly-v3 --save
 
 ### 使用
 
-#### 基于 ant-design-vue 组件库
+#### 基于 antdv v3 组件库
 
 ```ts
 import { createApp } from "vue";
