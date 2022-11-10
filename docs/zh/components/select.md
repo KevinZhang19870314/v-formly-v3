@@ -14,7 +14,7 @@ SelectView
 
 ## API
 
-**我们只列出属性中不一致的或新添加的，一致的地方请参考 AntDv 文档**
+**我们只列出属性中不一致的或新添加的，一致的地方请参考 具体组件库 文档**
 
 ### meta 属性
 
@@ -22,7 +22,7 @@ SelectView
 | ----------- | -------- | --------- | ------ |
 | `:readOnly` | 禁用状态 | `boolean` | -      |
 
-### meta.ui 属性
+### meta.ui 属性(antdv)
 
 | 成员                              | 说明                                  | 类型          | 默认值 |
 | --------------------------------- | ------------------------------------- | ------------- | ------ |
@@ -33,3 +33,14 @@ SelectView
 | `:slotNameOfClearIcon`            | 自定义的多选框清空图标，slot 名称     | `string`      | -      |
 | `:slotNameOfMenuItemSelectedIcon` | 自定义当前选中的条目图标，slot 名称   | `string`      | -      |
 | `@change`                         | 输入框内容变化时的回调                | `function(e)` | -      |
+
+### meta.ui 属性(element)
+
+| 成员                       | 说明                           | 类型             | 默认值 |
+| -------------------------- | ------------------------------ | ---------------- | ------ |
+| `:slotNameOfSelectDefault` | Option 组件列表，slot 名称     | `string`         | -      |
+| `:slotNameOfPrefix`        | Select 组件头部内容，slot 名称 | `string`         | -      |
+| `:slotNameOfEmpty`         | 无选项时的列表，slot 名称      | `string`         | -      |
+| `@change`                  | 输入框内容变化时的回调         | `function(val)`  | -      |
+| `@removeTag`               | 多选模式下移除 tag 时触发      | `function(val)`  | -      |
+| `@visibleChange`           | 下拉框出现/隐藏时触发          | `function(open)` | -      |

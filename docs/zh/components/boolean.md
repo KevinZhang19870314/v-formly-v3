@@ -14,13 +14,15 @@ BooleanView
 
 ## API
 
+**我们只列出属性中不一致的或新添加的，一致的地方请参考 具体组件库 文档**
+
 ### meta 属性
 
 | 成员        | 说明     | 类型      | 默认值 |
 | ----------- | -------- | --------- | ------ |
 | `:readOnly` | 禁用状态 | `boolean` | -      |
 
-### meta.ui 属性
+### meta.ui 属性(antdv)
 
 | 成员                           | 说明                      | 类型                                      | 默认值 |
 | ------------------------------ | ------------------------- | ----------------------------------------- | ------ |
@@ -29,3 +31,9 @@ BooleanView
 | `:unCheckedChildren`           | 非选中时的内容            | `string`                                  | -      |
 | `:slotNameOfUnCheckedChildren` | 非选中时的内容，slot 名称 | `string`                                  | -      |
 | `@change`                      | 输入框内容变化时的回调    | `Function(checked:Boolean, event: Event)` | -      |
+
+### meta.ui 属性(element)
+
+| 成员      | 说明                   | 类型                                      | 默认值 |
+| --------- | ---------------------- | ----------------------------------------- | ------ |
+| `@change` | 输入框内容变化时的回调 | `Function(checked:Boolean, event: Event)` | -      |

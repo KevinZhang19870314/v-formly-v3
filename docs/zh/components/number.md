@@ -14,7 +14,7 @@ NumberView
 
 ## API
 
-**我们只列出属性中不一致的或新添加的，一致的地方请参考 AntDv 文档**
+**我们只列出属性中不一致的或新添加的，一致的地方请参考 具体组件库 文档**
 
 ### meta 属性
 
@@ -26,7 +26,7 @@ NumberView
 | `[exclusiveMaximum]` | 约束是否包括 `maximum` 值，`true` 表示排除 `maximum` 值 | `boolean` | -      |
 | `[multipleOf]`       | 倍数                                                    | `number`  | `1`    |
 
-### meta.ui 属性
+### meta.ui 属性(antdv)
 
 | 成员                      | 说明                                    | 类型                                | 默认值 |
 | ------------------------- | --------------------------------------- | ----------------------------------- | ------ |
@@ -34,3 +34,9 @@ NumberView
 | `[slotNameOfAddonBefore]` | 带标签的 input，设置前置标签，slot 名称 | `string`                            | `1`    |
 | `[slotNameOfPrefix]`      | 带有前缀图标的 input，slot 名称         | `string`                            | `1`    |
 | `@change`                 | 变化回调                                | `Function(value: number \| string)` | -      |
+
+### meta.ui 属性(element)
+
+| 成员      | 说明               | 类型                                       | 默认值 |
+| --------- | ------------------ | ------------------------------------------ | ------ |
+| `@change` | 绑定值被改变时触发 | `(currentValue: number, oldValue: number)` | -      |

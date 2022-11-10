@@ -14,7 +14,7 @@ StringView
 
 ## API
 
-**我们只列出属性中不一致的或新添加的，一致的地方请参考 AntDv 文档**
+**我们只列出属性中不一致的或新添加的，一致的地方请参考 具体组件库 文档**
 
 ### meta 属性
 
@@ -23,7 +23,7 @@ StringView
 | `:maxLength` | 表单最大长度 | `number`  | -      |
 | `:readOnly`  | 禁用状态     | `boolean` | -      |
 
-### meta.ui 属性
+### meta.ui 属性(antdv)
 
 | 成员                     | 说明                                    | 类型          | 默认值 |
 | ------------------------ | --------------------------------------- | ------------- | ------ |
@@ -36,3 +36,13 @@ StringView
 | `:suffix`                | 带有后缀图标的 input                    | `string`      | -      |
 | `:slotNameOfSuffix`      | 带有后缀图标的 input，slot 名称         | `string`      | -      |
 | `@change`                | 输入框内容变化时的回调                  | `function(e)` | -      |
+
+### meta.ui 属性(element)
+
+| 成员                 | 说明                                                   | 类型          | 默认值 |
+| -------------------- | ------------------------------------------------------ | ------------- | ------ |
+| `:slotNameOfPrepend` | 输入框前置内容，只对非 type="textarea" 有效，slot 名称 | `string`      | -      |
+| `:slotNameOfAppend`  | 输入框后置内容，只对非 type="textarea" 有效，slot 名称 | `string`      | -      |
+| `:slotNameOfPrefix`  | 输入框头部内容，只对非 type="textarea" 有效，slot 名称 | `string`      | -      |
+| `:slotNameOfSuffix`  | 输入框尾部内容，只对非 type="textarea" 有效，slot 名称 | `string`      | -      |
+| `@change`            | 输入框内容变化时的回调                                 | `function(e)` | -      |
