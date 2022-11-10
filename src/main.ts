@@ -26,12 +26,12 @@ const app = createApp(App);
 app.config.globalProperties.emitter = mitt();
 
 // ---------------------设置使用库----------------
-// const lib = "antdv";
-const lib: string = "element";
+const lib: string = "antdv";
+// const lib: string = "element";
 // ---------------------设置使用库----------------
 
 // ant-design-vue
-if (lib === "ant-design-vue") {
+if (lib === "antdv") {
   await import("ant-design-vue/dist/antd.css");
   app.use(Antd);
   Object.keys(antIcons).forEach((key) => {

@@ -3,7 +3,7 @@
   <v-wrapper :id="id" :meta="meta">
     <template v-for="tag in tags" :key="tag.value">
       <a-checkable-tag
-        :class="{ disabled: tag.disabled }"
+        :class="{ disabled: tag.disabled || readOnly }"
         :checked="tag.checked"
         @change="(checked: boolean) => handleChange(tag, checked)"
       >
@@ -16,7 +16,7 @@
 <script setup lang="ts" name="v-tag">
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/core/utils/global";
-import { toRaw, type ComponentInternalInstance } from "vue";
+import { toRaw, toRef, type ComponentInternalInstance } from "vue";
 import { computed, getCurrentInstance, inject, ref, unref, watch } from "vue";
 import VWrapper from "./Wrapper.vue";
 import { NumberMeta } from "@/core/meta/number.meta";
@@ -27,6 +27,7 @@ const state: Global = inject("state")!;
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new NumberMeta(appContext, state, props.id, props.meta);
+const readOnly = toRef(props.meta, "readOnly");
 
 const tags = ref<Tag[]>([]);
 

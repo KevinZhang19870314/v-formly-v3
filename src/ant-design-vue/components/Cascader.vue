@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <a-cascader
       v-bind="bindings"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       :options="meta.enum"
       v-model:value="value"
       @change="change"
@@ -32,7 +32,7 @@
 <script setup lang="ts" name="v-cascader">
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/core/utils/global";
-import type { ComponentInternalInstance } from "vue";
+import { toRef, type ComponentInternalInstance } from "vue";
 import type { CascaderProps } from "ant-design-vue";
 import { Cascader } from "ant-design-vue";
 import { computed, getCurrentInstance, inject, unref } from "vue";
@@ -46,6 +46,7 @@ const state: Global = inject("state")!;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 const { bindings } = useBindings(Object.keys(Cascader.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => context.ui.value || {});
 const value = computed({
