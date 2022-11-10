@@ -100,9 +100,8 @@ export default defineUserConfig({
         // navbar
         navbar: [
           { text: "Guide", link: "/guide/" },
-          { text: "Config Reference", link: "/components/" },
           {
-            text: LIB_MAP[lib].text,
+            text: "Config Reference",
             children: getNavbarLib(lib as Lib),
           },
         ],
@@ -121,9 +120,8 @@ export default defineUserConfig({
         // navbar
         navbar: [
           { text: "指南", link: "/zh/guide/" },
-          { text: "组件", link: "/zh/components/" },
           {
-            text: LIB_MAP[lib].text,
+            text: "组件",
             children: getNavbarLib(lib as Lib, '/zh/'),
           },
         ],
@@ -188,7 +186,6 @@ export default defineUserConfig({
     viteOptions: {
       resolve: {
         alias: {
-          "@antdv": path.resolve(__dirname, "../../src/ant-design-vue/"),
           "@": path.resolve(__dirname, "../../src/"),
         },
       },
@@ -245,18 +242,23 @@ function getComponentsSidebar(groupA, groupB) {
 }
 
 function getNavbarLib(lib: Lib, lang: string = '/') {
-  const url = 'http://127.0.0.1:5500/v-formly-v3'
+  const url = isProd ? 'https://kevinzhang19870314.github.io/v-formly-v3/' : 'http://127.0.0.1:5500/v-formly-v3'
   const list = [
     {
       lib: Lib.Antdv,
       text: LIB_MAP[Lib.Antdv].text,
-      link: `${url}${lang}`,
+      link: `${url}${lang}components/`,
     },
     {
       lib: Lib.Element,
       text: LIB_MAP[Lib.Element].text,
-      link: `${url}/element-plus${lang}`,
+      link: `${url}/element-plus${lang}components/`,
     },
   ]
-  return list.filter(item => item.lib !== lib).map(({ text, link }) => ({ text, link }))
+  list.forEach(item => {
+    if (item.lib === lib) {
+      item.link = `${lang}components/`
+    }
+  })
+  return list
 }

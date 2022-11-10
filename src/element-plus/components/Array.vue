@@ -49,7 +49,7 @@
 <script setup lang="ts" name="v-array">
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/core/utils/global";
-import { onBeforeUnmount, type ComponentInternalInstance } from "vue";
+import { onBeforeUnmount, toRef, type ComponentInternalInstance } from "vue";
 import {
   computed,
   getCurrentInstance,
@@ -92,17 +92,17 @@ const error = computed({
     context.error.value = val;
   },
 });
-const disabled = computed(() => props.meta.readOnly);
+const readOnly = toRef(props.meta, "readOnly");
 const addDisabled = computed(() => {
   return (
-    unref(disabled) ||
+    unref(readOnly) ||
     (props.meta.maxItems != null &&
       unref(context.ids).length >= props.meta.maxItems)
   );
 });
 const showRemove = computed(() => {
   const min = props.meta.minItems;
-  if (unref(disabled) || (min != null && unref(context.ids).length <= min)) {
+  if (unref(readOnly) || (min != null && unref(context.ids).length <= min)) {
     return false;
   }
   return true;

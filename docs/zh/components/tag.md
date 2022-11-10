@@ -21,7 +21,7 @@ TagView
 | `:enum`     | 数据源   | `array<{value, label, disabled}> \| any[]` | -      |
 | `:readOnly` | 禁用状态 | `boolean`                       | -      |
 
-### meta.ui 属性
+### meta.ui 属性(antdv/element)
 
 | 成员             | 说明                     | 类型                | 默认值 |
 | ---------------- | ------------------------ | ------------------- | ------ |
