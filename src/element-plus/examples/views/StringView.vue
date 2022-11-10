@@ -62,7 +62,7 @@ const meta = {
         errors: {
           required: "请输入",
         },
-        change: (val: string) => console.log(val),
+        input: (val: string) => console.log(val),
       },
     },
     string2: {
@@ -79,6 +79,7 @@ const meta = {
       ui: {
         placeholder: "Please input",
         clearable: true,
+        change: (val: string) => console.log(val),
       },
     },
     string4: {

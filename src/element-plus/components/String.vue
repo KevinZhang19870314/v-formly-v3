@@ -7,6 +7,7 @@
       :maxlength="meta.maxLength"
       v-model="value"
       @change="change"
+      @input="input"
     >
       <!-- prefix & suffix -->
       <template v-if="ui.slotNameOfPrefix" v-slot:prefix>
@@ -48,7 +49,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
-const { bindings } = useBindings(Object.keys(ElInput.props), context.ui);
+let { bindings } = useBindings(Object.keys(ElInput.props), context.ui);
 const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
@@ -67,6 +68,12 @@ const value = computed({
 function change(value: any) {
   if (ui.value.change) {
     ui.value.change(value);
+  }
+}
+
+function input(value: any) {
+  if (ui.value.input) {
+    ui.value.input(value);
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <el-form-item
     :required="ui.showRequired"
     :error="error"
-    :size="ui.size"
+    :size="size"
     :class="[{ 'no-label': !meta.title }]"
   >
     <template #label v-if="meta.title">
@@ -36,6 +36,7 @@ import {
   getCurrentInstance,
   inject,
   onBeforeUnmount,
+  toRef,
   type ComponentInternalInstance,
 } from "vue";
 
@@ -52,6 +53,8 @@ const context: any = state.context!.getContext(props.id);
 const ui = computed(() => {
   return Object.assign({}, state.ui, props.meta.ui);
 });
+
+const size = toRef(ui.value, "size");
 
 const oh = computed(() => {
   return Object.assign({}, state.ui, props.meta.ui).optionalHelp;

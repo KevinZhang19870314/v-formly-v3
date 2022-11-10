@@ -1,8 +1,9 @@
 import useEventBus from "@/core/hooks/event-bus";
-import type { Meta } from "@/types/meta";
+import { MetaType, type Meta } from "@/types/meta";
 import Ajv from "ajv";
-import type { AppContext } from "vue";
+import { isRef, type AppContext } from "vue";
 import { FORM_ERROR_CHANGE } from "./consts";
+import { deepClone } from "./utils";
 
 class ValidateFactory {
   private state: any;
@@ -39,8 +40,47 @@ class ValidateFactory {
   _ajvValidate(meta: Meta) {
     if (this._validate) return this._validate;
 
-    this._validate = this._ajv.compile(meta);
+    const cloneMeta = deepClone(meta);
+    this._replaceReactiveToRawData(cloneMeta);
+
+    this._validate = this._ajv.compile(cloneMeta);
     return this._validate;
+  }
+
+  // 为了支持响应式，我们会传入一些ref的值，但是这个值在ajv中执行ajv.validateSchema会不通过，
+  // 所以这里我们在ajv.compile的时候替换掉这些响应式的值，但是保持meta不变，所以这里clone了一份做compile
+  _replaceReactiveToRawData(meta: Meta) {
+    let metas: Meta[];
+    let keys: string[];
+    switch (meta.type) {
+      case MetaType.Object:
+        metas = Object.values(meta.properties as any);
+        metas.forEach((m: Meta) => {
+          this._replaceReactiveToRawData(m);
+        });
+        break;
+      case MetaType.Array:
+        keys = Object.keys(meta);
+        keys.forEach((k: string) => {
+          if (isRef(meta[k])) {
+            meta[k] = meta[k]._value;
+          }
+        });
+
+        metas = Object.values(meta.items?.properties as any);
+        metas.forEach((m: Meta) => {
+          this._replaceReactiveToRawData(m);
+        });
+        break;
+      default:
+        keys = Object.keys(meta);
+        keys.forEach((k: string) => {
+          if (isRef(meta[k])) {
+            meta[k] = meta[k]._value;
+          }
+        });
+        break;
+    }
   }
 
   _getAjvError(id: string, errors: any) {
