@@ -4,7 +4,7 @@
       class="v__boolean"
       v-model="value"
       v-bind="bindings"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       @change="change"
     >
     </el-switch>
@@ -33,6 +33,7 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new BooleanMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(ElSwitch.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
   return context.ui.value || {};

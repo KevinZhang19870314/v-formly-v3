@@ -5,7 +5,7 @@
         class="v__checkbox"
         v-model="value"
         v-bind="curBindings"
-        :disabled="meta.readOnly"
+        :disabled="readOnly"
         @change="change"
       >
         <template v-if="ui.button">
@@ -48,6 +48,7 @@ import {
   getCurrentInstance,
   inject,
   ref,
+  toRef,
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
@@ -77,6 +78,7 @@ if (ui.value.group) {
   const { bindings } = useBindings(Object.keys(ElCheckbox.props), context.ui);
   curBindings.value = bindings.value;
 }
+const readOnly = toRef(props.meta, "readOnly");
 
 const value = computed({
   get() {

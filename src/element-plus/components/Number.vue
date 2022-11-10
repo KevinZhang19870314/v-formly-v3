@@ -4,9 +4,9 @@
       class="v__number"
       v-model="value"
       v-bind="bindings"
-      :disabled="meta.readOnly"
-      :min="meta.minimum"
-      :max="meta.maximum"
+      :disabled="readOnly"
+      :min="minimum"
+      :max="maximum"
       @change="change"
     >
     </el-input-number>
@@ -18,6 +18,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  toRef,
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
@@ -34,6 +35,9 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new NumberMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(ElInputNumber.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
+const minimum = toRef(props.meta, "minimum");
+const maximum = toRef(props.meta, "maximum");
 
 const ui = computed(() => {
   return context.ui.value || {};

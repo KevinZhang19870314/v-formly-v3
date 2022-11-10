@@ -5,7 +5,7 @@
       v-if="ui.type === 'range'"
       v-model:value="value"
       v-bind="rangeBindings"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       @calendarChange="calendarChange"
       @ok="ok"
       @change="change"
@@ -37,6 +37,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  toRef,
   unref,
   type ComponentInternalInstance,
 } from "vue";
@@ -60,6 +61,7 @@ if (context.ui.value.type === "range") {
   const { bindings } = useBindings(Object.keys(DatePicker.props), context.ui);
   dateBindings = bindings;
 }
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
   return context.ui.value || {};

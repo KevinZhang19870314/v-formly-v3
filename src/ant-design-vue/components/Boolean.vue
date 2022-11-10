@@ -4,7 +4,7 @@
       class="v__boolean"
       v-model:checked="value"
       v-bind="bindings"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       @change="change"
     >
       <template v-if="ui.slotNameOfCheckedChildren" v-slot:checkedChildren>
@@ -27,6 +27,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  toRef,
   unref,
   type ComponentInternalInstance,
 } from "vue";
@@ -39,6 +40,7 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new BooleanMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(Switch.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
   return context.ui.value || {};

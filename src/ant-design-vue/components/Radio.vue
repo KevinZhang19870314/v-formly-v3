@@ -4,7 +4,7 @@
       :class="{ 'v__radio-vertical': ui.direction === 'vertical' }"
       v-bind="bindings"
       v-model:value="value"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       @change="change"
     />
   </v-wrapper>
@@ -17,6 +17,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  toRef,
   unref,
   type ComponentInternalInstance,
 } from "vue";
@@ -32,6 +33,7 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(RadioGroup.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
   return context.ui.value || {};

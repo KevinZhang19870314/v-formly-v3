@@ -4,8 +4,8 @@
       v-bind="bindings"
       :autoSize="autoSize"
       :defaultValue="meta.defaultValue"
-      :disabled="meta.readOnly"
-      :maxlength="meta.maxLength"
+      :disabled="readOnly"
+      :maxlength="maxLength"
       v-model:value="value"
       @change="change"
       @focus="focus"
@@ -18,7 +18,7 @@
 <script setup lang="ts" name="v-textarea">
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/core/utils/global";
-import type { ComponentInternalInstance } from "vue";
+import { toRef, type ComponentInternalInstance } from "vue";
 import {
   computed,
   getCurrentInstance,
@@ -38,6 +38,8 @@ const state: Global = inject("state")!;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 const { bindings } = useBindings(Object.keys(Textarea.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
+const maxLength = toRef(props.meta, "maxLength");
 
 const ui = computed(() => context.ui.value || {});
 const value = computed({

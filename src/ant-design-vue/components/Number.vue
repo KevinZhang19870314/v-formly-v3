@@ -5,7 +5,7 @@
       :id="id"
       v-model:value="value"
       v-bind="bindings"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       :min="min"
       :max="max"
       :step="step"
@@ -35,6 +35,7 @@ import {
   getCurrentInstance,
   inject,
   ref,
+  toRef,
   unref,
   type ComponentInternalInstance,
 } from "vue";
@@ -50,6 +51,7 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(InputNumber.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
   return context.ui.value || {};

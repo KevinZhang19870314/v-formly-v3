@@ -6,7 +6,7 @@
       v-model:value="value"
       v-model:open="ui.open"
       v-bind="rangeBindings"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       @calendarChange="calendarChange"
       @ok="ok"
       @change="change"
@@ -51,6 +51,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  toRef,
   type ComponentInternalInstance,
 } from "vue";
 import VWrapper from "./Wrapper.vue";
@@ -76,6 +77,7 @@ if (context.ui.value.type === "range") {
   const { bindings } = useBindings(Object.keys(TimePicker.props), context.ui);
   dateBindings = bindings;
 }
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
   return context.ui.value || {};

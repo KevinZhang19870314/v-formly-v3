@@ -3,8 +3,8 @@
     <a-input
       v-bind="bindings"
       :defaultValue="meta.defaultValue"
-      :disabled="meta.readOnly"
-      :maxLength="meta.maxLength"
+      :disabled="readOnly"
+      :maxLength="maxLength"
       v-model:value="value"
       @change="change"
     >
@@ -34,6 +34,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  toRef,
   unref,
   type ComponentInternalInstance,
 } from "vue";
@@ -49,6 +50,8 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(Input.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
+const maxLength = toRef(props.meta, "maxLength");
 
 const ui = computed(() => {
   return context.ui.value || {};

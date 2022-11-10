@@ -2,7 +2,7 @@
   <v-wrapper :id="id" :meta="meta">
     <a-auto-complete
       v-bind="bindings"
-      :disabled="meta.readOnly"
+      :disabled="readOnly"
       v-model:value="value"
       @change="change"
       @search="search"
@@ -28,6 +28,7 @@ import {
   computed,
   getCurrentInstance,
   inject,
+  toRef,
   unref,
   type ComponentInternalInstance,
 } from "vue";
@@ -40,6 +41,7 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(AutoComplete.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => {
   return context.ui.value || {};
