@@ -1,8 +1,8 @@
 # 介绍
 
-v-formly-v3 是 vue 的动态（JSON 驱动）表单库。它通过[JSON Schema](https://json-schema.org/)和[Ajv Validator](https://ajv.js.org/)结合生成复杂的动态表单及校验，快速、简洁、高效。通过使用 v-formly-v3 及对应的组件库即可快速构造一个 Form 表单，目前支持 Vue 3.x，组件库支持[antdv v3](https://www.antdv.com/components/overview-cn)和[element-plus](https://element-plus.org/zh-CN/)，Vue 3.x 的其他 UI 库（DevUI等）支持正在开发中。
+v-formly-v3 是 vue 的动态（JSON 驱动）表单库。它通过[JSON Schema](https://json-schema.org/)和[Ajv Validator](https://ajv.js.org/)结合生成复杂的动态表单及校验，快速、简洁、高效。通过使用 v-formly-v3 及对应的组件库即可快速构造一个 Form 表单，目前支持 Vue 3.x，组件库支持[antdv v3](https://www.antdv.com/components/overview-cn)和[element-plus](https://element-plus.org/zh-CN/)，Vue 3.x 的其他 UI 库（DevUI 等）支持正在开发中。
 
-v-formly-v3 内置封装了所有的在 Ant Design of Vue 中的`Data Entry`下面的组件，同时 v-formly-v3 也支持[自定义封装组件](/zh/components/custom-components.md)，从而可以让你轻松构建复杂的动态表单。
+v-formly-v3 内置封装了 15+ 的组件，同时 v-formly-v3 也支持[自定义封装组件](/zh/components/custom-components.md)，从而可以让你轻松构建复杂的动态表单。
 
 ## 一个简单示例
 
