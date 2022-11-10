@@ -28,5 +28,56 @@ p {
 .page-nav {
   max-width: var(--content-width) !important;
   padding-left: unset !important;
-  padding-right: unset !important
+  padding-right: unset !important;
+}
+
+// 覆盖 theme-default normalize.scss （影响到Element Plus的部分）
+.el-picker-panel {
+  table {
+    border-collapse: revert;
+    margin: revert;
+    display: revert;
+    overflow-x: revert;
+    transition: revert;
+  }
+
+  tr {
+    border-top: unset;
+    transition: unset;
+
+    &:nth-child(2n) {
+      background-color: unset;
+      transition: unset;
+
+      code {
+        background-color: unset;
+      }
+    }
+  }
+
+  th,
+  td {
+    padding: unset;
+    border: unset;
+    transition: unset;
+  }
+
+  .el-date-table {
+    th {
+      padding: 5px;
+      color: var(--el-datepicker-header-text-color);
+      font-weight: 400;
+      border-bottom: solid 1px var(--el-border-color-lighter);
+    }
+
+    td {
+      width: 32px;
+      height: 30px;
+      padding: 4px 0;
+      box-sizing: border-box;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+    }
+  }
 }

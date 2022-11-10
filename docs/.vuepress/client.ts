@@ -2,12 +2,14 @@ import { defineClientConfig } from "@vuepress/client";
 import type { App } from "vue";
 import mitt from "mitt";
 import VFormly from "@/formly";
-
-import { registerFormComponent } from "@antdv/a-formly";
-import VPassword from "@antdv/examples/components/password/Password.vue";
-import VChkInput from "@antdv/examples/components/chk-input/ChkInput.vue";
-
 import "@/style/index.less";
+
+import { registerFormComponent } from "@/ant-design-vue/a-formly";
+import VPassword from "@/ant-design-vue/examples/components/password/Password.vue";
+import VChkInput from "@/ant-design-vue/examples/components/chk-input/ChkInput.vue";
+import { registerFormComponent as registerFormComponentEl } from "@/element-plus/el-formly";
+import VPasswordEl from "@/element-plus/examples/components/password/Password.vue";
+import VChkInputEl from "@/element-plus/examples/components/chk-input/ChkInput.vue";
 
 declare const __VFORMLY_LIB__: string;
 
@@ -17,19 +19,19 @@ export default defineClientConfig({
     app.config.globalProperties.emitter = mitt();
     switch (lib) {
       case "element":
-        await initElement(app);
+        await initElement(app, lib);
         break;
       default:
-        await initAntdV(app);
+        await initAntdV(app, lib);
         break;
     }
-    
+
   },
-  setup() {},
+  setup() { },
   rootComponents: [],
 });
 
-async function initAntdV(app: App) {
+async function initAntdV(app: App, lib: string) {
   const Antd = await import("ant-design-vue");
   const antIcons = await import("@ant-design/icons-vue");
   await import("ant-design-vue/dist/antd.css");
@@ -40,7 +42,7 @@ async function initAntdV(app: App) {
   });
   app.config.globalProperties.$antIcons = antIcons;
   app.use(VFormly, {
-    lib: "antdv",
+    lib: lib,
     ui: {
       errors: {
         required: "必填项",
@@ -52,7 +54,7 @@ async function initAntdV(app: App) {
   registerFormComponent(app, "v-chkinput", VChkInput);
 }
 
-async function initElement(app: App) {
+async function initElement(app: App, lib: string) {
   const ElementPlus = await import("element-plus");
   const elIcons = await import("@element-plus/icons-vue");
   await import("element-plus/dist/index.css");
@@ -63,11 +65,14 @@ async function initElement(app: App) {
   }
   app.config.globalProperties.$elIcons = elIcons;
   app.use(VFormly, {
-    lib: "element",
+    lib: lib,
     ui: {
       errors: {
         required: "必填项",
       },
     },
   });
+
+  registerFormComponentEl(app, "v-password", VPasswordEl);
+  registerFormComponentEl(app, "v-chkinput", VChkInputEl);
 }

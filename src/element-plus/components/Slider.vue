@@ -2,8 +2,8 @@
   <v-wrapper :id="id" :meta="meta">
     <el-slider
       v-bind="bindings"
-      :disabled="meta.readOnly"
-      :min="minimum || 0"
+      :disabled="readOnly"
+      :min="meta.minimum || 0"
       :max="meta.maximum || 100"
       :step="meta.multipleOf || 1"
       v-model="value"
@@ -31,6 +31,7 @@ const state: Global = inject("state")!;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new NumberMeta(appContext, state, props.id, props.meta);
 const { bindings } = useBindings(Object.keys(ElSlider.props), context.ui);
+const readOnly = toRef(props.meta, "readOnly");
 const minimum = toRef(props.meta, "minimum");
 useForceCompile([minimum], state);
 

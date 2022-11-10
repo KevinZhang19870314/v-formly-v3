@@ -23,10 +23,17 @@ CascaderView
 | `:enum`     | 数据源   | [Option](https://antdv.com/components/cascader-cn#option)\[] | -      |
 | `:readOnly` | 禁用状态 | `boolean`                       | -      |
 
-### meta.ui 属性
+### meta.ui 属性(antdv)
 
 | 成员                            | 说明                 | 类型 | 默认值 |
 | ------------------------------- | -------------------- | ---- | ------ |
-| `:slotNameOfDefault`    | 自定义显示           | slot | -      |
-| `:slotNameOfSuffixIcon` | 后缀图标             | slot | -      |
-| `:slotNameOfDisplayRender`      | 选择后展示的渲染函数 | slot | -      |
+| `:slotNameOfDefault`    | 自定义显示           | `slot` | -      |
+| `:slotNameOfSuffixIcon` | 后缀图标             | `slot` | -      |
+| `:slotNameOfDisplayRender`      | 选择后展示的渲染函数 | `slot` | -      |
+
+### meta.ui 属性(element)
+
+| 成员                            | 说明                 | 类型 | 默认值 |
+| ------------------------------- | -------------------- | ---- | ------ |
+| `:slotNameOfDefault`    | 自定义显示           | `slot` | -      |
+| `:type`    | 级联类型，默认为级联选择器，值是`panel`时为级联面板         | `string` | -      |

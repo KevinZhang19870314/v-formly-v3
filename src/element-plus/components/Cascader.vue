@@ -3,7 +3,7 @@
     <template v-if="isPanel">
       <el-cascader-panel
         v-bind="panelBindings"
-        :disabled="meta.readOnly"
+        :disabled="readOnly"
         :options="meta.enum"
         v-model="value"
         @change="change"
@@ -17,7 +17,7 @@
     <template v-else>
       <el-cascader
         v-bind="bindings"
-        :disabled="meta.readOnly"
+        :disabled="readOnly"
         :options="meta.enum"
         v-model="value"
         @change="change"
@@ -38,7 +38,7 @@
 <script setup lang="ts" name="v-cascader">
 import type { Meta } from "@/types/meta";
 import type { Global } from "@/core/utils/global";
-import type { ComponentInternalInstance } from "vue";
+import { toRef, type ComponentInternalInstance } from "vue";
 import { ElCascader, ElCascaderPanel } from "element-plus";
 import { computed, getCurrentInstance, inject, unref } from "vue";
 import VWrapper from "./Wrapper.vue";
@@ -55,6 +55,7 @@ const panelBindings = useBindings(
   Object.keys(ElCascaderPanel.props),
   context.ui
 ).bindings;
+const readOnly = toRef(props.meta, "readOnly");
 
 const ui = computed(() => context.ui.value || {});
 const isPanel = computed(() => unref(ui).type === "panel");
