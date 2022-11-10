@@ -47,6 +47,12 @@ class ValidateFactory {
     return this._validate;
   }
 
+  _forceCompile() {
+    const cloneMeta = deepClone(this.state.meta);
+    this._replaceReactiveToRawData(cloneMeta);
+    this._validate = this._ajv.compile(cloneMeta);
+  }
+
   // 为了支持响应式，我们会传入一些ref的值，但是这个值在ajv中执行ajv.validateSchema会不通过，
   // 所以这里我们在ajv.compile的时候替换掉这些响应式的值，但是保持meta不变，所以这里clone了一份做compile
   _replaceReactiveToRawData(meta: Meta) {
