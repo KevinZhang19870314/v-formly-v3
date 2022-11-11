@@ -21,6 +21,8 @@
 
 ### 文档 & Demo
 
+[简介](https://juejin.cn/post/7161591837407805476/)
+
 [文档](https://kevinzhang19870314.github.io/v-formly-v3/zh/)
 
 [Stackblitz antdv](https://stackblitz.com/edit/github-r1j1ut?file=src%2FApp.vue)，
