@@ -11,6 +11,8 @@ import { registerFormComponent as registerFormComponentEl } from "@/element-plus
 import VPasswordEl from "@/element-plus/examples/components/password/Password.vue";
 import VChkInputEl from "@/element-plus/examples/components/chk-input/ChkInput.vue";
 
+import Antd from "ant-design-vue";
+
 declare const __VFORMLY_LIB__: string;
 
 export default defineClientConfig({
@@ -25,14 +27,14 @@ export default defineClientConfig({
         await initAntdV(app, lib);
         break;
     }
-
   },
-  setup() { },
+  setup() {},
   rootComponents: [],
 });
 
 async function initAntdV(app: App, lib: string) {
-  const Antd = await import("ant-design-vue");
+  // Antd 动态导入部署到github pages上面会报动态导入模块的错误。
+  // const Antd = await import("ant-design-vue");
   const antIcons = await import("@ant-design/icons-vue");
   await import("ant-design-vue/dist/antd.css");
   await import("./styles/reset.scss");

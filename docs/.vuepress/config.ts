@@ -236,7 +236,7 @@ function getComponentsSidebar(groupA, groupB) {
 }
 
 function getNavbarLib(lib: Lib, lang: string = '/') {
-  const url = isProd ? 'https://kevinzhang19870314.github.io/v-formly-v3/' : 'http://127.0.0.1:5500/v-formly-v3'
+  const url = isProd ? 'https://kevinzhang19870314.github.io/v-formly-v3' : 'http://127.0.0.1:5500/v-formly-v3'
   const list = [
     {
       lib: Lib.Antdv,
