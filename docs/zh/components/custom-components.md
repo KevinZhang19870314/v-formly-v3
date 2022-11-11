@@ -65,7 +65,7 @@ v-formly-v3 中的每个组件都对应一个 context，其中包含了组件的
     <a-input
       v-bind="bindings"
       :disabled="meta.readOnly"
-      :maxLength="meta.maxLength"
+      :maxlength="meta.maxLength"
       :type="type"
       v-model:value="value"
       @change="change"

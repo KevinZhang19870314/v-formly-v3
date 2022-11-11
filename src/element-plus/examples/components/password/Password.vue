@@ -3,7 +3,7 @@
     <el-input
       v-bind="bindings"
       :disabled="meta.readOnly"
-      :maxLength="meta.maxLength"
+      :maxlength="meta.maxLength"
       :type="type"
       v-model="value"
       @change="change"

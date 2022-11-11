@@ -4,7 +4,7 @@
       v-bind="bindings"
       :defaultValue="meta.defaultValue"
       :disabled="readOnly"
-      :maxLength="maxLength"
+      :maxlength="maxLength"
       v-model:value="value"
       @change="change"
     >
