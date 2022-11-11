@@ -100,10 +100,7 @@ export default defineUserConfig({
         // navbar
         navbar: [
           { text: "Guide", link: "/guide/" },
-          {
-            text: "Config Reference",
-            children: getNavbarLib(lib as Lib),
-          },
+          ...getNavbarLib(lib as Lib)
         ],
         selectLanguageText: "Languages",
         selectLanguageName: "English",
@@ -120,10 +117,7 @@ export default defineUserConfig({
         // navbar
         navbar: [
           { text: "指南", link: "/zh/guide/" },
-          {
-            text: "组件",
-            children: getNavbarLib(lib as Lib, '/zh/'),
-          },
+          ...getNavbarLib(lib as Lib, '/zh/')
         ],
         selectLanguageText: "选择语言",
         selectLanguageName: "简体中文",

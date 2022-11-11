@@ -3,9 +3,9 @@
     <el-slider
       v-bind="bindings"
       :disabled="readOnly"
-      :min="meta.minimum || 0"
-      :max="meta.maximum || 100"
-      :step="meta.multipleOf || 1"
+      :min="minimum || 0"
+      :max="maximum || 100"
+      :step="multipleOf || 1"
       v-model="value"
       @input="input"
       @change="change"
@@ -33,7 +33,9 @@ const context = new NumberMeta(appContext, state, props.id, props.meta);
 const { bindings } = useBindings(Object.keys(ElSlider.props), context.ui);
 const readOnly = toRef(props.meta, "readOnly");
 const minimum = toRef(props.meta, "minimum");
-useForceCompile([minimum], state);
+const maximum = toRef(props.meta, "maximum");
+const multipleOf = toRef(props.meta, "multipleOf");
+useForceCompile([minimum, maximum, multipleOf], state);
 
 const ui = computed(() => context.ui.value || {});
 const value = computed({

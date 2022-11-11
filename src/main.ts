@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import mitt from "mitt";
 import VFormly from "./formly";
 import "@/style/index.less";
 
@@ -23,7 +22,6 @@ import VPasswordEl from "@/element-plus/examples/components/password/Password.vu
 import VChkInputEl from "@/element-plus/examples/components/chk-input/ChkInput.vue";
 
 const app = createApp(App);
-app.config.globalProperties.emitter = mitt();
 
 // ---------------------设置使用库----------------
 const lib: string = "antdv";

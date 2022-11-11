@@ -10,7 +10,7 @@ import Menu from "./Menu.vue";
 
 <style scoped lang="less">
 .layout-sidebar {
-  margin-top: -64px;
+  margin-top: calc(var(--header-height) * -1);
   &--fixed {
     position: fixed;
     top: 0;

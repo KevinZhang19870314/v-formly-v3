@@ -26,7 +26,7 @@ const getHeaderClass = computed(() => {
 });
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 .layout-header {
   display: flex;
   justify-content: space-between;
