@@ -12,23 +12,23 @@ const __dirname = getDirname(import.meta.url);
 const isProd = process.env.NODE_ENV === "production";
 const enum Lib { Antdv = 'antdv', Element = 'element' }
 
-const lib = process.env.VFORMLY_LIB || Lib.Antdv
+const lib: Lib = (process.env.VFORMLY_LIB as Lib) || Lib.Antdv
 const LIB_MAP = {
   [Lib.Antdv]: {
-    base: "/v-formly-v3/",
+    base: "v-formly-v3",
     text: 'Ant Design Vue',
     examplesPath: path.resolve(__dirname, "../../src/ant-design-vue/examples/views"),
 
   },
   [Lib.Element]: {
-    base: "/v-formly-v3/element-plus/",
+    base: "v-formly-v3/element-plus",
     text: 'Element Plus',
     examplesPath: path.resolve(__dirname, "../../src/element-plus/examples/views"),
   },
 }
 export default defineUserConfig({
   lang: "zh-CN",
-  base: LIB_MAP[lib].base,
+  base: `/${LIB_MAP[lib].base}/`,
   locales: {
     "/": {
       lang: "en-US",
@@ -190,7 +190,7 @@ export default defineUserConfig({
   },
 });
 
-function getGuideSidebar(groupA, groupB) {
+function getGuideSidebar(groupA: string, groupB: string) {
   return [
     {
       text: groupA,
@@ -203,7 +203,7 @@ function getGuideSidebar(groupA, groupB) {
   ];
 }
 
-function getComponentsSidebar(groupA, groupB) {
+function getComponentsSidebar(groupA: string, groupB: string) {
   return [
     {
       text: groupA,
@@ -236,23 +236,14 @@ function getComponentsSidebar(groupA, groupB) {
 }
 
 function getNavbarLib(lib: Lib, lang: string = '/') {
-  const url = isProd ? 'https://kevinzhang19870314.github.io/v-formly-v3' : 'http://127.0.0.1:5500/v-formly-v3'
-  const list = [
-    {
-      lib: Lib.Antdv,
-      text: LIB_MAP[Lib.Antdv].text,
-      link: `${url}${lang}components/`,
-    },
-    {
-      lib: Lib.Element,
-      text: LIB_MAP[Lib.Element].text,
-      link: `${url}/element-plus${lang}components/`,
-    },
-  ]
-  list.forEach(item => {
-    if (item.lib === lib) {
-      item.link = `${lang}components/`
+  const isPreBuild = process.env.BUILD_MODE === "test";
+  const host = isPreBuild ? 'http://127.0.0.1:5500/' : 'https://kevinzhang19870314.github.io/'
+  const libs = [Lib.Antdv, Lib.Element]
+  return libs.map((item) => {
+    return {
+      lib: item,
+      text: LIB_MAP[item].text,
+      link: item === lib ? `${lang}components/` : `${host}${LIB_MAP[item].base}${lang}components/`,
     }
   })
-  return list
 }
