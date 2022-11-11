@@ -55,7 +55,7 @@ npm i v-formly-v3 --save
 import { createApp } from "vue";
 import App from "./App.vue";
 import Antd from "ant-design-vue";
-import "element-plus/dist/index.css";
+import "ant-design-vue/dist/antd.css";
 import * as antIcons from "@ant-design/icons-vue";
 import VFormly from "v-formly-v3/antdv";
 

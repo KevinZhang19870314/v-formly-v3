@@ -1,6 +1,6 @@
 {
   "name": "v-formly-v3",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": false,
   "main": "./lib/v-formly-v3.umd.js",
   "module": "./lib/v-formly-v3.es.js",
@@ -50,15 +50,16 @@
   },
   "author": "KevinZhang19870314",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "ajv": "^8.11.0",
+    "mitt": "^3.0.0"
+  },
   "devDependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@element-plus/icons-vue": "^2.0.10",
-    "ajv": "^8.11.0",
     "ant-design-vue": "^3.2.13",
     "dayjs": "^1.11.6",
     "element-plus": "^2.2.20",
-    "mitt": "^3.0.0",
     "vue": "^3.2.38",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/node": "^16.11.56",
