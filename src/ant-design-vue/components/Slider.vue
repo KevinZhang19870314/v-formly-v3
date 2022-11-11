@@ -3,9 +3,9 @@
     <a-slider
       v-bind="bindings"
       :disabled="readOnly"
-      :min="meta.minimum || 0"
-      :max="meta.maximum || 100"
-      :step="meta.multipleOf || 1"
+      :min="minimum || 0"
+      :max="maximum || 100"
+      :step="multipleOf || 1"
       :tipFormatter="hiddenTooltip ? null : tipFormatter"
       v-model:value="value"
       @change="change"
@@ -29,6 +29,7 @@ import { NumberMeta } from "@/core/meta/number.meta";
 import { Slider } from "ant-design-vue";
 import { useBindings } from "@/core/hooks/bindings";
 import { isNumber } from "@/core/utils/utils";
+import { useForceCompile } from "@/core/hooks/force-compile";
 
 const props = defineProps<{ id: string; meta: Meta }>();
 const state: Global = inject("state")!;
@@ -37,6 +38,10 @@ const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new NumberMeta(appContext, state, props.id, props.meta);
 const { bindings } = useBindings(Object.keys(Slider.props), context.ui);
 const readOnly = toRef(props.meta, "readOnly");
+const minimum = toRef(props.meta, "minimum");
+const maximum = toRef(props.meta, "maximum");
+const multipleOf = toRef(props.meta, "multipleOf");
+useForceCompile([minimum, maximum, multipleOf], state);
 
 const ui = computed(() => context.ui.value || {});
 const value = computed({
