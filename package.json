@@ -32,7 +32,8 @@
     "v-formly-v3"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev:antdv": "vite serve src/ant-design-vue/examples/ --config ./vite.config.ts",
+    "dev:element": "vite serve src/element-plus/examples/ --config ./vite.config.ts",
     "cli": "vite --help",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
