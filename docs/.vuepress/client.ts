@@ -1,7 +1,7 @@
 import { defineClientConfig } from "@vuepress/client";
 import type { App } from "vue";
-import mitt from "mitt";
-import VFormly from "@/formly";
+import AFormly from "@/aformly";
+import ElVFormly from "@/elformly";
 import "@/style/index.less";
 
 import { registerFormComponent } from "@/ant-design-vue/a-formly";
@@ -12,13 +12,15 @@ import VPasswordEl from "@/element-plus/examples/components/password/Password.vu
 import VChkInputEl from "@/element-plus/examples/components/chk-input/ChkInput.vue";
 
 import Antd from "ant-design-vue";
+import * as antIcons from "@ant-design/icons-vue";
+import ElementPlus from "element-plus";
+import * as elIcons from "@element-plus/icons-vue";
 
 declare const __VFORMLY_LIB__: string;
 
 export default defineClientConfig({
   async enhance({ app }) {
     const lib = __VFORMLY_LIB__;
-    app.config.globalProperties.emitter = mitt();
     switch (lib) {
       case "element":
         await initElement(app, lib);
@@ -35,7 +37,6 @@ export default defineClientConfig({
 async function initAntdV(app: App, lib: string) {
   // Antd 动态导入部署到github pages上面会报动态导入模块的错误。
   // const Antd = await import("ant-design-vue");
-  const antIcons = await import("@ant-design/icons-vue");
   await import("ant-design-vue/dist/antd.css");
   await import("./styles/reset.scss");
   app.use(Antd);
@@ -43,7 +44,7 @@ async function initAntdV(app: App, lib: string) {
     app.component(key, (antIcons as any)[key]);
   });
   app.config.globalProperties.$antIcons = antIcons;
-  app.use(VFormly, {
+  app.use(AFormly, {
     lib: lib,
     ui: {
       errors: {
@@ -57,8 +58,6 @@ async function initAntdV(app: App, lib: string) {
 }
 
 async function initElement(app: App, lib: string) {
-  const ElementPlus = await import("element-plus");
-  const elIcons = await import("@element-plus/icons-vue");
   await import("element-plus/dist/index.css");
   await import("./styles/reset.scss");
   app.use(ElementPlus);
@@ -66,7 +65,7 @@ async function initElement(app: App, lib: string) {
     app.component(key, component);
   }
   app.config.globalProperties.$elIcons = elIcons;
-  app.use(VFormly, {
+  app.use(ElVFormly, {
     lib: lib,
     ui: {
       errors: {
