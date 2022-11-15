@@ -46,6 +46,7 @@
     "docs:dev:antdv": "cross-env VFORMLY_LIB=antdv vuepress dev docs --clean-temp --clean-cache",
     "docs:dev:element": "cross-env VFORMLY_LIB=element vuepress dev docs --clean-temp --clean-cache",
     "docs:build": "run-s docs:build:antdv docs:build:element",
+    "docs:build-test": "cross-env BUILD_MODE=test run-s docs:build:antdv docs:build:element",
     "docs:build:antdv": "cross-env VFORMLY_LIB=antdv vuepress build docs",
     "docs:build:element": "cross-env VFORMLY_LIB=element vuepress build docs -d './docs/.vuepress/dist/element-plus'"
   },
