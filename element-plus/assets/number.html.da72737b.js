@@ -1,0 +1,1 @@
+import{_ as r,o as t,c as a,a as e,b as n}from"./app.e2a2a9c4.js";const c={},o=e("h1",{id:"number-数字输入框",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#number-数字输入框","aria-hidden":"true"},"#"),n(" Number 数字输入框")],-1),s=[o];function _(d,i){return t(),a("div",null,s)}const u=r(c,[["render",_],["__file","number.html.vue"]]);export{u as default};

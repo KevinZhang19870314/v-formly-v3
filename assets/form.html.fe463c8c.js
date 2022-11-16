@@ -1,0 +1,1 @@
+import{_ as t,o as a,c as o,a as e,b as r}from"./app.5b6a6178.js";const c={},s=e("h1",{id:"表单",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#表单","aria-hidden":"true"},"#"),r(" 表单")],-1),n=[s];function _(d,i){return a(),o("div",null,n)}const h=t(c,[["render",_],["__file","form.html.vue"]]);export{h as default};

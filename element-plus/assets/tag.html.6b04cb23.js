@@ -1,0 +1,1 @@
+import{_ as a,o as t,c,a as e,b as o}from"./app.e2a2a9c4.js";const r={},s=e("h1",{id:"tag-标签",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#tag-标签","aria-hidden":"true"},"#"),o(" Tag 标签")],-1),n=[s];function _(d,i){return t(),c("div",null,n)}const l=a(r,[["render",_],["__file","tag.html.vue"]]);export{l as default};

@@ -1,0 +1,1 @@
+import{_ as t,o as a,c as o,a as e,b as c}from"./app.5b6a6178.js";const r={},s=e("h1",{id:"custom-validator",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#custom-validator","aria-hidden":"true"},"#"),c(" custom-validator")],-1),d=[s];function i(n,_){return a(),o("div",null,d)}const m=t(r,[["render",i],["__file","custom-validator.html.vue"]]);export{m as default};

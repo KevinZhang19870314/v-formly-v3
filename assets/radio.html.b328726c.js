@@ -1,0 +1,1 @@
+import{_ as a,o,c as r,a as e,b as t}from"./app.5b6a6178.js";const c={},d=e("h1",{id:"radio-单选框",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#radio-单选框","aria-hidden":"true"},"#"),t(" Radio 单选框")],-1),s=[d];function i(n,_){return o(),r("div",null,s)}const l=a(c,[["render",i],["__file","radio.html.vue"]]);export{l as default};

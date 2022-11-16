@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-20ce47b6","path":"/components/checkbox.html","title":"Checkbox 多选框","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1666165087000,"contributors":[{"name":"JieChongHai","email":"3357991893@qq.com","commits":1}]},"filePathRelative":"components/checkbox.md"}');export{e as data};

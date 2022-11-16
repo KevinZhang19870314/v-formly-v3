@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-5c25a0b9","path":"/components/rate.html","title":"Rate 评分","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1666165087000,"contributors":[{"name":"JieChongHai","email":"3357991893@qq.com","commits":1}]},"filePathRelative":"components/rate.md"}');export{e as data};

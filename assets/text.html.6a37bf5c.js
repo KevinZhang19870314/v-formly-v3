@@ -1,0 +1,1 @@
+import{_ as t,o as a,c,a as e,b as o}from"./app.5b6a6178.js";const r={},s=e("h1",{id:"text-文本",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#text-文本","aria-hidden":"true"},"#"),o(" Text 文本")],-1),n=[s];function _(d,i){return a(),c("div",null,n)}const l=t(r,[["render",_],["__file","text.html.vue"]]);export{l as default};

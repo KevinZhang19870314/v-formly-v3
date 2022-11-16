@@ -1,0 +1,1 @@
+import{_ as t,o as r,c as s,a as e,b as a}from"./app.5b6a6178.js";const n={},c=e("h1",{id:"string-文本框",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#string-文本框","aria-hidden":"true"},"#"),a(" String 文本框")],-1),o=[c];function i(_,d){return r(),s("div",null,o)}const l=t(n,[["render",i],["__file","string.html.vue"]]);export{l as default};

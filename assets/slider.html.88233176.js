@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-bdb4c550","path":"/components/slider.html","title":"Slider 滑动输入条","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1666165087000,"contributors":[{"name":"JieChongHai","email":"3357991893@qq.com","commits":1}]},"filePathRelative":"components/slider.md"}');export{e as data};

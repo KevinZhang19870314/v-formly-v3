@@ -1,0 +1,1 @@
+import{_ as t,o as a,c,a as e,b as o}from"./app.5b6a6178.js";const r={},s=e("h1",{id:"date-日期选择框",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#date-日期选择框","aria-hidden":"true"},"#"),o(" Date 日期选择框")],-1),d=[s];function n(_,i){return a(),c("div",null,d)}const l=t(r,[["render",n],["__file","date.html.vue"]]);export{l as default};

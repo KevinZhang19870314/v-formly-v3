@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-7c214732","path":"/components/custom-components.html","title":"自定义组件","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1666165087000,"contributors":[{"name":"JieChongHai","email":"3357991893@qq.com","commits":1}]},"filePathRelative":"components/custom-components.md"}');export{t as data};
