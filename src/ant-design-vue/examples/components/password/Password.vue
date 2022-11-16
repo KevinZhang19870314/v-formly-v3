@@ -1,4 +1,5 @@
 <template>
+  <!-- 必须要使用 v-wrapper 来包裹我们的模板 -->
   <v-wrapper :id="id" :meta="meta">
     <a-input
       v-bind="bindings"
@@ -39,14 +40,15 @@ let type = ref("password");
 let eyeVisible = ref(false);
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+// 初始化 context
 const context = new PasswordMeta(appContext, state, props.id, props.meta);
-
+// 导入 hook
 const { bindings } = useBindings(Object.keys(Input.props), context.ui);
 
 const ui = computed(() => {
   return context.ui.value || {};
 });
-
+// 这个是绑定到模板的 v-model 值
 const value = computed({
   get() {
     return context.value;

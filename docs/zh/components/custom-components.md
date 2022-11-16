@@ -2,7 +2,7 @@
 
 v-formly-v3 内置了很多组件，一般业务场景基本可以满足，除了内置组件外，v-formly 还提供了自定义组件的能力。
 
-## 自定义组件需要遵循一定的规则，总的来说有四步：
+## 自定义组件需要遵循一定的规则，总的来说有四步
 
 ::: tip
 一般情况下，我们自定义组件需要新增两个文件，比如我们下面的 Password 密码框组件，我们需要新增：
@@ -21,28 +21,27 @@ v-formly-v3 内置了很多组件，一般业务场景基本可以满足，除�
 
 新建一个 context ts 类，比如`password.meta.ts`, 在组件中初始化 context：
 
-```ts {9}
-import { PasswordMeta } from "./password.meta";
-import type { Meta } from "@/types/meta";
-import { getCurrentInstance, inject, type ComponentInternalInstance } from "vue";
-
-const props = defineProps<{ id: string; meta: Meta }>();
-const state = inject("state") as Global;
-
-const { appContext } = getCurrentInstance() as ComponentInternalInstance;
-const context = new PasswordMeta(appContext, state, props.id, props.meta);
-```
+:::: import-codes-group
+::: import-codes-group-item antdv
+@[code{23-44} ts{22}](@src/ant-design-vue/examples/components/password/Password.vue)
+:::
+::: import-codes-group-item element
+@[code{35-41} ts{7}](@src/element-plus/examples/components/password/Password.vue)
+:::
+::::
 
 ### 3. 导入 useBindings  到`.vue`组件中
 
 导入 hook`useBindings`到组件中，此 hook 导出了可供组件绑定使用的 ui props 对象`bindings`。
 
-```ts {4}
-import { Input } from "ant-design-vue";
-import { useBindings } from "@/hooks/bindings";
-
-const { bindings } = useBindings(Object.keys(Input.props), context.ui);
-```
+:::: import-codes-group
+::: import-codes-group-item antdv
+@[code{33-44} ts{12}](@src/ant-design-vue/examples/components/password/Password.vue)
+:::
+::: import-codes-group-item element
+@[code{33-43} ts{11}](@src/element-plus/examples/components/password/Password.vue)
+:::
+::::
 
 ### 4. 绑定`context.value`到`.vue`文件模板中
 
@@ -58,109 +57,27 @@ v-formly-v3 中的每个组件都对应一个 context，其中包含了组件的
 
 对应上面的自定义组件四步，理解一下这个文件。
 
-```vue {3,19,44,46,52-59}
-<template>
-  <!-- 必须要使用 v-wrapper 来包裹我们的模板 -->
-  <v-wrapper :id="id" :meta="meta">
-    <a-input
-      v-bind="bindings"
-      :disabled="meta.readOnly"
-      :maxlength="meta.maxLength"
-      :type="type"
-      v-model:value="value"
-      @change="change"
-    >
-      <template v-slot:suffix>
-        <div style="cursor: pointer" @click="toggle">
-          <eye-invisible-outlined v-if="!eyeVisible" />
-          <eye-outlined v-if="eyeVisible" />
-        </div>
-      </template>
-    </a-input>
-  </v-wrapper>
-</template>
-
-<script setup lang="ts">
-import { PasswordMeta } from "./password.meta";
-import type { Meta } from "@/types/meta";
-import {
-  computed,
-  getCurrentInstance,
-  inject,
-  ref,
-  unref,
-  type ComponentInternalInstance,
-} from "vue";
-import { Input } from "ant-design-vue";
-import { useBindings } from "@/hooks/bindings";
-import type { Global } from "@/utils/global";
-
-const props = defineProps<{ id: string; meta: Meta }>();
-const state = inject("state") as Global;
-let type = ref("password");
-let eyeVisible = ref(false);
-
-const { appContext } = getCurrentInstance() as ComponentInternalInstance;
-// 初始化 context
-const context = new PasswordMeta(appContext, state, props.id, props.meta);
-// 导入 hook
-const { bindings } = useBindings(Object.keys(Input.props), context.ui);
-
-const ui = computed(() => {
-  return context.ui.value || {};
-});
-// 这个是绑定到模板的 v-model 值
-const value = computed({
-  get() {
-    return context.value;
-  },
-  set(val) {
-    context.value = val;
-  },
-});
-
-function change() {
-  if (ui.value.change) {
-    ui.value.change(unref(value));
-  }
-}
-
-function toggle() {
-  eyeVisible.value = !eyeVisible.value;
-  type.value = eyeVisible.value ? "text" : "password";
-}
-</script>
-```
+:::: import-codes-group
+::: import-codes-group-item antdv
+@[code{1-} vue{3,19,44,46,52-59}](@src/ant-design-vue/examples/components/password/Password.vue)
+:::
+::: import-codes-group-item element
+@[code{1-} vue{3,19,41,43,52-59}](@src/element-plus/examples/components/password/Password.vue)
+:::
+::::
 
 #### password.meta.ts
 
 因为密码框组件比较简单，只有一些 UI 样式的操作，所以`.meta.ts`文件非常简单，只在`setValue`中设置`value`时去除两边的空格。
 
-```ts {19}
-import { BaseMeta } from "@/formly";
-import type { Meta } from "@/types/meta";
-import type { Global } from "@/utils/global";
-import type { AppContext } from "vue";
-class PasswordMeta extends BaseMeta {
-  constructor(appContext: AppContext, state: Global, id: string, meta: Meta) {
-    super(appContext, state, id, meta);
-  }
-
-  initValue() {
-    if (this._initMetaValue) {
-      this.value = this._initMetaValue;
-    } else if (this.meta.value.default) {
-      this.value = this.meta.value.default;
-    }
-  }
-
-  setValue(val: any) {
-    this._value.value = val?.trim() || undefined;
-  }
-}
-
-export { PasswordMeta };
-```
+:::: import-codes-group
+::: import-codes-group-item antdv
+@[code{1-23} ts{19}](@src/ant-design-vue/examples/components/password/password.meta.ts)
+:::
+::: import-codes-group-item element
+@[code{1-23} ts{19}](@src/element-plus/examples/components/password/password.meta.ts)
+:::
+::::
 
 #### 注册自定义组件
 
