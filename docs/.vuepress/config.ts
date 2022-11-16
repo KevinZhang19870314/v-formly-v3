@@ -6,7 +6,7 @@ import { viteBundler } from "@vuepress/bundler-vite";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { pwaPlugin } from "@vuepress/plugin-pwa";
 import { pwaPopupPlugin } from "@vuepress/plugin-pwa-popup";
-import { demoCodePlugin } from "./plugins";
+import { demoCodePlugin, importCodesPlugin } from "./plugins";
 
 const __dirname = getDirname(import.meta.url);
 const isProd = process.env.NODE_ENV === "production";
@@ -151,6 +151,7 @@ export default defineUserConfig({
     },
   }),
   plugins: [
+    importCodesPlugin(),
     demoCodePlugin({ examplesPath: LIB_MAP[lib].examplesPath }),
     searchPlugin(),
     pwaPlugin(),
@@ -173,7 +174,11 @@ export default defineUserConfig({
   // configure markdown
   markdown: {
     code: {
-      lineNumbers: false,
+      lineNumbers: !isProd,
+    },
+    importCode: {
+      handleImportPath: (str) =>
+        str.replace(/^@src/, path.resolve(__dirname, '../../src/')),
     },
   },
   bundler: viteBundler({

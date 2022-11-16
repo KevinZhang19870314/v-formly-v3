@@ -1,4 +1,5 @@
 <template>
+  <!-- 必须要使用 v-wrapper 来包裹我们的模板 -->
   <v-wrapper :id="id" :meta="meta">
     <el-input
       v-bind="bindings"
@@ -19,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { PasswordMeta } from "./password.meta";
+import type { Global } from "@/core/utils/global";
 import type { Meta } from "@/types/meta";
 import {
   computed,
@@ -31,22 +32,23 @@ import {
 } from "vue";
 import { ElInput } from "element-plus";
 import { useBindings } from "@/core/hooks/bindings";
-import type { Global } from "@/core/utils/global";
+import { PasswordMeta } from "./password.meta";
 
 const props = defineProps<{ id: string; meta: Meta }>();
 const state = inject("state") as Global;
-let type = ref("password");
-let eyeVisible = ref(false);
-
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
+// 初始化 context
 const context = new PasswordMeta(appContext, state, props.id, props.meta);
-
+// 导入 hook
 const { bindings } = useBindings(Object.keys(ElInput.props), context.ui);
+
+const type = ref("password");
+const eyeVisible = ref(false);
 
 const ui = computed(() => {
   return context.ui.value || {};
 });
-
+// 这个是绑定到模板的 v-model 值
 const value = computed({
   get() {
     return context.value;
