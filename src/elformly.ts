@@ -17,6 +17,5 @@ const install = function (app: App, options: any) {
   return app;
 };
 
-export default {
-  install,
-};
+export default { install };
+export * from "./element-plus/el-formly";
