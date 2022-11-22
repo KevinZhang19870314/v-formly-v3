@@ -3,4 +3,4 @@ declare const _default: {
   install: (app: App<any>, options: any) => App<any>;
 };
 export default _default;
-export * from "./types/ant-design-vue/a-formly";
+export * from "./types/antdv/ant-design-vue/a-formly";
