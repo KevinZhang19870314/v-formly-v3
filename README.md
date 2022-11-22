@@ -1,5 +1,7 @@
 # v-formly-v3
 
+**语言: [English](README.en-us.md), 中文 (这个文件).**
+
 [v-formly-v3](https://kevinzhang19870314.github.io/v-formly-v3/zh/) 是 vue 3 的动态（JSON 驱动）表单库。
 
 <div class="features">
