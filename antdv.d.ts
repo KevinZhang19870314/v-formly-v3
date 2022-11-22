@@ -1,6 +1,4 @@
-import type { App } from "vue";
-declare const _default: {
-  install: (app: App<any>, options: any) => App<any>;
-};
-export default _default;
+import installer from "./types/antdv/ant-design-vue/a-formly";
+export default installer.installFormly;
+
 export * from "./types/antdv/ant-design-vue/a-formly";

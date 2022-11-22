@@ -2,13 +2,7 @@
   "name": "v-formly-v3",
   "version": "1.1.2",
   "private": false,
-  "main": "./lib/v-formly-v3.umd.js",
-  "module": "./lib/v-formly-v3.es.js",
   "exports": {
-    ".": {
-      "import": "./lib/v-formly-v3.es.js",
-      "require": "./lib/v-formly-v3.umd.js"
-    },
     "./antdv": {
       "import": "./lib/antdv/v-formly-v3-antdv.es.js",
       "require": "./lib/antdv/v-formly-v3-antdv.umd.js"
@@ -18,11 +12,11 @@
       "require": "./lib/element/v-formly-v3-element.umd.js"
     }
   },
-  "types": "./v-formly-v3.d.ts",
+  "types": "./index.d.ts",
   "files": [
     "lib/*",
     "types/*",
-    "v-formly-v3.d.ts",
+    "index.d.ts",
     "antdv.d.ts",
     "element.d.ts"
   ],
@@ -47,8 +41,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "build": "run-s build:lib:default build:lib:antdv build:lib:element",
-    "build:lib:default": "vite --config vite.config.lib.ts build",
+    "build": "run-s build:lib:antdv build:lib:element",
     "build:lib:antdv": "vite --config vite.config.antdv.ts build",
     "build:lib:element": "vite --config vite.config.element.ts build",
     "docs:dev:antdv": "cross-env VFORMLY_LIB=antdv vuepress dev docs --clean-temp --clean-cache",

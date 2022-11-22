@@ -12,7 +12,7 @@ export default defineConfig({
     outDir: "lib/element",
     lib: {
       entry: path.resolve(__dirname, "src/elformly.ts"),
-      name: "lib",
+      name: "v-formly-v3-element",
       fileName: (format: any) => `v-formly-v3-element.${format}.js`,
     },
     rollupOptions: {
