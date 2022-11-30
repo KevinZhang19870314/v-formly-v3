@@ -64,9 +64,7 @@ const context = new StringMeta(appContext, state, props.id, props.meta);
 const { bindings } = useBindings(Object.keys(CheckboxGroup.props), context.ui);
 const readOnly = toRef(props.meta, "readOnly");
 
-const ui = computed(() => {
-  return context.ui.value || {};
-});
+const ui = computed(() => context.ui.value || {});
 
 const value = computed({
   get() {

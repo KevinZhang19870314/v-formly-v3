@@ -50,9 +50,7 @@ const state = inject("state") as Global;
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new ObjectMeta(appContext, state, props.id, props.meta);
 
-const ui = computed(() => {
-  return context.ui.value || {};
-});
+const ui = computed(() => context.ui.value || {});
 
 const gutter = computed(() => {
   return Object.assign({}, state.ui.grid, ui.value.grid).gutter;

@@ -2,11 +2,19 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta" />
     <div class="btns">
-      <d-button variant="solid" color="primary" @click="setName0"> 设置 name </d-button>
-      <d-button variant="solid" color="primary" @click="add"> 添加 1 个</d-button>
-      <d-button variant="solid" color="primary" @click="set(5)"> 添加 5 个</d-button>
+      <d-button variant="solid" color="primary" @click="setName0">
+        设置 name
+      </d-button>
+      <d-button variant="solid" color="primary" @click="add">
+        添加 1 个
+      </d-button>
+      <d-button variant="solid" color="primary" @click="set(5)">
+        添加 5 个
+      </d-button>
       <d-button variant="solid" color="primary" @click="clear"> 重置 </d-button>
-      <d-button variant="solid" color="primary" @click="submit"> 提交 </d-button>
+      <d-button variant="solid" color="primary" @click="submit">
+        提交
+      </d-button>
     </div>
   </div>
 </template>
@@ -72,11 +80,6 @@ const meta = {
         showRequired: true,
         grid: { arraySpan: 24 },
         addTitle: "添加",
-        optional: "(选填)",
-        optionalHelp: {
-          icon: "QuestionCircleOutlined",
-          text: "选填帮助",
-        },
       },
       default: [
         {

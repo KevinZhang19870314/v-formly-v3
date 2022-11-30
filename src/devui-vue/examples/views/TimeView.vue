@@ -1,23 +1,18 @@
 <template>
   <div>
-    <v-formly-v3
-      ref="form"
-      v-model="formData"
-      :meta="meta"
-      :layout="'vertical'"
-    >
-      <template v-slot:suffixIcon3>
-        <smile-outlined />
-      </template>
-      <template v-slot:addon4>
-        <d-button size="small" variant="solid" color="primary" @click="handleClose">
-          {{ "Close" }}
-        </d-button>
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta">
+      <template v-slot:customViewTemplate="{ ref }">
+        <div class="slot-box">
+          <div class="slot-bottom" @click="chooseNowFun(ref)">choose now</div>
+          <div class="slot-bottom" @click="chooseTime(ref)">choose 23:00</div>
+        </div>
       </template>
     </v-formly-v3>
     <div class="btns">
       <d-button variant="solid" color="danger" @click="clear"> 重置 </d-button>
-      <d-button variant="solid" color="primary" @click="submit"> 提交 </d-button>
+      <d-button variant="solid" color="primary" @click="submit">
+        提交
+      </d-button>
     </div>
   </div>
 </template>
@@ -28,131 +23,57 @@ import { ref, toRaw, unref } from "vue";
 
 const form = ref<null | InstanceType<typeof VFormly>>(null);
 
-const time4_open = ref(false);
 const meta = {
   type: "object",
   properties: {
-    time: {
-      title: "12小时制",
+    time1_1: {
       type: "string",
-      default: "08:12:12",
+      title: "基本用法",
       ui: {
         component: "time",
-        valueFormat: "hh:mm:ss",
-        use12Hours: true,
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
+        change: (time: string) => console.log(time),
       },
     },
-    time1: {
-      title: "选择时分",
+    time1_2: {
       type: "string",
-      ui: {
-        component: "time",
-        format: "HH:mm",
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
-      },
-    },
-    time2_1: {
-      title: "大",
-      type: "string",
-      ui: {
-        component: "time",
-        format: "HH:mm",
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
-        size: "large",
-        grid: {
-          span: 8,
-        },
-      },
-    },
-    time2_2: {
-      title: "中",
-      type: "string",
-      ui: {
-        component: "time",
-        format: "HH:mm",
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
-        grid: {
-          span: 8,
-        },
-      },
-    },
-    time2_3: {
-      title: "小",
-      type: "string",
-      ui: {
-        component: "time",
-        format: "HH:mm",
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
-        size: "small",
-        grid: {
-          span: 8,
-        },
-      },
-    },
-    time3: {
-      title: "后缀图标",
-      type: "string",
-      ui: {
-        component: "time",
-        slotNameOfSuffixIcon: "suffixIcon3",
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
-      },
-    },
-    time4: {
-      title: "附加内容",
-      type: "string",
-      ui: {
-        component: "time",
-        slotNameOfRenderExtraFooter: "addon4",
-        open: time4_open,
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
-      },
-    },
-    time5: {
-      title: "禁用",
-      type: "string",
+      title: "disabled",
       readOnly: true,
       ui: {
         component: "time",
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
+        change: (time: string) => console.log(time),
       },
+      default: "12:30:40",
     },
-    time6: {
-      title: "步长选项",
+    time2: {
       type: "string",
+      title: "时间区间限制",
       ui: {
         component: "time",
-        minuteStep: 15,
-        secondStep: 10,
-        change: (time: any, timeString: string) => {
-          console.log(time, timeString);
-        },
+        minTime: "02:04:40",
+        maxTime: "22:30:30",
       },
+    },
+    time3: {
+      type: "string",
+      title: "格式化",
+      ui: {
+        component: "time",
+        format: "hh:mm",
+      },
+      default: "11:12:34",
+    },
+    time4: {
+      type: "string",
+      title: "自定义模板",
+      ui: {
+        component: "time",
+        format: "hh:mm",
+        slotNameOfCustomViewTemplate: "customViewTemplate",
+      },
+      default: "11:12:34",
     },
   },
   required: ["name"],
-  ui: {
-    grid: {
-      span: 24,
-    },
-  },
 };
 
 let formData: any = ref({});
@@ -168,9 +89,41 @@ async function submit() {
   }
 }
 
-function handleClose() {
-  time4_open.value = !time4_open.value;
+function chooseTime(ref: any) {
+  let timeObj = {
+    time: "23",
+    type: "mm",
+  };
+  ref.chooseTime(timeObj);
+}
+
+function chooseNowFun(ref: any) {
+  debugger;
+  console.log(ref);
+  let date = new Date();
+  let hour = date.getHours() > 9 ? date.getHours() : "0" + date.getHours();
+  let minute =
+    date.getMinutes() > 9 ? date.getMinutes() : "0" + date.getMinutes();
+  let second =
+    date.getSeconds() > 9 ? date.getSeconds() : "0" + date.getSeconds();
+  let timeObj = {
+    time: hour + ":" + minute + ":" + second,
+  };
+  ref.chooseTime(timeObj);
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.slot-box {
+  overflow: hidden;
+  height: 100%;
+}
+.slot-bottom {
+  font-size: 14px;
+  cursor: pointer;
+}
+.slot-bottom:hover {
+  color: #7693f5;
+  text-decoration: underline;
+}
+</style>

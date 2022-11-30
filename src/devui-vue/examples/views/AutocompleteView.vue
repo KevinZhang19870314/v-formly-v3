@@ -1,58 +1,25 @@
 <template>
   <div>
-    <v-formly-v3
-      ref="form"
-      v-model="formData"
-      :meta="meta"
-      :layout="'horizontal'"
-    >
-      <template v-slot:auto1-textarea>
-        <a-textarea
-          placeholder="input here"
-          style="height: 50px"
-          @keypress="auto1_handleKeyPress"
-        />
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta">
+      <template v-slot:auto3="{ keyword }">
+        <div>
+          {{ `searching: ${keyword}` }}
+        </div>
       </template>
-      <template v-slot:auto2-option="item">
-        <template v-if="item.options">
-          <span>
-            {{ item.value }}
-            <a
-              style="float: right"
-              href="https://www.google.com/search?q=antd"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              more
-            </a>
-          </span>
-        </template>
-        <template v-else-if="item.value === 'all'">
-          <a
-            href="https://www.google.com/search?q=ant-design-vue"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View all results
-          </a>
-        </template>
-        <template v-else>
-          <div style="display: flex; justify-content: space-between">
-            {{ item.value }}
-            <span>
-              <UserOutlined />
-              {{ item.count }}
-            </span>
-          </div>
-        </template>
+      <template v-slot:auto4_item="slotProps">
+        <div>第{{ slotProps.index }}项: {{ slotProps.item }}</div>
       </template>
-      <template v-slot:auto2-inputsearch>
-        <a-input-search placeholder="input here" size="large"></a-input-search>
+      <template v-slot:auto4_nothing="{ keyword }">
+        <div>
+          {{ `没有匹配项: ${keyword}` }}
+        </div>
       </template>
     </v-formly-v3>
     <div class="btns">
       <d-button variant="solid" color="danger" @click="clear"> 重置 </d-button>
-      <d-button variant="solid" color="primary" @click="submit"> 提交 </d-button>
+      <d-button variant="solid" color="primary" @click="submit">
+        提交
+      </d-button>
     </div>
   </div>
 </template>
@@ -60,108 +27,107 @@
 <script setup lang="ts">
 import { ref, toRaw, unref } from "vue";
 import type VFormlyV3 from "@/ant-design-vue/AFormly.vue";
-import type { StringMeta } from "@/core/meta/string.meta";
-import { auto2_dataSource } from "../data/autocomplete2";
+import { source, searchSource } from "../data/autocomplete";
 
-//#region init
-interface MockVal {
-  value: string;
-}
-
-const mockVal = (str: string, repeat = 1): MockVal => {
-  return {
-    value: str.repeat(repeat),
-  };
-};
-
-const auto1_handleKeyPress = (ev: KeyboardEvent) => {
-  console.log("auto1_handleKeyPress", ev);
-};
+const lazySource = ref(["C#", "C", "C++", "C1", "C2", "C3", "C4", "C5", "C6"]);
 
 const form = ref<null | InstanceType<typeof VFormlyV3>>(null);
-const auto_options = ref<MockVal[]>([]);
-
-const auto1_options = ref<{ value: string }[]>([]);
-//#endregion
-
+const formData: any = ref({});
 const meta = {
   type: "object",
   properties: {
-    auto: {
+    auto1_1: {
       type: "string",
       title: "基本使用",
       ui: {
         component: "autocomplete",
-        placeholder: "input here",
-        options: auto_options.value,
-        select: function (value: string) {
-          console.log("onSelect", value);
-        },
-        search: function (searchText: string) {
-          console.log(searchText);
-          auto_options.value = !searchText
-            ? []
-            : [
-                mockVal(searchText),
-                mockVal(searchText, 2),
-                mockVal(searchText, 3),
-              ];
-          const context = form.value!.getContext<StringMeta>("/auto");
-          console.log(toRaw(auto_options.value));
-          context.ui.value.options = auto_options;
-        },
+        source,
+        delay: 1000,
+        width: 420,
+        appendToBody: false,
+        allowEmptyValueSearch: true,
+        position: ["bottom"],
+        selectValue: (val: string) => console.log("selectValue", val),
+        transInputFocusEmit: () => console.log("transInputFocusEmit"),
       },
     },
-    auto1: {
+    auto1_2: {
+      title: "大",
       type: "string",
-      title: "自定义输入组件",
       ui: {
         component: "autocomplete",
-        slotNameOfDefault: "auto1-textarea",
-        options: auto1_options,
-        select: function (value: string) {
-          console.log("onSelect", value);
-        },
-        search: function (searchText: string, value: string) {
-          auto1_options.value = !value
-            ? []
-            : [
-                { value },
-                { value: value + value },
-                { value: value + value + value },
-              ];
-        },
+        size: "lg",
+        source,
+        width: 420,
+      },
+    },
+    auto1_3: {
+      title: "小",
+      type: "string",
+      ui: {
+        component: "autocomplete",
+        size: "sm",
+        source,
+        width: 420,
       },
     },
     auto2: {
       type: "string",
-      title: "查询模式 - 确定类目",
+      title: "设置禁用",
+      readOnly: true,
       ui: {
         component: "autocomplete",
-        options: auto2_dataSource,
-        slotNameOfOption: "auto2-option",
-        slotNameOfDefault: "auto2-inputsearch",
-        select: function (value: string) {
-          console.log("onSelect", value);
-        },
-        search: function (searchText: string, value: string) {
-          auto1_options.value = !value
-            ? []
-            : [
-                { value },
-                { value: value + value },
-                { value: value + value + value },
-              ];
-          const context = form.value!.getContext<StringMeta>("/auto1");
-          context.ui.value.options = auto1_options;
-        },
+        source,
+      },
+    },
+    auto3: {
+      type: "string",
+      title: "自定义数据匹配方法",
+      ui: {
+        component: "autocomplete",
+        searchFn,
+        disabledKey: "disabled",
+        isSearching: true,
+        delay: 1000,
+        formatter: (item: { label: string; disabled: boolean }) => item.label,
+        slotNameOfSearching: "auto3",
+      },
+    },
+    auto4: {
+      type: "string",
+      title: "自定义模板展示",
+      ui: {
+        component: "autocomplete",
+        source,
+        slotNameOfItem: "auto4_item",
+        slotNameOfNothing: "auto4_nothing",
+      },
+    },
+    auto5: {
+      type: "string",
+      title: "启用懒加载",
+      ui: {
+        component: "autocomplete",
+        placeholder: "输入 c",
+        source: lazySource,
+        enableLazyLoad: true,
+        sceneType: "select",
+        loadMore,
+        valueParser: (val: string) => val + "123",
+      },
+    },
+    auto6: {
+      type: "string",
+      title: "最近输入",
+      ui: {
+        component: "autocomplete",
+        source,
+        latestSource: ["JavaScript", "TypeScript"],
       },
     },
   },
   required: [],
 };
-
-let formData: any = ref({});
 
 function clear() {
   formData.value = null;
@@ -172,6 +138,32 @@ async function submit() {
   if (valid) {
     console.log(toRaw(unref(formData)));
   }
+}
+async function searchFn(trem: string) {
+  const arr: Array<{
+    label: string;
+    disabled: boolean;
+  }> = [];
+  await new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 1000);
+  });
+  searchSource.forEach((item) => {
+    let cur = item.label;
+    cur = cur.toLowerCase();
+    if (cur.startsWith(trem)) {
+      arr.push(item);
+    }
+  });
+  return arr;
+}
+function loadMore() {
+  const context = form.value!.getContext<any>("/auto5");
+  setTimeout(() => {
+    lazySource.value.push("lazyData" + lazySource.value.length);
+    unref(context).autoCompleteRef.value.loadFinish();
+  }, 3000);
 }
 </script>
 

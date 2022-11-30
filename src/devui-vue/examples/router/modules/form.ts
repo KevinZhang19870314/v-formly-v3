@@ -1,20 +1,19 @@
 import type { RouteRecordRaw } from "vue-router";
 import BasicLayout from "../../layout/index.vue";
-import AboutViewVue from "../../views/AboutView.vue";
-// import ArrayView from "../../views/ArrayView.vue";
+import ArrayView from "../../views/ArrayView.vue";
 import CheckboxView from "../../views/CheckboxView.vue";
 import StringView from "../../views/StringView.vue";
 import BooleanView from "../../views/BooleanView.vue";
-// import AutoCompleteView from "../../views/AutocompleteView.vue";
-// import DateView from "../../views/DateView.vue";
-// import TimeView from "../../views/TimeView.vue";
+import AutoCompleteView from "../../views/AutocompleteView.vue";
+import DateView from "../../views/DateView.vue";
+import TimeView from "../../views/TimeView.vue";
 import NumberView from "../../views/NumberView.vue";
 import TextView from "../../views/TextView.vue";
 import TextareaView from "../../views/TextareaView.vue";
 import RateView from "../../views/RateView.vue";
 import ObjectView from "../../views/ObjectView.vue";
 import RadioView from "../../views/RadioView.vue";
-// import SelectView from "../../views/SelectView.vue";
+import SelectView from "../../views/SelectView.vue";
 import SliderView from "../../views/SliderView.vue";
 import TagView from "../../views/TagView.vue";
 // import CascaderView from "../../views/CascaderView.vue";
@@ -47,15 +46,13 @@ const route: RouteRecordRaw = {
     {
       path: "array",
       name: "array",
-      // component: ArrayView,
-      component: AboutViewVue,
+      component: ArrayView,
       meta: { title: "Array 数组" },
     },
     {
       path: "autoComplete",
       name: "autoComplete",
-      // component: AutoCompleteView,
-      component: AboutViewVue,
+      component: AutoCompleteView,
       meta: { title: "AutoComplete 自动完成" },
     },
     {
@@ -67,8 +64,7 @@ const route: RouteRecordRaw = {
     {
       path: "date",
       name: "date",
-      // component: DateView,
-      component: AboutViewVue,
+      component: DateView,
       meta: { title: "Date 日期" },
     },
     {
@@ -80,8 +76,7 @@ const route: RouteRecordRaw = {
     {
       path: "time",
       name: "time",
-      // component: TimeView,
-      component: AboutViewVue,
+      component: TimeView,
       meta: { title: "Time 时间" },
     },
     {
@@ -117,8 +112,7 @@ const route: RouteRecordRaw = {
     {
       path: "select",
       name: "select",
-      // component: SelectView,
-      component: AboutViewVue,
+      component: SelectView,
       meta: { title: "Select 选择器" },
     },
     {
@@ -127,6 +121,7 @@ const route: RouteRecordRaw = {
       component: TagView,
       meta: { title: "Tag 标签" },
     },
+    // TODO: 未实现
     // {
     //   path: "cascader",
     //   name: "cascader",
