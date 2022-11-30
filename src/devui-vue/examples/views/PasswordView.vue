@@ -1,9 +1,11 @@
 <template>
   <div>
-    <v-formly-v3 ref="form" v-model="formData" :meta="meta"> </v-formly-v3>
+    <v-formly-v3 ref="form" v-model="formData" :meta="meta" />
     <div class="btns">
       <d-button variant="solid" color="danger" @click="clear"> 重置 </d-button>
-      <d-button variant="solid" color="primary" @click="submit"> 提交 </d-button>
+      <d-button variant="solid" color="primary" @click="submit">
+        提交
+      </d-button>
     </div>
   </div>
 </template>
@@ -56,5 +58,3 @@ async function submit() {
   }
 }
 </script>
-
-<style scoped></style>

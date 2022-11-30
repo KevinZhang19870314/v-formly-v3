@@ -36,15 +36,13 @@ const route: RouteRecordRaw = {
     {
       path: "password",
       name: "password",
-      // component: PasswordView,
-      component: AboutViewVue,
+      component: PasswordView,
       meta: { title: "自定义密码框组件" },
     },
     {
       path: "chkinput",
       name: "chkinput",
-      // component: ChkInputView,
-      component: AboutViewVue,
+      component: ChkInputView,
       meta: { title: "自定义选择输入框组件" },
     },
     {
