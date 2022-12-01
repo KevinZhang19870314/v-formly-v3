@@ -3,6 +3,7 @@
     <d-input
       v-bind="bindings"
       v-model="value"
+      :maxlength="maxLength"
       :error="!!error"
       :disabled="readOnly"
       @focus="focus"
@@ -55,6 +56,7 @@ const context = new StringMeta(appContext, state, props.id, props.meta);
 
 const { bindings } = useBindings(Object.keys(Input.props), context.ui);
 const readOnly = toRef(props.meta, "readOnly");
+const maxLength = toRef(props.meta, "maxLength");
 
 const ui = computed(() => context.ui.value || {});
 

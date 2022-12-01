@@ -47,3 +47,15 @@ StringView
 | `:slotNameOfSuffix`  | 输入框尾部内容，只对非 type="textarea" 有效，slot 名称        | `string`      | -      |
 | `@change`            | 仅当 modelValue 改变时，当输入框失去焦点或用户按 Enter 时触发 | `function(e)` | -      |
 | `@input`             | 在 Input 值改变时触发                                         | `function(e)` | -      |
+
+### meta.ui 属性(devui)
+
+| 成员                 | 说明                                        | 类型          | 默认值 |
+| -------------------- | ------------------------------------------- | ------------- | ------ |
+| `:slotNameOfPrepend` | 输入框前置内容，slot 名称                   | `string`      | -      |
+| `:slotNameOfAppend`  | 输入框后置内容，slot 名称                   | `string`      | -      |
+| `:slotNameOfPrefix`  | 输入框头部内容，slot 名称                   | `string`      | -      |
+| `:slotNameOfSuffix`  | 输入框尾部内容，slot 名称                   | `string`      | -      |
+| `@change`            | 输入框失去焦点或按下回车时触发              | `function(e)` | -      |
+| `@input`             | 输入值改变时触发                            | `function(e)` | -      |
+| `@clear`             | 在点击由 clearable 属性生成的清空按钮时触发 | -             | -      |

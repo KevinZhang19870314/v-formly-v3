@@ -5,8 +5,7 @@
       v-model="formData"
       :meta="meta"
       :layout="'vertical'"
-    >
-    </v-formly-v3>
+    />
   </div>
 </template>
 
@@ -148,7 +147,5 @@ const meta = {
   },
   required: ["name"],
 };
-let formData = ref({ enable: true });
+const formData = ref({ enable: true });
 </script>
-
-<style lang="less" scoped></style>

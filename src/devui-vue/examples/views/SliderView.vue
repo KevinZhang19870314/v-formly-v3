@@ -23,7 +23,6 @@ const meta = {
       title: "基本用法",
       ui: {
         component: "slider",
-        change: (val: number) => console.log("change", val),
       },
       default: 10,
     },

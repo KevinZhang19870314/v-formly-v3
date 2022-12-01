@@ -8,7 +8,11 @@
   >
     <div class="control-wrapper">
       <div class="v__array-add">
-        <d-button :type="ui.addType" :disabled="addDisabled" @click="addItem">
+        <d-button
+          :variant="ui.addType"
+          :disabled="addDisabled"
+          @click="addItem"
+        >
           {{ ui.addTitle || "添加" }}
         </d-button>
       </div>
@@ -124,7 +128,7 @@ function removeItem(i: number) {
 }
 </script>
 <style lang="less" scoped>
-.show-required > .devui-form__label > :deep(.devui-form__label-span:before) {
+.show-required > :deep(.devui-form__label > .devui-form__label-span:before) {
   content: "*";
   color: red;
   display: inline-block;

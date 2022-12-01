@@ -25,12 +25,12 @@ RateView
 
 ### meta.ui 属性(antdv)
 
-| 成员                   | 说明                     | 类型                      | 默认值  |
-| ---------------------- | ------------------------ | ------------------------- | ------- |
-| `:character`           | 自定义字符               | `string`                  | -       |
-| `:slotNameOfCharacter` | 自定义字符 slot          | `string`                  | -       |
-| `@change`              | 选择时的回调             | `function(value: number)` | -       |
-| `@hoverChange`         | 鼠标经过时数值变化的回调 | `function(value: number)` | -       |
+| 成员                   | 说明                     | 类型                      | 默认值 |
+| ---------------------- | ------------------------ | ------------------------- | ------ |
+| `:character`           | 自定义字符               | `string`                  | -      |
+| `:slotNameOfCharacter` | 自定义字符 slot          | `string`                  | -      |
+| `@change`              | 选择时的回调             | `function(value: number)` | -      |
+| `@hoverChange`         | 鼠标经过时数值变化的回调 | `function(value: number)` | -      |
 
 ::: tip 注意
 自定义字符的优先级：character > slot
@@ -38,6 +38,12 @@ RateView
 
 ### meta.ui 属性(element)
 
-| 成员                   | 说明                     | 类型                      | 默认值  |
-| ---------------------- | ------------------------ | ------------------------- | ------- |
-| `@change`              | 分值改变时触发             | `function(value: number)` | -       |
+| 成员      | 说明           | 类型                      | 默认值 |
+| --------- | -------------- | ------------------------- | ------ |
+| `@change` | 分值改变时触发 | `function(value: number)` | -      |
+
+### meta.ui 属性(devui)
+
+| 成员      | 说明           | 类型                      | 默认值 |
+| --------- | -------------- | ------------------------- | ------ |
+| `@change` | 分值改变时触发 | `function(value: number)` | -      |

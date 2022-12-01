@@ -15,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import { PasswordMeta } from "./password.meta";
 import type { Meta } from "@/types/meta";
 import {
   computed,
@@ -28,10 +27,10 @@ import {
 import { Input } from "vue-devui";
 import { useBindings } from "@/core/hooks/bindings";
 import type { Global } from "@/core/utils/global";
+import { PasswordMeta } from "./password.meta";
 
 const props = defineProps<{ id: string; meta: Meta }>();
 const state = inject("state") as Global;
-
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 // 初始化 context
 const context = new PasswordMeta(appContext, state, props.id, props.meta);

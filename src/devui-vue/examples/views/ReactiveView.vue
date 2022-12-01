@@ -2,7 +2,9 @@
   <div>
     <v-formly-v3 ref="form" v-model="formData" :meta="meta"></v-formly-v3>
     <div class="btns">
-      <d-button variant="solid" color="primary" @click="submit"> 设置边框 </d-button>
+      <d-button variant="solid" color="primary" @click="submit">
+        设置尺寸
+      </d-button>
     </div>
   </div>
 </template>
@@ -10,9 +12,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type VFormly from "@/devui-vue/DFormly.vue";
-
+const formData: any = ref({});
 const form = ref<null | InstanceType<typeof VFormly>>(null);
-const hasBorder = ref(true);
+const size = ref("md");
 const meta = {
   type: "object",
   properties: {
@@ -22,7 +24,7 @@ const meta = {
       ui: {
         showRequired: true,
         placeholder: "Basic usage",
-        bordered: hasBorder,
+        size: size,
         errors: {
           required: "请输入",
         },
@@ -32,10 +34,9 @@ const meta = {
   },
   required: ["string1"],
 };
-let formData: any = ref({});
 
 function submit() {
-  hasBorder.value = !hasBorder.value;
+  size.value = "lg";
 }
 </script>
 

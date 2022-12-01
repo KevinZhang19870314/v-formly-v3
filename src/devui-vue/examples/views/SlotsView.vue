@@ -3,12 +3,12 @@
     <v-formly-v3 ref="form" v-model="formData" :meta="meta">
       <!-- string1 -->
       <template v-slot:string1_prefix>
-        <user-outlined />
+        <d-icon name="mine"></d-icon>
       </template>
       <template v-slot:string1_1_suffix>
-        <a-tooltip title="Extra information">
-          <info-circle-outlined />
-        </a-tooltip>
+        <d-tooltip content="Extra information">
+          <d-icon name="infomation"></d-icon>
+        </d-tooltip>
       </template>
     </v-formly-v3>
   </div>

@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-let mode = ref("horizontal");
+const mode = ref("horizontal");
 const meta = {
   type: "object",
   properties: {
@@ -44,7 +44,7 @@ const meta = {
   },
   required: ["name"],
 };
-let formData = ref({ enable: true });
+const formData = ref({ enable: true });
 </script>
 
 <style lang="less" scoped>

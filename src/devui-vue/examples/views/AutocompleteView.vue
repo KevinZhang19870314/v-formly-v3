@@ -6,8 +6,8 @@
           {{ `searching: ${keyword}` }}
         </div>
       </template>
-      <template v-slot:auto4_item="slotProps">
-        <div>第{{ slotProps.index }}项: {{ slotProps.item }}</div>
+      <template v-slot:auto4_item="{ index, item }">
+        <div>第{{ index }}项: {{ item }}</div>
       </template>
       <template v-slot:auto4_nothing="{ keyword }">
         <div>

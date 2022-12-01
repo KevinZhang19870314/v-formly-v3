@@ -43,3 +43,14 @@ RadioView
 | `:button`       | 是否为按钮类型单选框     | `boolean`               | -       |
 | `:showRequired` | 是否显示标签前的红色\*号 | `boolean`               | false   |
 | `@change`       | 绑定值变化时触发的事件   | `选中的 Radio label 值` | -       |
+
+### meta.ui 属性(devui)
+
+参考 RadioGroup 组件属性
+
+| 成员            | 说明                         | 类型                    | 默认值  |
+| --------------- | ---------------------------- | ----------------------- | ------- |
+| `:component`    | 指定组件为'radio'            | `string`                | `radio` |
+| `:optionType`   | 按钮类型(可设置值为`button`) | `string`                | ``      |
+| `:showRequired` | 是否显示标签前的红色\*号     | `boolean`               | false   |
+| `@change`       | 绑定值变化时触发的事件       | `选中的 Radio label 值` | -       |

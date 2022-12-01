@@ -23,6 +23,7 @@ const meta = {
       title: "基本用法",
       ui: {
         showRequired: true,
+        change: (val: number) => console.log("change", val),
       },
     },
     input1_2: {

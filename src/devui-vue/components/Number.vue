@@ -54,8 +54,6 @@ const value = computed({
 let min = ref(-Infinity);
 let max = ref(Infinity);
 let step = ref(1);
-let formatter = ref((value: any) => value);
-let parser = ref((value: any) => value);
 onCreated();
 
 function onCreated() {
@@ -80,20 +78,6 @@ function onCreated() {
     max.value = Math.trunc(max.value);
     step.value = Math.trunc(step.value);
   }
-  if (ui.value.prefix != null) {
-    ui.value.formatter = (value: any) =>
-      value == null ? "" : `${ui.value.prefix} ${value}`;
-    ui.value.parser = (value: any) => value.replace(`${ui.value.prefix} `, "");
-  }
-
-  if (ui.value.unit != null) {
-    ui.value.formatter = (value: any) =>
-      value == null ? "" : `${value} ${ui.value.unit}`;
-    ui.value.parser = (value: any) => value.replace(` ${ui.value.unit}`, "");
-  }
-
-  if (ui.value.formatter) formatter.value = ui.value.formatter;
-  if (ui.value.parser) parser.value = ui.value.parser;
 }
 
 function change(val: number) {
