@@ -10,22 +10,36 @@ import { demoCodePlugin, importCodesPlugin } from "./plugins";
 
 const __dirname = getDirname(import.meta.url);
 const isProd = process.env.NODE_ENV === "production";
-const enum Lib { Antdv = 'antdv', Element = 'element' }
+const enum Lib {
+  Antdv = "antdv",
+  Element = "element",
+  DevUI = "devui",
+}
 
-const lib: Lib = (process.env.VFORMLY_LIB as Lib) || Lib.Antdv
+const lib: Lib = (process.env.VFORMLY_LIB as Lib) || Lib.Antdv;
 const LIB_MAP = {
   [Lib.Antdv]: {
     base: "v-formly-v3",
-    text: 'Ant Design Vue',
-    examplesPath: path.resolve(__dirname, "../../src/ant-design-vue/examples/views"),
-
+    text: "Ant Design Vue",
+    examplesPath: path.resolve(
+      __dirname,
+      "../../src/ant-design-vue/examples/views"
+    ),
   },
   [Lib.Element]: {
     base: "v-formly-v3/element-plus",
-    text: 'Element Plus',
-    examplesPath: path.resolve(__dirname, "../../src/element-plus/examples/views"),
+    text: "Element Plus",
+    examplesPath: path.resolve(
+      __dirname,
+      "../../src/element-plus/examples/views"
+    ),
   },
-}
+  [Lib.DevUI]: {
+    base: "v-formly-v3/vue-devui",
+    text: "Vue DevUI",
+    examplesPath: path.resolve(__dirname, "../../src/devui-vue/examples/views"),
+  },
+};
 export default defineUserConfig({
   lang: "zh-CN",
   base: `/${LIB_MAP[lib].base}/`,
@@ -71,7 +85,10 @@ export default defineUserConfig({
     ],
     [
       "link",
-      { rel: "apple-touch-icon", href: `/v-formly-v3/icons/apple-touch-icon-152x152.png` },
+      {
+        rel: "apple-touch-icon",
+        href: `/v-formly-v3/icons/apple-touch-icon-152x152.png`,
+      },
     ],
     [
       "link",
@@ -100,7 +117,7 @@ export default defineUserConfig({
         // navbar
         navbar: [
           { text: "Guide", link: "/guide/" },
-          ...getNavbarLib(lib as Lib)
+          ...getNavbarLib(lib as Lib),
         ],
         selectLanguageText: "Languages",
         selectLanguageName: "English",
@@ -117,7 +134,7 @@ export default defineUserConfig({
         // navbar
         navbar: [
           { text: "指南", link: "/zh/guide/" },
-          ...getNavbarLib(lib as Lib, '/zh/')
+          ...getNavbarLib(lib as Lib, "/zh/"),
         ],
         selectLanguageText: "选择语言",
         selectLanguageName: "简体中文",
@@ -178,7 +195,7 @@ export default defineUserConfig({
     },
     importCode: {
       handleImportPath: (str) =>
-        str.replace(/^@src/, path.resolve(__dirname, '../../src/')),
+        str.replace(/^@src/, path.resolve(__dirname, "../../src/")),
     },
   },
   bundler: viteBundler({
@@ -203,7 +220,13 @@ function getGuideSidebar(groupA: string, groupB: string) {
     },
     {
       text: groupB,
-      children: ["custom-validator.md", "layout.md", "form.md", "reactive.md", "visible-if.md"],
+      children: [
+        "custom-validator.md",
+        "layout.md",
+        "form.md",
+        "reactive.md",
+        "visible-if.md",
+      ],
     },
   ];
 }
@@ -240,15 +263,20 @@ function getComponentsSidebar(groupA: string, groupB: string) {
   ];
 }
 
-function getNavbarLib(lib: Lib, lang: string = '/') {
+function getNavbarLib(lib: Lib, lang: string = "/") {
   const isPreBuild = process.env.BUILD_MODE === "test";
-  const host = isPreBuild ? 'http://127.0.0.1:5500/' : 'https://kevinzhang19870314.github.io/'
-  const libs = [Lib.Antdv, Lib.Element]
+  const host = isPreBuild
+    ? "http://127.0.0.1:5500/"
+    : "https://kevinzhang19870314.github.io/";
+  const libs = [Lib.Antdv, Lib.Element, Lib.DevUI];
   return libs.map((item) => {
     return {
       lib: item,
       text: LIB_MAP[item].text,
-      link: item === lib ? `${lang}components/` : `${host}${LIB_MAP[item].base}${lang}components/`,
-    }
-  })
+      link:
+        item === lib
+          ? `${lang}components/`
+          : `${host}${LIB_MAP[item].base}${lang}components/`,
+    };
+  });
 }

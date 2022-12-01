@@ -61,7 +61,7 @@ const meta = {
           default: true,
         },
         boolean6_2: {
-          title: "大",
+          title: "默认",
           type: "boolean",
           default: true,
         },

@@ -25,20 +25,31 @@ TextareaView
 
 ### meta.ui 属性(antdv)
 
-| 成员           | 说明                                                                      | 类型                | 默认值 |
-| -------------- | ------------------------------------------------------------------------- | ------------------- | ------ |
-| `:autosize`    | 自适应内容高度，可设置为`true \| false`或对象：{ minRows: 2, maxRows: 6 } | `boolean \| object` | true   |
-| `@change`      | 内容变更事件                                                              | `function(value)`   | -      |
-| `@focus`       | 焦点事件                                                                  | `function(e)`       | -      |
-| `@blur`        | 失焦事件                                                                  | `function(e)`       | -      |
-| `@pressEnter`  | 按下回车事件                                                              | `function(e)`       | -      |
+| 成员          | 说明                                                                      | 类型                | 默认值 |
+| ------------- | ------------------------------------------------------------------------- | ------------------- | ------ |
+| `:autosize`   | 自适应内容高度，可设置为`true \| false`或对象：{ minRows: 2, maxRows: 6 } | `boolean \| object` | true   |
+| `@change`     | 内容变更事件                                                              | `function(value)`   | -      |
+| `@focus`      | 焦点事件                                                                  | `function(e)`       | -      |
+| `@blur`       | 失焦事件                                                                  | `function(e)`       | -      |
+| `@pressEnter` | 按下回车事件                                                              | `function(e)`       | -      |
 
 ### meta.ui 属性(element)
 
-| 成员           | 说明                                                                      | 类型                | 默认值 |
-| -------------- | ------------------------------------------------------------------------- | ------------------- | ------ |
-| `:autosize`    | 自适应内容高度，可设置为`true \| false`或对象：{ minRows: 2, maxRows: 6 } | `boolean \| object` | true   |
-| `@change`      | 内容变更事件                                                              | `function(value)`   | -      |
-| `@input`  | 在 Input 值改变时触发                                                              | `function(value)`       | -      |
-| `@focus`       | 焦点事件                                                                  | `function(e)`       | -      |
-| `@blur`        | 失焦事件                                                                  | `function(e)`       | -      |
+| 成员        | 说明                                                                      | 类型                | 默认值 |
+| ----------- | ------------------------------------------------------------------------- | ------------------- | ------ |
+| `:autosize` | 自适应内容高度，可设置为`true \| false`或对象：{ minRows: 2, maxRows: 6 } | `boolean \| object` | true   |
+| `@change`   | 内容变更事件                                                              | `function(value)`   | -      |
+| `@input`    | 在 Input 值改变时触发                                                     | `function(value)`   | -      |
+| `@focus`    | 焦点事件                                                                  | `function(e)`       | -      |
+| `@blur`     | 失焦事件                                                                  | `function(e)`       | -      |
+
+### meta.ui 属性(devui)
+
+| 成员        | 说明                                                                      | 类型                | 默认值 |
+| ----------- | ------------------------------------------------------------------------- | ------------------- | ------ |
+| `:autosize` | 自适应内容高度，可设置为`true \| false`或对象：{ minRows: 2, maxRows: 6 } | `boolean \| object` | false  |
+| `@change`   | 内容变更事件                                                              | `function(value)`   | -      |
+| `@update`   | 在 Input 值改变时触发                                                     | `function(value)`   | -      |
+| `@focus`    | 焦点事件                                                                  | `function(e)`       | -      |
+| `@blur`     | 失焦事件                                                                  | `function(e)`       | -      |
+| `@keydown`  | 按下键盘事件                                                              | `function(e)`       | -      |

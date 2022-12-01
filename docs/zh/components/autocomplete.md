@@ -43,3 +43,17 @@ AutocompleteView
 | `:slotNameOfAppend`  | 输入框后置内容，在 suffix 之后，slot 名称 | `string`          | -      |
 | `@change`            | 在 Input 值改变时触发                     | `function(value)` | -      |
 | `@select`            | 点击选中建议项时触发                      | `function(item)`  | -      |
+
+### meta.ui 属性 (devui)
+
+| 成员                   | 说明                                                                        | 类型              | 默认值 |
+| ---------------------- | --------------------------------------------------------------------------- | ----------------- | ------ |
+| `:slotNameOfItem`      | 自定义展示模板。slotProps：{ index: 下标索引, item: 当前项内容 }，slot 名称 | `string`          | -      |
+| `:slotNameOfNothing`   | 没有匹配项的展示结果。slotProps：{ keyword: 输入内容 }，slot 名称           | `string`          | -      |
+| `:slotNameOfSearching` | 自定义搜索中显示模板。slotProps：{ keyword: 输入内容 }，slot 名称           | `string`          | -      |
+| `:slotNameOfPrefix`    | 输入框头部内容，slot 名称                                                   | `string`          | -      |
+| `:slotNameOfSuffix`    | 输入框尾部内容，slot 名称                                                   | `string`          | -      |
+| `:slotNameOfPrepend`   | 输入框前置内容，slot 名称                                                   | `string`          | -      |
+| `:slotNameOfAppend`    | 输入框后置内容，slot 名称                                                   | `string`          | -      |
+| `@selectValue`         | 选择选项之后的回调函数                                                      | `function(value)` | -      |
+| `@transInputFocusEmit` | Input focus 时回调函数                                                      | `function()`      | -      |

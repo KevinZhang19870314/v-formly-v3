@@ -44,3 +44,14 @@ SelectView
 | `@change`                  | 输入框内容变化时的回调         | `function(val)`  | -      |
 | `@removeTag`               | 多选模式下移除 tag 时触发      | `function(val)`  | -      |
 | `@visibleChange`           | 下拉框出现/隐藏时触发          | `function(open)` | -      |
+
+### meta.ui 属性(devui)
+
+| 成员                 | 说明                                            | 类型                      | 默认值 |
+| -------------------- | ----------------------------------------------- | ------------------------- | ------ |
+| `:slotNameOfDefault` | 下拉面板内容（OptionGroup / Option），slot 名称 | `string`                  | -      |
+| `:slotNameOfEmpty`   | 无选项时下拉面板内容，slot 名称                 | `string`                  | -      |
+| `@valueChange`       | 当选中值发生变化时触发                          | `function(val)`           | -      |
+| `@removeTag`         | 多选模式下移除 tag 时触发                       | `function(val)`           | -      |
+| `@toggleChange`      | 下拉打开关闭 toggle 事件                        | `function(open: boolean)` | -      |
+| `@clear`             | 通过右侧删除图标清空所有选项时触发              | `function()`              | -      |

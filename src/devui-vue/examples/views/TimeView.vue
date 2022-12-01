@@ -67,7 +67,6 @@ const meta = {
       title: "自定义模板",
       ui: {
         component: "time",
-        format: "hh:mm",
         slotNameOfCustomViewTemplate: "customViewTemplate",
       },
       default: "11:12:34",
@@ -98,8 +97,6 @@ function chooseTime(ref: any) {
 }
 
 function chooseNowFun(ref: any) {
-  debugger;
-  console.log(ref);
   let date = new Date();
   let hour = date.getHours() > 9 ? date.getHours() : "0" + date.getHours();
   let minute =

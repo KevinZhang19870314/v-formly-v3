@@ -7,7 +7,6 @@
       :max="maximum || 100"
       :step="multipleOf || 1"
       v-model="value"
-      @change="change"
     />
   </v-wrapper>
 </template>
@@ -49,8 +48,4 @@ const value = computed({
     }
   },
 });
-
-function change(value: number) {
-  unref(ui).change?.(value);
-}
 </script>
