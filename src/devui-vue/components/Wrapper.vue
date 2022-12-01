@@ -14,7 +14,7 @@
   </d-form-item>
 </template>
 
-<script setup lang="ts" name="v-wrapper">
+<script setup lang="ts">
 import {
   computed,
   getCurrentInstance,
@@ -63,6 +63,11 @@ function formErrorChangeCallback(err: any) {
   }
 }
 </script>
+
+<script lang="ts">
+export default { name: "v-wrapper" };
+</script>
+
 <style scoped lang="less">
 .show-required :deep(.devui-form__label-span:before) {
   content: "*";

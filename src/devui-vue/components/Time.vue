@@ -2,19 +2,21 @@
   <v-wrapper :id="id" :meta="meta">
     <!--官方未提供 range 模式 -->
     <d-time-picker
-      ref="timePicker"
+      ref="timePickerRef"
       class="v__time"
       v-model="value"
       v-bind="dateBindings"
       :disabled="readOnly"
-      @ok="ok"
       @change="change"
     >
       <template
         v-if="ui.slotNameOfCustomViewTemplate"
         v-slot:customViewTemplate
       >
-        <slot :name="ui.slotNameOfCustomViewTemplate" v-bind:ref="timePicker" />
+        <slot
+          :name="ui.slotNameOfCustomViewTemplate"
+          v-bind:ref="timePickerRef"
+        />
       </template>
     </d-time-picker>
   </v-wrapper>
@@ -42,7 +44,7 @@ const state = inject("state") as Global;
 
 const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 const context = new StringMeta(appContext, state, props.id, props.meta);
-let timePicker = ref(null);
+let timePickerRef = ref(null);
 let dateBindings = {};
 const { bindings } = useBindings(Object.keys(TimePicker.props), context.ui);
 dateBindings = bindings;
@@ -60,10 +62,6 @@ const value = computed({
 
 function change(time: string) {
   unref(ui).change?.(time);
-}
-
-function ok(value: any) {
-  unref(ui).ok?.(value);
 }
 </script>
 

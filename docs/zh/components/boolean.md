@@ -37,3 +37,15 @@ BooleanView
 | 成员      | 说明                   | 类型                                      | 默认值 |
 | --------- | ---------------------- | ----------------------------------------- | ------ |
 | `@change` | 输入框内容变化时的回调 | `Function(checked:Boolean, event: Event)` | -      |
+
+### meta.ui 属性(devui)
+
+| 成员                          | 说明                             | 类型                        | 默认值 |
+| ----------------------------- | -------------------------------- | --------------------------- | ------ |
+| `:slotNameOfCheckedContent`   | 打开状态的文案，slot 名称        | `string`                    | -      |
+| `:slotNameOfUnCheckedContent` | 关闭状态的文案，slot 名称        | `string`                    | -      |
+| `@change`                     | 开关打开返回 true,关闭返回 false | `Function(checked:Boolean)` | -      |
+
+::: tip 注意
+不支持 devui 的`active-value` 和 `inactive-value`属性，这是由`BooleanMeta`的特性决定的。
+:::

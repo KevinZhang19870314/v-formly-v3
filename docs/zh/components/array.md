@@ -25,25 +25,36 @@ ArrayView
 
 ### meta.ui 属性(antdv)
 
-| 成员           | 说明                             | 类型              | 默认值   |
-| -------------- | -------------------------------- | ----------------- | -------- |
-| `:addTitle`    | 添加按钮文本                     | `string`          | `添加`   |
-| `:addType`     | 添加按钮类型，等同 `button type` | `string`          | `dashed` |
-| `:removable`   | 是否包含移除按钮                 | `boolean`         | `true`   |
-| `:showRequired`    | 当前项是否为必填，仅影响样式     | `boolean`         | -        |
-| `@add`         | 添加回调，返回值为实例 id        | `function(id)`    | -        |
-| `@remove`      | 移除回调，返回值为实例 index     | `function(index)` | -        |
+| 成员            | 说明                             | 类型              | 默认值   |
+| --------------- | -------------------------------- | ----------------- | -------- |
+| `:addTitle`     | 添加按钮文本                     | `string`          | `添加`   |
+| `:addType`      | 添加按钮类型，等同 `button type` | `string`          | `dashed` |
+| `:removable`    | 是否包含移除按钮                 | `boolean`         | `true`   |
+| `:showRequired` | 当前项是否为必填，仅影响样式     | `boolean`         | -        |
+| `@add`          | 添加回调，返回值为实例 id        | `function(id)`    | -        |
+| `@remove`       | 移除回调，返回值为实例 index     | `function(index)` | -        |
 
 ### meta.ui 属性(element)
 
-| 成员           | 说明                             | 类型              | 默认值   |
-| -------------- | -------------------------------- | ----------------- | -------- |
-| `:addTitle`    | 添加按钮文本                     | `string`          | `添加`   |
-| `:addType`     | 添加按钮类型，等同 `button type` | `string`          | `primary` |
-| `:removable`   | 是否包含移除按钮                 | `boolean`         | `true`   |
-| `:showRequired`    | 当前项是否为必填，仅影响样式     | `boolean`         | -        |
-| `@add`         | 添加回调，返回值为实例 id        | `function(id)`    | -        |
-| `@remove`      | 移除回调，返回值为实例 index     | `function(index)` | -        |
+| 成员            | 说明                             | 类型              | 默认值    |
+| --------------- | -------------------------------- | ----------------- | --------- |
+| `:addTitle`     | 添加按钮文本                     | `string`          | `添加`    |
+| `:addType`      | 添加按钮类型，等同 `button type` | `string`          | `primary` |
+| `:removable`    | 是否包含移除按钮                 | `boolean`         | `true`    |
+| `:showRequired` | 当前项是否为必填，仅影响样式     | `boolean`         | -         |
+| `@add`          | 添加回调，返回值为实例 id        | `function(id)`    | -         |
+| `@remove`       | 移除回调，返回值为实例 index     | `function(index)` | -         |
+
+### meta.ui 属性(devui)
+
+| 成员            | 说明                                | 类型              | 默认值    |
+| --------------- | ----------------------------------- | ----------------- | --------- |
+| `:addTitle`     | 添加按钮文本                        | `string`          | `添加`    |
+| `:addType`      | 添加按钮类型，等同 `button variant` | `string`          | `outline` |
+| `:removable`    | 是否包含移除按钮                    | `boolean`         | `true`    |
+| `:showRequired` | 当前项是否为必填，仅影响样式        | `boolean`         | -         |
+| `@add`          | 添加回调，返回值为实例 id           | `function(id)`    | -         |
+| `@remove`       | 移除回调，返回值为实例 index        | `function(index)` | -         |
 
 ## 布局
 

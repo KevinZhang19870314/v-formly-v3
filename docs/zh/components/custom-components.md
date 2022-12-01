@@ -28,9 +28,12 @@ v-formly-v3 内置了很多组件，一般业务场景基本可以满足，除�
 ::: import-codes-group-item element
 @[code{35-41} ts{7}](@src/element-plus/examples/components/password/Password.vue)
 :::
+::: import-codes-group-item devui
+@[code{30-36} ts{7}](@src/devui-vue/examples/components/password/Password.vue)
+:::
 ::::
 
-### 3. 导入 useBindings  到`.vue`组件中
+### 3. 导入 useBindings 到`.vue`组件中
 
 导入 hook`useBindings`到组件中，此 hook 导出了可供组件绑定使用的 ui props 对象`bindings`。
 
@@ -40,6 +43,9 @@ v-formly-v3 内置了很多组件，一般业务场景基本可以满足，除�
 :::
 ::: import-codes-group-item element
 @[code{33-43} ts{11}](@src/element-plus/examples/components/password/Password.vue)
+:::
+::: import-codes-group-item devui
+@[code{27-38} ts{12}](@src/devui-vue/examples/components/password/Password.vue)
 :::
 ::::
 
@@ -64,6 +70,9 @@ v-formly-v3 中的每个组件都对应一个 context，其中包含了组件的
 ::: import-codes-group-item element
 @[code{1-} vue{3,19,41,43,52-59}](@src/element-plus/examples/components/password/Password.vue)
 :::
+::: import-codes-group-item devui
+@[code{1-} vue{3,14,36,38,44-51}](@src/devui-vue/examples/components/password/Password.vue)
+:::
 ::::
 
 #### password.meta.ts
@@ -76,6 +85,9 @@ v-formly-v3 中的每个组件都对应一个 context，其中包含了组件的
 :::
 ::: import-codes-group-item element
 @[code{1-23} ts{19}](@src/element-plus/examples/components/password/password.meta.ts)
+:::
+::: import-codes-group-item devui
+@[code{1-23} ts{19}](@src/devui-vue/examples/components/password/password.meta.ts)
 :::
 ::::
 

@@ -24,7 +24,6 @@ const props = defineProps<Props>();
 const router = useRouter();
 
 function handleClick(path: string, name: any) {
-  debugger;
   const routeMeta = props.menu.meta;
   const params = (routeMeta?.routeParams ?? {}) as any;
   const query = (routeMeta?.routeQuery ?? {}) as any;

@@ -16,6 +16,10 @@
     "./element": {
       "import": "./lib/element/v-formly-v3-element.es.js",
       "require": "./lib/element/v-formly-v3-element.umd.js"
+    },
+    "./devui": {
+      "import": "./lib/devui/v-formly-v3-devui.es.js",
+      "require": "./lib/devui/v-formly-v3-devui.umd.js"
     }
   },
   "types": "./v-formly-v3.d.ts",
@@ -24,7 +28,8 @@
     "types/*",
     "v-formly-v3.d.ts",
     "antdv.d.ts",
-    "element.d.ts"
+    "element.d.ts",
+    "devui.d.ts"
   ],
   "keywords": [
     "vue",
@@ -48,15 +53,19 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "build": "run-s build:lib:antdv build:lib:element",
+    "build": "run-s build:lib:default build:lib:antdv build:lib:element build:lib:devui",
+    "build:lib:default": "vite --config vite.config.lib.ts build",
     "build:lib:antdv": "vite --config vite.config.antdv.ts build",
     "build:lib:element": "vite --config vite.config.element.ts build",
+    "build:lib:devui": "vite --config vite.config.devui.ts build",
     "docs:dev:antdv": "cross-env VFORMLY_LIB=antdv vuepress dev docs --clean-temp --clean-cache",
     "docs:dev:element": "cross-env VFORMLY_LIB=element vuepress dev docs --clean-temp --clean-cache",
-    "docs:build": "run-s docs:build:antdv docs:build:element",
-    "docs:build-test": "cross-env BUILD_MODE=test run-s docs:build:antdv docs:build:element",
+    "docs:dev:devui": "cross-env VFORMLY_LIB=devui vuepress dev docs --clean-temp --clean-cache",
+    "docs:build": "run-s docs:build:antdv docs:build:element docs:build:devui",
+    "docs:build-test": "cross-env BUILD_MODE=test run-s docs:build:antdv docs:build:element docs:build:devui",
     "docs:build:antdv": "cross-env VFORMLY_LIB=antdv vuepress build docs",
-    "docs:build:element": "cross-env VFORMLY_LIB=element vuepress build docs -d './docs/.vuepress/dist/element-plus'"
+    "docs:build:element": "cross-env VFORMLY_LIB=element vuepress build docs -d './docs/.vuepress/dist/element-plus'",
+    "docs:build:devui": "cross-env VFORMLY_LIB=devui vuepress build docs -d './docs/.vuepress/dist/vue-devui'"
   },
   "author": "KevinZhang19870314",
   "license": "MIT",

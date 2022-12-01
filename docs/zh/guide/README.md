@@ -1,6 +1,6 @@
 # 介绍
 
-v-formly-v3 是 vue 的动态（JSON 驱动）表单库。它通过[JSON Schema](https://json-schema.org/)和[Ajv Validator](https://ajv.js.org/)结合生成复杂的动态表单及校验，快速、简洁、高效。通过使用 v-formly-v3 及对应的组件库即可快速构造一个 Form 表单，目前支持 Vue 3.x，组件库支持[antdv v3](https://www.antdv.com/components/overview-cn)和[element-plus](https://element-plus.org/zh-CN/)，Vue 3.x 的其他 UI 库（DevUI 等）支持正在开发中。
+v-formly-v3 是 vue 的动态（JSON 驱动）表单库。它通过[JSON Schema](https://json-schema.org/)和[Ajv Validator](https://ajv.js.org/)结合生成复杂的动态表单及校验，快速、简洁、高效。通过使用 v-formly-v3 及对应的组件库即可快速构造一个 Form 表单，目前支持 Vue 3.x，组件库支持[antdv v3](https://www.antdv.com/components/overview-cn)、[element-plus](https://element-plus.org/zh-CN/)、[vue-devui](https://vue-devui.github.io/)。
 
 v-formly-v3 内置封装了 15+ 的组件，同时 v-formly-v3 也支持[自定义封装组件](/zh/components/custom-components.md)，从而可以让你轻松构建复杂的动态表单。
 
@@ -24,7 +24,7 @@ SimpleView
 
    c. `enable`为一个简单的 AntDv 的`Switch`组件。
 
-通过上述简单的表单示例，我们大概了解了如何开始使用 v-formly，更多内容请查看[组件](/zh/components/)。
+通过上述简单的表单示例，我们大概了解了如何开始使用 v-formly，更多内容请查看[组件](/zh/components/README.md)。
 
 ## 快速开始
 
@@ -48,7 +48,7 @@ yarn create vite hello-formly --template vue-ts
 pnpm create vite hello-formly --template vue-ts
 ```
 
-## 安装：组件库二选一，使用哪个安装哪个。
+## 安装：使用哪个组件库就安装哪个。
 
 ### 安装 ant-design-vue 3.x
 
@@ -61,6 +61,10 @@ pnpm create vite hello-formly --template vue-ts
 `$ npm i --save element-plus`
 
 `$ npm i --save @element-plus/icons-vue`
+
+### 安装 vue-devui
+
+`npm i vue-devui @devui-design/icons devui-theme`
 
 ## 安装 v-formly-v3
 
@@ -112,6 +116,32 @@ app.config.globalProperties.$elIcons = elIcons;
 
 app.use(VFormly, {
   lib: "element",
+  ui: {
+    errors: {
+      required: "必填项",
+    },
+  },
+});
+app.mount("#app");
+```
+
+### 对于使用 vue-devui 组件库
+
+```ts
+import { createApp } from "vue";
+import App from "./App.vue";
+import DevUI from "vue-devui";
+import "vue-devui/style.css";
+import "@devui-design/icons/icomoon/devui-icon.css";
+import { ThemeServiceInit, infinityTheme } from "devui-theme";
+import VFormly from "v-formly-v3/devui";
+
+ThemeServiceInit({ infinityTheme }, "infinityTheme");
+
+const app = createApp(App);
+app.use(DevUI);
+app.use(VFormly, {
+  lib: "devui",
   ui: {
     errors: {
       required: "必填项",
@@ -214,3 +244,5 @@ async function submit() {
 3. [antdv v3](https://www.antdv.com/components/overview-cn)；
 
 4. [element-plus](https://element-plus.org/zh-CN/)；
+
+5. [vue-devui](https://vue-devui.github.io/)；
