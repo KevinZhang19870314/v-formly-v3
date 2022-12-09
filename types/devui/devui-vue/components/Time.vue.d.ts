@@ -14,14 +14,13 @@ declare const _sfc_main: import("vue").DefineComponent<{
     state: Global;
     appContext: import("vue").AppContext;
     context: StringMeta;
-    timePicker: import("vue").Ref<null>;
+    timePickerRef: import("vue").Ref<null>;
     dateBindings: {};
     bindings: any;
     readOnly: import("vue").Ref<any>;
     ui: import("vue").ComputedRef<import('../../types/meta').AnyObject>;
     value: import("vue").WritableComputedRef<any>;
     change: (time: string) => void;
-    ok: (value: any) => void;
     VWrapper: import("vue").DefineComponent<{
         id: {
             type: StringConstructor;

@@ -16,6 +16,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
     context: StringMeta;
     bindings: any;
     readOnly: import("vue").Ref<any>;
+    maxLength: import("vue").Ref<any>;
     ui: import("vue").ComputedRef<import('../../types/meta').AnyObject>;
     value: import("vue").WritableComputedRef<any>;
     change: () => void;

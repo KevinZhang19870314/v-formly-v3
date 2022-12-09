@@ -21,7 +21,6 @@ declare const _sfc_main: import("vue").DefineComponent<{
     multipleOf: import("vue").Ref<any>;
     ui: import("vue").ComputedRef<import('../../types/meta').AnyObject>;
     value: import("vue").WritableComputedRef<any>;
-    change: (value: number) => void;
     VWrapper: import("vue").DefineComponent<{
         id: {
             type: StringConstructor;

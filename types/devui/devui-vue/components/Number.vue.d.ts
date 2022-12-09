@@ -21,8 +21,6 @@ declare const _sfc_main: import("vue").DefineComponent<{
     min: import("vue").Ref<number>;
     max: import("vue").Ref<number>;
     step: import("vue").Ref<number>;
-    formatter: import("vue").Ref<(value: any) => any>;
-    parser: import("vue").Ref<(value: any) => any>;
     onCreated: () => void;
     change: (val: number) => void;
     VWrapper: import("vue").DefineComponent<{
